@@ -1,0 +1,158 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* CORPO DA PÁGINA */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+
+    /* FUNDO PRETO COM DEGRADÊ ROXO */
+    background:
+        radial-gradient(
+            circle at center,
+            #3b1768 0%,
+            #1c0b32 35%,
+            #0d0714 65%,
+            #050505 100%
+        );
+
+    min-height: 100vh;
+}
+
+
+/* PÁGINA DE ERRO */
+.pagina-erro {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+}
+
+
+/* ÁREA DO ERRO */
+.area-erro {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* CONTEÚDO CENTRAL */
+.conteudo-erro {
+    width: 100%;
+    max-width: 650px;
+
+    text-align: center;
+}
+
+
+/* LOGO MOVA FIT */
+.logo-movafit {
+    width: 180px;
+    max-width: 70%;
+    height: auto;
+
+    margin-bottom: 35px;
+}
+
+
+/* TÍTULO */
+.conteudo-erro h1 {
+    color: white;
+
+    font-size: 48px;
+    font-weight: bold;
+
+    margin-bottom: 20px;
+}
+
+
+/* "OPS!" ROXO */
+.conteudo-erro h1 span {
+    color: #a855f7;
+}
+
+
+/* MENSAGEM DE ERRO */
+.mensagem-erro {
+    color: #d1d1d1;
+
+    font-size: 18px;
+    line-height: 1.6;
+
+    margin-bottom: 35px;
+}
+
+
+/* BOTÃO VOLTAR PARA O INÍCIO */
+.botao-inicio {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 15px 25px;
+
+    background-color: #7c3aed;
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+/* EFEITO DO BOTÃO */
+.botao-inicio:hover {
+    background-color: #9333ea;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 25px rgba(147, 51, 234, 0.4);
+}
+
+
+/* SETA DO BOTÃO */
+.seta {
+    font-size: 20px;
+}
+
+
+/* RESPONSIVO PARA CELULAR */
+@media (max-width: 600px) {
+
+    .conteudo-erro h1 {
+        font-size: 34px;
+    }
+
+    .mensagem-erro {
+        font-size: 16px;
+    }
+
+    .logo-movafit {
+        width: 140px;
+    }
+
+    .botao-inicio {
+        padding: 13px 20px;
+        font-size: 14px;
+    }
+}

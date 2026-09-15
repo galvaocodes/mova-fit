@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>MOVA FIT | Login</title>
+
+
+  <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+  <main class="pagina-login">
+
+    
+    <section class="area-marca">
+      <div class="marca">
+        
+        <img
+          class="logo-movafit"
+          src="assets/imagens/logo-movafit.png"
+          alt="Logo da MOVA FIT"
+        >
+
+        <h1>MOVA <em>FIT</em></h1>
+
+        <p>
+          Movimento, saúde e evolução<br>
+          no seu próprio ritmo.
+        </p>
+      </div>
+    </section>
+
+    
+    <section class="area-formulario">
+
+      
+      <button
+        class="botao-configuracoes"
+        id="botao-configuracoes"
+        type="button"
+        aria-label="Abrir configurações de exibição"
+      >
+        ⚙
+      </button>
+
+    
+      <aside
+        class="menu-configuracoes"
+        id="menu-configuracoes"
+        aria-label="Configurações de exibição"
+      >
+        <h2>Modo de exibição</h2>
+
+        <div class="opcoes-tema">
+          <button type="button" id="tema-claro">
+            ☀ Claro
+          </button>
+
+          <button type="button" id="tema-escuro">
+            ◐ Escuro
+          </button>
+        </div>
+
+        <hr>
+
+        <p>Tamanho do texto</p>
+
+        <div class="controle-texto">
+          <button
+            id="diminuir-texto"
+            type="button"
+            aria-label="Diminuir tamanho do texto"
+          >
+            −
+          </button>
+
+          <span id="porcentagem-texto">100%</span>
+
+          <button
+            id="aumentar-texto"
+            type="button"
+            aria-label="Aumentar tamanho do texto"
+          >
+            +
+          </button>
+        </div>
+      </aside>
+
+      <div class="cartao-login">
+
+        <header class="cabecalho-login">
+          <h2>Bem-vindo ao MOVA FIT</h2>
+          <p>Entre para continuar sua jornada.</p>
+        </header>
+
+        <form id="form-login">
+
+          
+          <div class="grupo-campo">
+            <label for="email">E-mail</label>
+
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="seuemail@exemplo.com"
+              autocomplete="email"
+              required
+            >
+          </div>
+
+         
+          <div class="grupo-campo">
+            <label for="senha">Senha</label>
+
+            <div class="campo-senha">
+              <input
+                id="senha"
+                name="senha"
+                type="password"
+                placeholder="Digite sua senha"
+                autocomplete="current-password"
+                required
+              >
+
+              <button
+                class="botao-mostrar-senha"
+                id="botao-mostrar-senha"
+                type="button"
+                aria-label="Mostrar senha"
+              >
+                👁
+              </button>
+            </div>
+          </div>
+
+          
+          <div class="opcoes-login">
+            <label class="lembrar-me">
+              <input
+                id="lembrar-me"
+                name="lembrar-me"
+                type="checkbox"
+              >
+              <span>Lembrar-me</span>
+            </label>
+
+            <a href="#" id="link-esqueci-senha">
+              Esqueceu sua senha?
+            </a>
+          </div>
+
+          
+          <p
+            class="mensagem-formulario"
+            id="mensagem-formulario"
+            aria-live="polite"
+          ></p>
+
+          <button class="botao-entrar" type="submit">
+            ENTRAR
+          </button>
+        </form>
+
+        <div class="divisor" aria-hidden="true">
+          <span></span>
+          <p>OU</p>
+          <span></span>
+        </div>
+            
+        <button
+          class="botao-google"
+          id="botao-google"
+           type="button"
+        >
+          <span class="icone-google" aria-hidden="true">G</span>
+            Continuar com o Google
+        </button>
+
+       
+        <p class="texto-cadastro">
+          Não tem uma conta ainda?
+          <a href="cadastro.html">Crie uma conta</a>
+        </p>
+
+      </div>
+    </section>
+  </main>
+
+  
+  <div
+    class="modal-recuperar-senha"
+    id="modal-recuperar-senha"
+    aria-hidden="true"
+  >
+    <div
+      class="conteudo-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="titulo-recuperar-senha"
+    >
+      <button
+        class="botao-fechar-modal"
+        id="botao-fechar-modal"
+        type="button"
+        aria-label="Fechar"
+      >
+        ×
+      </button>
+
+      <h2 id="titulo-recuperar-senha">Recuperar senha</h2>
+
+      <p>
+        Digite seu e-mail para receber as instruções de redefinição de senha.
+      </p>
+
+      <form id="form-recuperar-senha">
+        <label for="email-recuperacao">E-mail</label>
+
+        <input
+          id="email-recuperacao"
+          type="email"
+          placeholder="seuemail@exemplo.com"
+          autocomplete="email"
+          required
+        >
+
+        <p
+          class="mensagem-recuperacao"
+          id="mensagem-recuperacao"
+          aria-live="polite"
+        ></p>
+
+        <button type="submit">
+          Enviar instruções
+        </button>
+      </form>
+    </div>
+  </div>
+
+ 
+  <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,898 @@
+
+
+:root {
+  --cor-fundo: #07080d;
+  --cor-fundo-secundario: #10121b;
+  --cor-card: rgba(19, 21, 31, 0.92);
+
+  --cor-texto: #f7f8ff;
+  --cor-texto-secundario: #a8abba;
+  --cor-borda: rgba(255, 255, 255, 0.13);
+
+  --azul: #176df4;
+  --azul-claro: #2995ff;
+  --roxo: #7724ff;
+  --magenta: #c214ed;
+
+  --gradiente-principal: linear-gradient(
+    100deg,
+    #1275f8 0%,
+    #294cf3 45%,
+    #a415e9 100%
+  );
+
+  --sombra-card: 0 25px 70px rgba(0, 0, 0, 0.42);
+  --fonte-base: Arial, Helvetica, sans-serif;
+
+  --tamanho-texto: 100%;
+}
+
+body.tema-escuro {
+  --cor-fundo: #07080d;
+  --cor-fundo-secundario: #10121b;
+  --cor-card: rgba(19, 21, 31, 0.92);
+
+  --cor-texto: #f7f8ff;
+  --cor-texto-secundario: #a8abba;
+  --cor-borda: rgba(255, 255, 255, 0.13);
+}
+
+
+body.tema-claro {
+  --cor-fundo: #f3f5fa;
+  --cor-fundo-secundario: #e9edf6;
+  --cor-card: rgba(255, 255, 255, 0.95);
+
+  --cor-texto: #13151d;
+  --cor-texto-secundario: #676b7a;
+  --cor-borda: rgba(18, 21, 30, 0.15);
+
+  --sombra-card: 0 25px 70px rgba(31, 38, 69, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--tamanho-texto);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+  font-family: var(--fonte-base);
+
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+.pagina-login {
+  display: grid;
+  grid-template-columns: minmax(400px, 1.1fr) minmax(420px, 0.9fr);
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.area-marca {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  padding: 50px;
+
+  background:
+    radial-gradient(circle at 16% 22%, rgba(27, 119, 255, 0.28), transparent 28%),
+    radial-gradient(circle at 85% 80%, rgba(177, 20, 240, 0.25), transparent 27%),
+    linear-gradient(135deg, #080a12 0%, #111527 48%, #090a11 100%);
+}
+
+.area-marca::before {
+  position: absolute;
+  inset: 0;
+
+  content: "";
+  opacity: 0.24;
+
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+
+  background-size: 52px 52px;
+}
+
+
+.area-marca::after {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  right: -260px;
+  bottom: -260px;
+
+  content: "";
+  border: 1px solid rgba(107, 76, 255, 0.35);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 55px rgba(80, 52, 255, 0.04),
+    0 0 0 110px rgba(80, 52, 255, 0.03);
+}
+
+.marca {
+  position: relative;
+  z-index: 1;
+  max-width: 540px;
+}
+
+
+
+.logo-movafit {
+  display: block;
+  width: 125px;
+  height: auto;
+  margin-bottom: 28px;
+
+  filter: drop-shadow(0 10px 20px rgba(76, 52, 255, 0.28));
+}
+/* Tema claro: fundo tecnológico e MOVA visível */
+body.tema-claro .area-marca {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(124, 78, 255, 0.10) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      rgba(124, 78, 255, 0.10) 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(45, 113, 255, 0.30),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 85%,
+      rgba(163, 60, 255, 0.34),
+      transparent 42%
+    ),
+    linear-gradient(135deg, #101b48, #26185d, #42126a);
+
+  background-size: 42px 42px, 42px 42px, auto, auto, auto;
+}
+
+/* Esta linha faz MOVA aparecer no tema claro */
+body.tema-claro .marca h1 {
+  color: #f8f9ff;
+  text-shadow: 0 8px 25px rgba(0, 0, 0, 0.28);
+}
+
+/* Mantém FIT azul e roxo */
+body.tema-claro .marca h1 em {
+  background: linear-gradient(90deg, #2f7dff, #b52cff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Texto menor abaixo de MOVA FIT */
+body.tema-claro .marca p {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.marca h1 {
+  max-width: 700px;
+  margin: 0;
+
+  font-size: clamp(4rem, 7vw, 7.6rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.marca h1 em {
+  display: inline-block;
+
+  padding-right: 0.12em;
+
+  font-style: italic;
+  letter-spacing: -0.04em;
+  line-height: 1;
+
+  background: var(--gradiente-principal);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.marca p {
+  max-width: 360px;
+  margin: 32px 0 0;
+
+  color: #c3c8d8;
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+/* =========================================
+   LADO DIREITO — FORMULÁRIO
+========================================= */
+.area-formulario {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 100px 30px 40px;
+
+  background:
+    radial-gradient(circle at 92% 15%, rgba(128, 26, 231, 0.12), transparent 25%),
+    var(--cor-fundo);
+}
+
+.cartao-login {
+  width: min(100%, 440px);
+  padding: 42px;
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 22px;
+
+  background: var(--cor-card);
+  box-shadow: var(--sombra-card);
+
+  backdrop-filter: blur(15px);
+}
+
+.cabecalho-login {
+  margin-bottom: 32px;
+}
+
+.cabecalho-login h2 {
+  margin: 0 0 10px;
+
+  color: var(--cor-texto);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.cabecalho-login p {
+  margin: 0;
+
+  color: var(--cor-texto-secundario);
+  font-size: 0.96rem;
+  line-height: 1.5;
+}
+
+/* =========================================
+   CAMPOS
+========================================= */
+.grupo-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  margin-bottom: 20px;
+}
+
+.grupo-campo label {
+  color: var(--cor-texto);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.grupo-campo input {
+  width: 100%;
+  height: 52px;
+  padding: 0 15px;
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  outline: none;
+
+  color: var(--cor-texto);
+  background: rgba(255, 255, 255, 0.035);
+
+  transition: border-color 0.25s ease, box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+body.tema-claro .grupo-campo input {
+  background: rgba(12, 16, 35, 0.03);
+}
+
+.grupo-campo input::placeholder {
+  color: #858b9d;
+}
+
+.grupo-campo input:focus {
+  border-color: var(--azul-claro);
+  background: rgba(43, 116, 255, 0.06);
+  box-shadow: 0 0 0 4px rgba(33, 123, 255, 0.15);
+}
+
+.campo-senha {
+  position: relative;
+}
+
+.campo-senha input {
+  padding-right: 55px;
+}
+
+.botao-mostrar-senha {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+
+  border: none;
+  border-radius: 8px;
+
+  color: var(--cor-texto-secundario);
+  background: transparent;
+
+  transform: translateY(-50%);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.botao-mostrar-senha:hover {
+  color: var(--cor-texto);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* =========================================
+   LEMBRAR / ESQUECI SENHA
+========================================= */
+.opcoes-login {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  margin: 2px 0 26px;
+
+  font-size: 0.84rem;
+}
+
+.lembrar-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: var(--cor-texto-secundario);
+  cursor: pointer;
+}
+
+.lembrar-me input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+
+  accent-color: var(--azul);
+  cursor: pointer;
+}
+
+.opcoes-login a {
+  color: #6f9dff;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.opcoes-login a:hover {
+  color: #bd6dff;
+}
+
+/* Mensagem de erro futuramente usada pelo JavaScript */
+.mensagem-formulario {
+  min-height: 18px;
+  margin: -13px 0 12px;
+
+  color: #ff6a78;
+  font-size: 0.8rem;
+}
+
+/* =========================================
+   BOTÕES
+========================================= */
+.botao-entrar {
+  width: 100%;
+  min-height: 54px;
+
+  border: none;
+  border-radius: 10px;
+
+  color: #ffffff;
+  background: var(--gradiente-principal);
+  box-shadow: 0 10px 24px rgba(81, 49, 239, 0.26);
+
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.botao-entrar:hover {
+  filter: brightness(1.12);
+  box-shadow: 0 14px 30px rgba(81, 49, 239, 0.4);
+  transform: translateY(-2px);
+}
+
+.botao-entrar:active {
+  transform: translateY(0);
+}
+
+.divisor {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  margin: 26px 0;
+
+  color: var(--cor-texto-secundario);
+  font-size: 0.73rem;
+  font-weight: 700;
+}
+
+.divisor span {
+  flex: 1;
+  height: 1px;
+  background: var(--cor-borda);
+}
+
+.divisor p {
+  margin: 0;
+}
+
+.botao-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  width: 100%;
+  min-height: 52px;
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+
+  color: var(--cor-texto);
+  background: transparent;
+
+  font-size: 0.88rem;
+  font-weight: 700;
+
+  transition: border-color 0.2s ease, background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.botao-google:hover {
+  border-color: rgba(61, 130, 255, 0.65);
+  background: rgba(37, 119, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.icone-google {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+  background: conic-gradient(
+    from -45deg,
+    #4285f4 0deg 90deg,
+    #34a853 90deg 180deg,
+    #fbbc05 180deg 270deg,
+    #ea4335 270deg 360deg
+  );
+
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.texto-cadastro {
+  margin: 25px 0 0;
+
+  color: var(--cor-texto-secundario);
+  text-align: center;
+  font-size: 0.84rem;
+}
+
+.texto-cadastro a {
+  margin-left: 3px;
+
+  color: #8a7aff;
+  font-weight: 800;
+}
+
+.texto-cadastro a:hover {
+  color: #c859ff;
+}
+
+/* =========================================
+   ENGRENAGEM E MENU DE EXIBIÇÃO
+========================================= */
+.botao-configuracoes {
+  position: absolute;
+  z-index: 20;
+  top: 25px;
+  right: 28px;
+
+  display: grid;
+  width: 43px;
+  height: 43px;
+  place-items: center;
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+
+  color: var(--cor-texto);
+  background: rgba(255, 255, 255, 0.06);
+
+  font-size: 1.22rem;
+
+  transition: background-color 0.2s ease, transform 0.25s ease;
+}
+
+.botao-configuracoes:hover {
+  background: rgba(122, 42, 255, 0.2);
+  transform: rotate(25deg);
+}
+
+/* O menu inicia escondido.
+   O JavaScript adicionará a classe .aberto ao clicar na engrenagem. */
+.menu-configuracoes {
+  position: absolute;
+  z-index: 30;
+  top: 78px;
+  right: 28px;
+
+  width: 260px;
+  padding: 19px;
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 15px;
+
+  color: var(--cor-texto);
+  background: var(--cor-card);
+  box-shadow: var(--sombra-card);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+
+  backdrop-filter: blur(16px);
+
+  transition: opacity 0.22s ease, transform 0.22s ease,
+    visibility 0.22s ease;
+}
+
+.menu-configuracoes.aberto {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.menu-configuracoes h2 {
+  margin: 0 0 14px;
+  font-size: 0.95rem;
+}
+
+.opcoes-tema {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.opcoes-tema button,
+.controle-texto button {
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+
+  color: var(--cor-texto);
+  background: rgba(255, 255, 255, 0.04);
+
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.opcoes-tema button {
+  min-height: 36px;
+  font-size: 0.78rem;
+}
+
+.opcoes-tema button:hover,
+.controle-texto button:hover {
+  border-color: #547cff;
+  background: rgba(63, 93, 255, 0.15);
+}
+
+.menu-configuracoes hr {
+  margin: 17px 0;
+  border: none;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.menu-configuracoes > p {
+  margin: 0;
+  color: var(--cor-texto-secundario);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.controle-texto {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 12px;
+}
+
+.controle-texto button {
+  width: 34px;
+  height: 32px;
+
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.controle-texto span {
+  color: var(--cor-texto);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+/* =========================================
+   MODAL: RECUPERAÇÃO DE SENHA
+========================================= */
+.modal-recuperar-senha {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+
+  display: grid;
+  place-items: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.7);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+/* Essa classe será ativada no JavaScript mais à frente */
+.modal-recuperar-senha.aberto {
+  opacity: 1;
+  visibility: visible;
+}
+
+.conteudo-modal {
+  position: relative;
+
+  width: min(100%, 410px);
+  padding: 34px;
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 18px;
+
+  color: var(--cor-texto);
+  background: var(--cor-card);
+  box-shadow: var(--sombra-card);
+
+  transform: translateY(20px);
+  transition: transform 0.25s ease;
+}
+
+.modal-recuperar-senha.aberto .conteudo-modal {
+  transform: translateY(0);
+}
+
+.conteudo-modal h2 {
+  margin: 0 0 12px;
+  font-size: 1.35rem;
+}
+
+.conteudo-modal > p {
+  margin: 0 0 22px;
+  color: var(--cor-texto-secundario);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.conteudo-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.conteudo-modal label {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.conteudo-modal input {
+  height: 50px;
+  padding: 0 14px;
+
+  border: 1px solid var(--cor-b);
+  border-radius: 9px;
+  outline: none;
+
+  color: var(--cor-texto);
+  background: transparent;
+}
+
+.conteudo-modal form button:last-child {
+  height: 50px;
+  margin-top: 8px;
+
+  border: none;
+  border-radius: 9px;
+
+  color: #ffffff;
+  background: var(--gradiente-principal);
+
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.botao-fechar-modal {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+
+  border: none;
+
+  color: var(--cor-texto-secundario);
+  background: transparent;
+
+  font-size: 1.8rem;
+}
+
+/* =========================================
+   RESPONSIVIDADE — CELULAR E TABLET
+========================================= */
+@media (max-width: 880px) {
+  .pagina-login {
+    display: block;
+  }
+
+  .area-marca {
+    min-height: 285px;
+    padding: 45px 26px;
+    align-items: flex-end;
+  }
+
+  .marca {
+    width: 100%;
+  }
+
+  .logo-movafit {
+  width: 90px;
+  margin-bottom: 16px;
+}
+  
+
+  .marca h1 {
+    font-size: clamp(3.4rem, 13vw, 5.5rem);
+  }
+
+  .marca p {
+    margin-top: 18px;
+    font-size: 0.9rem;
+  }
+
+  .area-formulario {
+    min-height: calc(100vh - 285px);
+    padding: 42px 20px 35px;
+  }
+
+  .botao-configuracoes {
+    top: 18px;
+    right: 19px;
+  }
+
+  .menu-configuracoes {
+    top: 70px;
+    right: 19px;
+  }
+}
+
+@media (max-width: 480px) {
+  .area-marca {
+    min-height: 240px;
+  }
+
+  .marca h1 {
+    font-size: 3.65rem;
+  }
+
+  .marca p {
+    font-size: 0.83rem;
+  }
+
+  .area-formulario {
+    padding: 35px 15px 25px;
+  }
+
+  .cartao-login {
+    padding: 29px 21px;
+    border-radius: 18px;
+  }
+
+  .cabecalho-login h2 {
+    font-size: 1.45rem;
+  }
+
+  .opcoes-login {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  .menu-configuracoes {
+    width: min(260px, calc(100vw - 38px));
+  }
+
+  .conteudo-modal {
+    padding: 29px 22px;
+  }
+}
+/* Corrige o campo de e-mail do modal de recuperação */
+.conteudo-modal #email-recuperacao {
+  display: block;
+  position: static;
+
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  margin: 10px 0 18px;
+  padding: 14px 16px;
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+
+  background-color: var(--cor-fundo-secundario);
+  color: var(--cor-texto);
+
+  font: inherit;
+}
+
+/* Cor do texto de exemplo dentro do campo */
+.conteudo-modal #email-recuperacao::placeholder {
+  color: var(--cor-texto-secundario);
+  opacity: 0.75;
+}

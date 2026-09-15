@@ -1,0 +1,483 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOVA FIT - Movimento que transforma</title>
+<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<div class="bg-mesh">
+  <div class="mesh-blob blob-1"></div>
+  <div class="mesh-blob blob-2"></div>
+  <div class="mesh-blob blob-3"></div>
+  <div class="mesh-blob blob-4"></div>
+  <div class="mesh-blob blob-5"></div>
+</div>
+
+<header id="header">
+  <nav class="navbar">
+    <a href="#hero" class="logo">
+      <img src="assets/imagens/logo-movafit.png" alt="MOVA FIT">
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#academias">Academias</a></li>
+      <li><a href="#planos">Planos</a></li>
+      <li><a href="#modalidades">Modalidades</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button id="settingsBtn" class="settings-btn" aria-label="Configurações">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M12 15.5A3.5 3.5 0 1 0 12 8.5a3.5 3.5 0 0 0 0 7Z" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+      </button>
+
+      <a href="login.html" class="btn-outline">Sou aluno</a>
+      <a href="cadastro.html" class="btn-fill">Quero ser MOVA</a>
+    </div>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="settings-panel" id="settingsPanel">
+    <div class="settings-group">
+      <span>Tema</span>
+      <div class="theme-toggle">
+        <button class="theme-btn active" data-theme="dark">Escuro</button>
+        <button class="theme-btn" data-theme="light">Claro</button>
+      </div>
+    </div>
+    <div class="settings-group">
+      <span>Zoom</span>
+      <div class="zoom-controls">
+        <button id="zoomOut" aria-label="Diminuir zoom">−</button>
+        <span id="zoomValue">100%</span>
+        <button id="zoomIn" aria-label="Aumentar zoom">+</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="hero">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="assets/videos/video.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <span class="hero-tag">MOVIMENTO • ENERGIA • RESULTADO</span>
+    <h1>É mais que treino. <span>MOVA FIT.</span></h1>
+    <p>Treine do seu jeito, no seu ritmo, com quem entende o que você precisa.</p>
+
+    <div class="hero-buttons">
+      <a href="#academias" class="btn-fill">Encontrar academia perto de você</a>
+      <button id="suporteBtn" class="btn-outline">Suporte</button>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Role para descobrir</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="sobre" id="sobre">
+  <div class="sobre-header">
+    <span class="section-tag">SOBRE A MOVA FIT</span>
+    <h2>Mais que uma academia,<br> um <span>estilo de vida</span></h2>
+  </div>
+
+  <div class="sobre-grid">
+    <div class="sobre-card">
+      <div class="sobre-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+          <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>Energia que impulsiona</h3>
+      <p>Ambiente motivador com estrutura completa para você superar seus próprios limites todos os dias.</p>
+    </div>
+
+    <div class="sobre-card">
+      <div class="sobre-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="7" r="3.2" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Treino para todos</h3>
+      <p>Programas personalizados para iniciantes, intermediários e avançados, no seu ritmo e nível.</p>
+    </div>
+
+    <div class="sobre-card">
+      <div class="sobre-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+          <path d="M12 21s-7-4.5-9.5-9C.7 8.3 2.4 4.5 6 4c2-.3 3.7.7 6 3 2.3-2.3 4-3.3 6-3 3.6.5 5.3 4.3 3.5 8-2.5 4.5-9.5 9-9.5 9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>Perto de você</h3>
+      <p>Unidades estrategicamente localizadas para caber na sua rotina, sem desculpas para faltar.</p>
+    </div>
+
+    <div class="sobre-card">
+      <div class="sobre-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+          <circle cx="8" cy="9" r="3" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="17" cy="10" r="2.4" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M2.5 20c.5-3.2 2.9-5.5 5.5-5.5s5 2.3 5.5 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M14 15.5c2.4.2 4.3 2.1 4.7 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Comunidade MOVA</h3>
+      <p>Faça parte de uma rede de pessoas que se apoiam e evoluem juntas, dentro e fora do treino.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="academias" id="academias">
+  <div class="academias-header">
+    <span class="section-tag">NOSSAS UNIDADES</span>
+    <h2>Escolha a MOVA <span>mais perto de você</span></h2>
+    <p>Estrutura completa, equipamentos modernos e equipe pronta para te receber.</p>
+  </div>
+
+  <div class="academias-grid">
+
+    <div class="academia-card">
+      <div class="academia-number">01</div>
+      <span class="badge-aberto">Aberta agora</span>
+      <h3>MOVA FIT Centro</h3>
+      <p class="academia-endereco">Rua das Flores, 120 - Centro</p>
+      <p class="academia-horario">Seg a Sáb • 06h às 22h</p>
+      <div class="academia-actions">
+        <a href="#" class="btn-map">Ver no mapa</a>
+        <a href="cadastro.html" class="btn-fill">Quero treinar aqui</a>
+      </div>
+    </div>
+
+    <div class="academia-card">
+      <div class="academia-number">02</div>
+      <span class="badge-aberto">Aberta agora</span>
+      <h3>MOVA FIT Zona Sul</h3>
+      <p class="academia-endereco">Av. Atlântica, 850 - Zona Sul</p>
+      <p class="academia-horario">Seg a Sáb • 06h às 22h</p>
+      <div class="academia-actions">
+        <a href="#" class="btn-map">Ver no mapa</a>
+        <a href="cadastro.html" class="btn-fill">Quero treinar aqui</a>
+      </div>
+    </div>
+
+    <div class="academia-card">
+      <div class="academia-number">03</div>
+      <span class="badge-aberto">Aberta agora</span>
+      <h3>MOVA FIT Barra</h3>
+      <p class="academia-endereco">Av. das Américas, 3500 - Barra</p>
+      <p class="academia-horario">Seg a Sáb • 06h às 22h</p>
+      <div class="academia-actions">
+        <a href="#" class="btn-map">Ver no mapa</a>
+        <a href="cadastro.html" class="btn-fill">Quero treinar aqui</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="suporte-faixa">
+  <div class="suporte-card">
+    <div class="suporte-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <path d="M6.6 10.8c1.2 2.4 3.2 4.4 5.6 5.6l1.9-1.9c.3-.3.7-.4 1.1-.2 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.2 1.1L6.6 10.8Z" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+    </div>
+    <span class="section-tag">DÚVIDAS?</span>
+    <h2>Estamos aqui para ajudar.</h2>
+    <p>Nossa equipe está pronta para te atender e tirar todas as suas dúvidas sobre planos, unidades e modalidades.</p>
+    <button id="suporteBtn2" class="btn-fill">Falar com o suporte</button>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="planos" id="planos">
+  <div class="planos-header">
+    <span class="section-tag">PLANOS</span>
+    <h2>Escolha o plano <span>ideal pra você</span></h2>
+    <p>Sem taxa de matrícula. Sem fidelidade obrigatória. Cancele quando quiser.</p>
+  </div>
+
+  <div class="planos-grid">
+
+    <div class="plano-card">
+      <h3>Base</h3>
+      <p class="plano-desc">Para quem está começando a se movimentar.</p>
+      <div class="plano-preco">
+        <span class="moeda">R$</span>
+        <span class="valor">79</span>
+        <span class="periodo">/mês</span>
+      </div>
+      <ul class="plano-lista">
+        <li>Acesso a 1 unidade</li>
+        <li>Musculação e cardio</li>
+        <li>Horário livre</li>
+        <li>App de treinos</li>
+      </ul>
+      <a href="cadastro.html" class="btn-plano">Escolher Base</a>
+    </div>
+
+    <div class="plano-card plano-destaque">
+      <span class="plano-badge">Mais escolhido</span>
+      <h3>Plus</h3>
+      <p class="plano-desc">Para quem quer resultado com estrutura completa.</p>
+      <div class="plano-preco">
+        <span class="moeda">R$</span>
+        <span class="valor">119</span>
+        <span class="periodo">/mês</span>
+      </div>
+      <ul class="plano-lista">
+        <li>Acesso a todas as unidades</li>
+        <li>Musculação, cardio e funcional</li>
+        <li>Aulas em grupo inclusas</li>
+        <li>App de treinos</li>
+        <li>1 avaliação física por mês</li>
+      </ul>
+      <a href="cadastro.html" class="btn-plano btn-plano-destaque">Escolher Plus</a>
+    </div>
+
+    <div class="plano-card">
+      <h3>Premium</h3>
+      <p class="plano-desc">Para quem quer o máximo de suporte e liberdade.</p>
+      <div class="plano-preco">
+        <span class="moeda">R$</span>
+        <span class="valor">179</span>
+        <span class="periodo">/mês</span>
+      </div>
+      <ul class="plano-lista">
+        <li>Acesso a todas as unidades</li>
+        <li>Todas as modalidades</li>
+        <li>Personal trainer incluso</li>
+        <li>App de treinos</li>
+        <li>Avaliação física quinzenal</li>
+        <li>Acesso a horários exclusivos</li>
+      </ul>
+      <a href="cadastro.html" class="btn-plano">Escolher Premium</a>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="modalidades" id="modalidades">
+  <div class="modalidades-header">
+    <span class="section-tag">MODALIDADES</span>
+    <h2>Treine do jeito <span>que combina com você</span></h2>
+  </div>
+
+  <div class="modalidades-grid">
+
+    <div class="modalidade-card mod-1">
+      <div class="modalidade-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+          <path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Musculação</h3>
+      <p>Ganho de força e definição com equipamentos completos e acompanhamento técnico.</p>
+    </div>
+
+    <div class="modalidade-card mod-2">
+      <div class="modalidade-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="5" r="2" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M12 7v6l4 4M12 13l-5 2M8 22l4-9 4 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>Funcional</h3>
+      <p>Movimentos naturais que melhoram força, equilíbrio e mobilidade no dia a dia.</p>
+    </div>
+
+    <div class="modalidade-card mod-3">
+      <div class="modalidade-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+          <path d="M3 12h4l2-7 4 14 2-7h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>Cardio</h3>
+      <p>Melhora do condicionamento e queima calórica com esteiras, bikes e elípticos.</p>
+    </div>
+
+    <div class="modalidade-card mod-4">
+      <div class="modalidade-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+          <path d="M13 3 4 14h6l-1 7 9-12h-6l1-6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>HIIT</h3>
+      <p>Treino intervalado de alta intensidade para maximizar resultados em pouco tempo.</p>
+    </div>
+
+    <div class="modalidade-card mod-5">
+      <div class="modalidade-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="7" r="3.2" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M6 21c0-3.6 2.7-6.5 6-6.5s6 2.9 6 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Personal</h3>
+      <p>Treinamento individual para metas específicas, com atenção total ao seu progresso.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="depoimentos" id="depoimentos">
+  <div class="depoimentos-header">
+    <span class="section-tag">DEPOIMENTOS</span>
+    <h2>Histórias em <span>movimento</span></h2>
+    <p>O que nossos alunos dizem sobre a experiência MOVA FIT.</p>
+  </div>
+
+  <div class="depoimentos-grid">
+
+    <div class="depoimento-card">
+      <div class="depoimento-estrelas">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8l-6.2 3.2L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8l-6.2 3.2L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8l-6.2 3.2L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8l-6.2 3.2L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8l-6.2 3.2L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+      </div>
+      <p class="depoimento-texto">"Desde que entrei na MOVA FIT minha rotina mudou completamente. Ambiente motivador e equipe muito atenciosa."</p>
+      <div class="depoimento-autor">
+        <div class="avatar avatar-1">RC</div>
+        <div>
+          <h4>Rafael Costa</h4>
+          <span>Unidade Centro</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="depoimento-card">
+      <div class="depoimento-estrelas">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8l-6.2 3.2L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8l-6.2 3.2L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8l-6.2 3.2L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8l-6.2 3.2L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8l-6.2 3.2L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+      </div>
+      <p class="depoimento-texto">"Os professores são muito dedicados. Em 3 meses já consegui ver resultado real no meu condicionamento."</p>
+      <div class="depoimento-autor">
+        <div class="avatar avatar-2">JM</div>
+        <div>
+          <h4>Juliana Martins</h4>
+          <span>Unidade Zona Sul</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="depoimento-card">
+      <div class="depoimento-estrelas">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8l-6.2 3.2L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8l-6.2 3.2L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8l-6.2 3.2L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8l-6.2 3.2L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8l-6.2 3.2L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+      </div>
+      <p class="depoimento-texto">"A estrutura é excelente e o plano Plus vale muito a pena. Recomendo demais pra quem quer treinar sério."</p>
+      <div class="depoimento-autor">
+        <div class="avatar avatar-3">TP</div>
+        <div>
+          <h4>Thiago Pereira</h4>
+          <span>Unidade Barra</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-top">
+
+    <div class="footer-brand">
+      <img src="assets/imagens/logo-movafit.png" alt="MOVA FIT" class="footer-logo">
+      <p>Movimento que transforma. Treine do seu jeito, no seu ritmo, com quem entende o que você precisa.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 8.5h2V5h-2c-2.2 0-4 1.8-4 4v2H9v3.5h2V21h3.5v-6.5H17l.5-3.5h-3V9c0-.6.4-1 1-1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#" aria-label="WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 20l1.4-4.2A8 8 0 1 1 9.2 19L4 20Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <a href="#sobre">Sobre</a>
+      <a href="#academias">Academias</a>
+      <a href="#planos">Planos</a>
+      <a href="#modalidades">Modalidades</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Unidades</h4>
+      <a href="#academias">MOVA FIT Centro</a>
+      <a href="#academias">MOVA FIT Zona Sul</a>
+      <a href="#academias">MOVA FIT Barra</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <a href="tel:+5521971671129">(21) 97167-1129</a>
+      <a href="mailto:contato@movafit.com">contato@movafit.com</a>
+      <a href="cadastro.html" class="footer-cta">Quero ser MOVA</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 MOVA FIT. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de uso</a>
+      <a href="#">Privacidade</a>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="suporteModal">
+  <div class="modal-box">
+    <button class="modal-close" id="closeSuporte">&times;</button>
+    <div class="modal-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <path d="M6.6 10.8c1.2 2.4 3.2 4.4 5.6 5.6l1.9-1.9c.3-.3.7-.4 1.1-.2 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.2 1.1L6.6 10.8Z" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+    </div>
+    <h3>Precisa de ajuda?</h3>
+    <p>Fale com a gente agora mesmo pelo telefone:</p>
+    <a href="tel:+5521971671129" class="modal-phone">(21) 97167-1129</a>
+  </div>
+</div>
+
+<script src="js/index.js"></script>
+</body>
+</html>
