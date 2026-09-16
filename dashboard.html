@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Mova Fit</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <!-- ÍCONES -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- MENU LATERAL -->
+        <aside class="sidebar">
+
+            <!-- LOGO -->
+            <div class="logo-area">
+                <img src="assets/imagens/logo-movafit.png" alt="Logo Mova Fit">
+
+                <div class="logo-texto">
+                    <span class="mova">MOVA</span>
+                    <span class="fit">FIT</span>
+                </div>
+            </div>
+
+            <!-- MENU -->
+            <nav class="menu">
+
+                <a href="dashboard.html" class="menu-item ativo">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Início</span>
+                </a>
+
+                <a href="perfil.html" class="menu-item">
+                    <i class="fa-regular fa-user"></i>
+                    <span>Meu perfil</span>
+                </a>
+
+                <a href="plano.html" class="menu-item">
+                    <i class="fa-regular fa-credit-card"></i>
+                    <span>Meu plano</span>
+                </a>
+
+                <a href="atividades.html" class="menu-item">
+                    <i class="fa-solid fa-dumbbell"></i>
+                    <span>Atividades</span>
+                </a>
+
+                <a href="feedback.html" class="menu-item">
+                    <i class="fa-regular fa-message"></i>
+                    <span>Feedback</span>
+                </a>
+
+                <a href="configuracoes.html" class="menu-item">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Configurações</span>
+                </a>
+
+            </nav>
+
+            <!-- SAIR -->
+            <div class="sidebar-footer">
+
+                <a href="login.html" class="menu-item sair">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Sair</span>
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="conteudo">
+
+            <!-- CABEÇALHO -->
+            <header class="topo">
+
+                <div class="boas-vindas">
+                    <h1>Olá, Usuário! 👋</h1>
+                    <p>Bem-vindo de volta à Mova Fit.</p>
+                </div>
+
+                <div class="usuario-topo">
+
+                    <button class="botao-acessibilidade"
+                        aria-label="Acessibilidade">
+                        <i class="fa-solid fa-universal-access"></i>
+                    </button>
+
+                    <button class="botao-notificacao"
+                        aria-label="Notificações">
+                        <i class="fa-regular fa-bell"></i>
+                    </button>
+
+                    <div class="avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <span class="nome-usuario">Usuário</span>
+
+                </div>
+
+            </header>
+
+
+            <!-- CARDS SUPERIORES -->
+            <section class="cards-superiores">
+
+                <!-- PLANO -->
+                <div class="card">
+
+                    <p class="card-titulo">MEU PLANO</p>
+
+                    <h2>PLUS</h2>
+
+                    <p>Plano ativo</p>
+
+                    <a href="plano.html" class="botao-card">
+                        Ver plano
+                    </a>
+
+                </div>
+
+
+                <!-- UNIDADE -->
+                <div class="card">
+
+                    <p class="card-titulo">MINHA UNIDADE</p>
+
+                    <h2>Mova Fit Centro</h2>
+
+                    <p>Unidade principal</p>
+
+                    <a href="unidade.html" class="botao-card">
+                        Ver unidade
+                    </a>
+
+                </div>
+
+
+                <!-- PRÓXIMA ATIVIDADE -->
+                <div class="card">
+
+                    <p class="card-titulo">PRÓXIMA ATIVIDADE</p>
+
+                    <h2>Treino funcional</h2>
+
+                    <p>Hoje, 18:30</p>
+
+                    <a href="atividades.html" class="botao-card">
+                        Ver atividades
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ÁREA CENTRAL -->
+            <section class="area-central">
+
+                <!-- MOVIMENTO -->
+                <div class="movimento">
+
+                    <div class="movimento-cabecalho">
+
+                        <h2>Seu movimento</h2>
+
+                        <p>
+                            Acompanhe sua frequência nesta semana.
+                        </p>
+
+                    </div>
+
+
+                    <!-- ESTATÍSTICAS -->
+                    <div class="estatisticas">
+
+                        <div class="estatistica azul">
+
+                            <strong>12</strong>
+
+                            <span>Treinos no mês</span>
+
+                        </div>
+
+
+                        <div class="estatistica roxo-claro">
+
+                            <strong>3x</strong>
+
+                            <span>Por semana</span>
+
+                        </div>
+
+
+                        <div class="estatistica roxo">
+
+                            <strong>4 dias</strong>
+
+                            <span>Sequência atual</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- GRÁFICO -->
+                    <div class="grafico">
+
+                        <div class="dia">
+                            <div class="barra azul barra-seg"></div>
+                            <span>SEG</span>
+                        </div>
+
+                        <div class="dia">
+                            <div class="barra roxo barra-ter"></div>
+                            <span>TER</span>
+                        </div>
+
+                        <div class="dia">
+                            <div class="barra azul barra-qua"></div>
+                            <span>QUA</span>
+                        </div>
+
+                        <div class="dia">
+                            <div class="barra roxo barra-qui"></div>
+                            <span>QUI</span>
+                        </div>
+
+                        <div class="dia">
+                            <div class="barra azul barra-sex"></div>
+                            <span>SEX</span>
+                        </div>
+
+                        <div class="dia">
+                            <div class="barra roxo barra-sab"></div>
+                            <span>SÁB</span>
+                        </div>
+
+                        <div class="dia">
+                            <div class="barra roxo barra-dom"></div>
+                            <span>DOM</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ATIVIDADES RECENTES -->
+                <div class="atividades-recentes">
+
+                    <h2>Atividades recentes</h2>
+
+                    <div class="atividade">
+
+                        <div class="atividade-icone">
+                            <i class="fa-solid fa-dumbbell"></i>
+                        </div>
+
+                        <p>Musculação | Hoje, 07:30</p>
+
+                    </div>
+
+
+                    <div class="atividade">
+
+                        <div class="atividade-icone">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+
+                        <p>Cardio | 14/09, 18:20</p>
+
+                    </div>
+
+
+                    <div class="atividade">
+
+                        <div class="atividade-icone">
+                            <i class="fa-solid fa-person"></i>
+                        </div>
+
+                        <p>Yoga | 12/09, 09:00</p>
+
+                    </div>
+
+
+                    <a href="atividades.html" class="ver-todas">
+                        Ver todas
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ACESSO RÁPIDO -->
+            <section class="acesso-rapido">
+
+                <h2>Acesso rápido</h2>
+
+                <div class="atalhos">
+
+                    <a href="perfil.html" class="atalho">
+
+                        <div class="atalho-icone">
+                            <i class="fa-regular fa-user"></i>
+                        </div>
+
+                        <span>Editar perfil</span>
+
+                    </a>
+
+
+                    <a href="plano.html" class="atalho">
+
+                        <div class="atalho-icone">
+                            <i class="fa-regular fa-credit-card"></i>
+                        </div>
+
+                        <span>Meu plano</span>
+
+                    </a>
+
+
+                    <a href="feedback.html" class="atalho">
+
+                        <div class="atalho-icone">
+                            <i class="fa-regular fa-message"></i>
+                        </div>
+
+                        <span>Enviar feedback</span>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="js/dashboard.js"></script>
+
+</body>
+
+</html>
