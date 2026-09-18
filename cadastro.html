@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - MOVA FIT</title>
+    <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="light-theme">
+    <header class="main-header">
+        <div class="header-left">
+            <a href="index.html" class="home-icon" title="Voltar ao Início">
+                <i class="fas fa-home"></i>
+            </a>
+            <img src="assets/imagens/logo-movafit.png" alt="MOVA FIT Logo" class="logo">
+        </div>
+        <div class="header-right">
+          <div class="settings-dropdown">
+    <i class="fas fa-cog settings-icon"></i>
+    <div class="dropdown-content">
+        <div class="dropdown-section">
+            <span class="dropdown-label">Tema</span>
+            <div class="theme-toggle" id="theme-toggle">
+                <div class="theme-toggle-slider"></div>
+                <button class="theme-toggle-option active" data-theme="dark">Escuro</button>
+                <button class="theme-toggle-option" data-theme="light">Claro</button>
+            </div>
+        </div>
+        <div class="dropdown-section">
+            <span class="dropdown-label">Zoom</span>
+            <div class="zoom-control">
+                <button class="zoom-btn" id="zoom-decrease">−</button>
+                <span class="zoom-value" id="zoom-value">100%</span>
+                <button class="zoom-btn" id="zoom-increase">+</button>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="progress-bar">
+            <div class="step active" id="step-1">
+                <span class="step-number">1</span>
+                <span class="step-text">Escolha o Plano</span>
+            </div>
+            <div class="step" id="step-2">
+                <span class="step-number">2</span>
+                <span class="step-text">Cadastro</span>
+            </div>
+            <div class="step" id="step-3">
+                <span class="step-number">3</span>
+                <span class="step-text">Pagamento</span>
+            </div>
+        </div>
+
+        <section id="section-planos" class="section-content active">
+            <h1 class="section-title">PRIMEIRO PASSO: ESCOLHA SEU PLANO</h1>
+            <p class="section-subtitle">Planos para diferentes objetivos, rotinas e momentos.</p>
+
+            <div class="plan-cards">
+                <div class="plan-card basic">
+                    <h2>BASIC</h2>
+                    <h3>Para começar no seu ritmo.</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Área de musculação</li>
+                        <li><i class="fas fa-check-circle"></i> Cardio</li>
+                        <li><i class="fas fa-check-circle"></i> Acesso à unidade</li>
+                    </ul>
+                    <p class="price">R$ 79,90<span>/mês</span></p>
+                    <button class="btn-choose-plan" data-plan-name="Basic" data-plan-price="79.90">ESCOLHER BASIC</button>
+                </div>
+
+                <div class="plan-card plus featured">
+                    <span class="badge">MAIS ESCOLHIDO</span>
+                    <h2>PLUS</h2>
+                    <h3>Mais possibilidades para o seu treino.</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Musculação e cardio</li>
+                        <li><i class="fas fa-check-circle"></i> Aulas coletivas</li>
+                        <li><i class="fas fa-check-circle"></i> Avaliação física</li>
+                    </ul>
+                    <p class="price">R$ 109,90<span>/mês</span></p>
+                    <button class="btn-choose-plan" data-plan-name="Plus" data-plan-price="109.90">ESCOLHER PLUS</button>
+                </div>
+
+                <div class="plan-card premium">
+                    <h2>PREMIUM</h2>
+                    <h3>A experiência completa Mova Fit.</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Todos os benefícios do Plus</li>
+                        <li><i class="fas fa-check-circle"></i> Treino personalizado periódico</li>
+                        <li><i class="fas fa-check-circle"></i> Acesso total</li>
+                    </ul>
+                    <p class="price">R$ 149,90<span>/mês</span></p>
+                    <button class="btn-choose-plan" data-plan-name="Premium" data-plan-price="149.90">ESCOLHER PREMIUM</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-cadastro" class="section-content">
+            <div class="cadastro-layout">
+                <div class="cadastro-form-area">
+                    <h1 class="section-title">Vamos começar?</h1>
+                    <p class="section-subtitle">Preencha seus dados para criar sua conta Mova.</p>
+
+                    <form id="registration-form">
+                        <div class="form-group">
+                            <label for="full-name">Nome completo</label>
+                            <input type="text" id="full-name" name="fullName" placeholder="Nome completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cpf">CPF</label>
+                            <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="E-mail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Data de nascimento</label>
+                            <input type="date" id="dob" name="dob" placeholder="DD/MM/AAAA" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Celular</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Celular" required>
+                        </div>
+                        <div class="form-group password-group">
+                            <label for="password">Senha</label>
+                            <input type="password" id="password" name="password" placeholder="Senha" required>
+                            <i class="fas fa-eye toggle-password" data-target="password"></i>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">Li e concordo com os <a href="#">Termos de Uso</a> e <a href="#">Política de Privacidade</a>.</label>
+                        </div>
+                        <button type="submit" class="btn-continue-cadastro">Continuar cadastro</button>
+                    </form>
+                </div>
+
+                <div class="summary-card">
+                    <h3>Resumo do seu plano</h3>
+                    <div class="summary-item">
+                        <span>Nome do plano escolhido</span>
+                        <span id="summary-plan-name"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Mensalidade</span>
+                        <span id="summary-monthly-price">R$ 0,00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Desconto</span>
+                        <span id="summary-discount">R$ 0,00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Taxa de inscrição</span>
+                        <span id="summary-enrollment-fee">R$ 0,00</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Total de hoje</span>
+                        <span id="summary-total-today">R$ 0,00</span>
+                    </div>
+                    <button class="btn-alterar-plano">Alterar plano</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-pagamento" class="section-content">
+            <div class="pagamento-layout">
+                <div class="pagamento-options-area">
+                    <h1 class="section-title">Finalize seu pagamento</h1>
+                    <p class="section-subtitle">Escolha a forma de pagamento e conclua sua inscrição.</p>
+
+                    <div class="payment-tabs">
+                        <button class="tab-button active" data-tab="card">Cartão de Débito/Crédito</button>
+                        <button class="tab-button" data-tab="pix">Pix</button>
+                    </div>
+
+                    <div class="tab-content active" id="tab-card">
+                        <form id="card-payment-form">
+                            <div class="form-group">
+                                <label for="card-number">Número do Cartão</label>
+                                <input type="text" id="card-number" placeholder="**** **** **** ****" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="card-name">Nome no Cartão</label>
+                                <input type="text" id="card-name" placeholder="Nome completo" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="expiry-date">Validade</label>
+                                    <input type="text" id="expiry-date" placeholder="MM/AA" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" placeholder="***" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="installments">Parcelas</label>
+                                <select id="installments" required>
+                                    <option value="1">1x sem juros</option>
+                                    <option value="2">2x sem juros</option>
+                                    <option value="3">3x sem juros</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-finalize-purchase">Finalizar Compra</button>
+                        </form>
+                    </div>
+
+                    <div class="tab-content" id="tab-pix">
+                        <div class="pix-area">
+                            <p>Escaneie o QR Code para pagar com Pix:</p>
+                            <div class="qr-code-box">
+                                <img src="assets/imagens/qrcode.png" alt="QR Code Pix" class="qr-code-img">
+                                <p class="qr-code-text">Código Pix Copia e Cola (simulado):</p>
+                                <input type="text" value="00020101021226580014BR.GOV.BCB.PIX0136..." readonly class="pix-copy-paste">
+                                <button class="btn-copy-pix"><i class="fas fa-copy"></i> Copiar Código</button>
+                            </div>
+                            <button class="btn-finalize-purchase pix-finalize">Finalizar Compra</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <h3>Resumo do seu plano</h3>
+                    <div class="summary-item">
+                        <span>Nome do plano escolhido</span>
+                        <span id="summary-plan-name-payment"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Mensalidade</span>
+                        <span id="summary-monthly-price-payment">R$ 0,00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Desconto</span>
+                        <span id="summary-discount-payment">R$ 0,00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Taxa de inscrição</span>
+                        <span id="summary-enrollment-fee-payment">R$ 0,00</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Total de hoje</span>
+                        <span id="summary-total-today-payment">R$ 0,00</span>
+                    </div>
+                    <button class="btn-alterar-plano">Alterar plano</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/cadastro.js"></script>
+</body>
+</html>
