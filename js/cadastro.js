@@ -113,14 +113,36 @@ applyZoom(isNaN(savedZoom) ? 100 : savedZoom);
 
     // Registration Form Submission
     registrationForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        // Basic validation (user said "pode colocar qualquer coisa", so just check if form is valid)
-        if (registrationForm.checkValidity()) {
-            showSection(3); // Go to Pagamento section
+    e.preventDefault();
+
+    if (registrationForm.checkValidity()) {
+
+        const usuario = {
+            nome: document.getElementById('full-name').value,
+            cpf: document.getElementById('cpf').value,
+            email: document.getElementById('email').value,
+            dataNascimento: document.getElementById('dob').value,
+            telefoneCelular: document.getElementById('phone').value,
+            senha: document.getElementById('password').value,
+
+            // Vamos usar o e-mail como login
+            login: document.getElementById('email').value
+        };
+
+        const resultado = cadastrarUsuario(usuario);
+
+        if (resultado.sucesso) {
+            alert(resultado.mensagem);
+            showSection(3);
         } else {
-            alert('Por favor, preencha todos os campos obrigatórios e aceite os termos.');
+            alert(resultado.mensagem);
         }
-    });
+
+    } else {
+        alert('Por favor, preencha todos os campos obrigatórios e aceite os termos.');
+    }
+});
+    
 
     // "Alterar plano" buttons
     alterarPlanoBtns.forEach(button => {
