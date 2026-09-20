@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MovaFit | Confirmação do Feedback</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/confirmacao.css">
+</head>
+
+<body>
+
+    <!-- ==================================
+         BARRA SUPERIOR
+    =================================== -->
+
+    <header class="topo">
+
+        <h2>Confirmação</h2>
+
+        <!-- BOTÃO DA ENGRENAGEM -->
+        <button
+            type="button"
+            id="botaoAcessibilidade"
+            class="botao-acessibilidade"
+            aria-label="Abrir configurações de acessibilidade"
+        >
+            ⚙
+        </button>
+
+
+        <!-- PAINEL DE ACESSIBILIDADE -->
+        <div
+            class="painel-acessibilidade"
+            id="painelAcessibilidade"
+        >
+
+            <h3>Modo de exibição</h3>
+
+
+            <!-- CLARO / ESCURO -->
+            <div class="opcoes-tema">
+
+                <button
+                    type="button"
+                    id="temaClaro"
+                    class="botao-tema ativo"
+                >
+                    ☀ Claro
+                </button>
+
+
+                <button
+                    type="button"
+                    id="temaEscuro"
+                    class="botao-tema"
+                >
+                    ◐ Escuro
+                </button>
+
+            </div>
+
+
+            <hr>
+
+
+            <!-- TAMANHO DO TEXTO -->
+
+            <p class="titulo-fonte">
+                Tamanho do texto
+            </p>
+
+
+            <div class="controle-fonte">
+
+                <!-- DIMINUIR -->
+                <button
+                    type="button"
+                    id="diminuirFonte"
+                    aria-label="Diminuir tamanho do texto"
+                >
+                    −
+                </button>
+
+
+                <!-- PORCENTAGEM -->
+                <strong id="porcentagemFonte">
+                    100%
+                </strong>
+
+
+                <!-- AUMENTAR -->
+                <button
+                    type="button"
+                    id="aumentarFonte"
+                    aria-label="Aumentar tamanho do texto"
+                >
+                    +
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==================================
+         CONTEÚDO PRINCIPAL
+    =================================== -->
+
+    <main class="conteudo">
+
+
+        <!-- CONFIRMAÇÃO -->
+
+        <section class="confirmacao">
+
+            <div class="icone-confirmacao">
+                ✓
+            </div>
+
+            <h1>
+                Feedback enviado com sucesso!
+            </h1>
+
+            <p>
+                Obrigado por compartilhar sua experiência.
+            </p>
+
+        </section>
+
+
+
+        <!-- ==================================
+             DETALHES DO FEEDBACK
+        =================================== -->
+
+        <section class="card-feedback">
+
+            <h2>
+                Detalhes do seu feedback
+            </h2>
+
+
+            <!-- CATEGORIA -->
+
+            <div class="linha">
+
+                <span>Categoria</span>
+
+                <strong id="categoria">
+                    -
+                </strong>
+
+            </div>
+
+
+            <!-- AVALIAÇÃO -->
+
+            <div class="linha">
+
+                <span>Avaliação</span>
+
+                <strong id="avaliacao">
+                    -
+                </strong>
+
+            </div>
+
+
+            <!-- TIPO -->
+
+            <div class="linha">
+
+                <span>Tipo de feedback</span>
+
+                <strong id="tipo">
+                    -
+                </strong>
+
+            </div>
+
+
+            <!-- SATISFAÇÃO -->
+
+            <div class="linha">
+
+                <span>Nível de satisfação</span>
+
+                <strong id="satisfacao">
+                    -
+                </strong>
+
+            </div>
+
+
+            <!-- ASSUNTO -->
+
+            <div class="linha">
+
+                <span>Assunto</span>
+
+                <strong id="assunto">
+                    -
+                </strong>
+
+            </div>
+
+
+            <!-- MENSAGEM -->
+
+            <div class="mensagem-feedback">
+
+                <span>Mensagem</span>
+
+                <p id="mensagem">
+                    -
+                </p>
+
+            </div>
+
+
+            <!-- RETORNO -->
+
+            <div class="linha">
+
+                <span>Retorno solicitado</span>
+
+                <strong id="retorno">
+                    -
+                </strong>
+
+            </div>
+
+
+            <!-- ENVIADO POR -->
+
+            <div class="linha">
+
+                <span>Enviado por</span>
+
+                <strong id="enviadoPor">
+                    Usuário
+                </strong>
+
+            </div>
+
+
+            <!-- DATA -->
+
+            <div class="linha">
+
+                <span>Data</span>
+
+                <strong id="data">
+                    -
+                </strong>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="linha">
+
+                <span>Status</span>
+
+                <strong
+                    id="status"
+                    class="status"
+                >
+                    Enviado
+                </strong>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 BOTÕES
+            =================================== -->
+
+            <div class="acoes">
+
+                <a
+                    href="feedback.html"
+                    class="botao-secundario"
+                >
+                    Enviar outro feedback
+                </a>
+
+
+                <a
+                    href="dashboard.html"
+                    class="botao"
+                >
+                    Voltar ao Dashboard
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="js/confirmacao.js"></script>
+
+</body>
+
+</html>

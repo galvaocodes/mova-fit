@@ -1,0 +1,617 @@
+/* ==================================
+   CONFIGURAÇÕES GERAIS
+================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #f5f7fb;
+    color: #171a24;
+
+    transition:
+        background-color 0.3s,
+        color 0.3s;
+}
+
+
+/* ==================================
+   TOPO
+================================== */
+
+.topo {
+    min-height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 8%;
+
+    background-color: white;
+
+    border-bottom: 1px solid #e2e5ec;
+
+    position: relative;
+}
+
+.topo h2 {
+    margin: 0;
+}
+
+
+/* ==================================
+   BOTÃO DA ENGRENAGEM
+================================== */
+
+.botao-acessibilidade {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #d7dbe3;
+    border-radius: 12px;
+
+    background-color: white;
+    color: #171a24;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.botao-acessibilidade:hover {
+    border-color: #536dfe;
+
+    background-color: #f5f7ff;
+}
+
+
+/* ==================================
+   PAINEL DE ACESSIBILIDADE
+================================== */
+
+.painel-acessibilidade {
+    position: absolute;
+
+    top: 65px;
+    right: 8%;
+
+    width: 270px;
+
+    padding: 20px;
+
+    background-color: white;
+
+    border: 1px solid #d9dce4;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.12);
+
+    z-index: 1000;
+
+    /* Começa escondido */
+    display: none;
+}
+
+
+/* Quando o painel estiver aberto */
+
+.painel-acessibilidade.aberto {
+    display: block;
+}
+
+
+.painel-acessibilidade h3 {
+    margin-top: 0;
+    margin-bottom: 14px;
+
+    font-size: 1rem;
+}
+
+
+.painel-acessibilidade hr {
+    margin: 18px 0;
+
+    border: none;
+    border-top: 1px solid #dedfe4;
+}
+
+
+/* ==================================
+   CLARO / ESCURO
+================================== */
+
+.opcoes-tema {
+    display: flex;
+
+    gap: 8px;
+}
+
+
+.botao-tema {
+    flex: 1;
+
+    padding: 10px;
+
+    border: 1px solid #d6d9e1;
+    border-radius: 8px;
+
+    background-color: white;
+    color: #171a24;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.botao-tema:hover {
+    border-color: #536dfe;
+}
+
+
+/* BOTÃO SELECIONADO */
+
+.botao-tema.ativo {
+    border-color: #536dfe;
+
+    background-color: #eef1ff;
+
+    color: #253cbb;
+}
+
+
+/* ==================================
+   TAMANHO DO TEXTO
+================================== */
+
+.titulo-fonte {
+    margin-bottom: 12px;
+
+    color: #6c7280;
+
+    font-size: 0.9rem;
+
+    font-weight: bold;
+}
+
+
+.controle-fonte {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.controle-fonte button {
+    width: 36px;
+    height: 36px;
+
+    border: 1px solid #d6d9e1;
+    border-radius: 9px;
+
+    background-color: white;
+
+    color: #171a24;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.controle-fonte button:hover {
+    border-color: #536dfe;
+
+    color: #536dfe;
+}
+
+
+#porcentagemFonte {
+    font-size: 1rem;
+}
+
+
+/* ==================================
+   CONTEÚDO
+================================== */
+
+.conteudo {
+    width: 90%;
+
+    max-width: 850px;
+
+    margin: 45px auto;
+}
+
+
+/* ==================================
+   CONFIRMAÇÃO
+================================== */
+
+.confirmacao {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+
+.icone-confirmacao {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #3765ff,
+        #922cff
+    );
+
+    color: white;
+
+    font-size: 35px;
+    font-weight: bold;
+}
+
+
+.confirmacao h1 {
+    margin-bottom: 8px;
+}
+
+
+.confirmacao p {
+    color: #6c7280;
+}
+
+
+/* ==================================
+   CARD DO FEEDBACK
+================================== */
+
+.card-feedback {
+    padding: 35px;
+
+    background-color: white;
+
+    border-radius: 16px;
+
+    border-top: 4px solid #7c3aed;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+.card-feedback h2 {
+    margin-top: 0;
+
+    margin-bottom: 25px;
+}
+
+
+/* ==================================
+   INFORMAÇÕES
+================================== */
+
+.linha {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 17px 0;
+
+    border-bottom: 1px solid #e5e7ec;
+}
+
+
+.linha span {
+    color: #6c7280;
+}
+
+
+.linha strong {
+    text-align: right;
+}
+
+
+/* ==================================
+   MENSAGEM
+================================== */
+
+.mensagem-feedback {
+    padding: 17px 0;
+
+    border-bottom: 1px solid #e5e7ec;
+}
+
+
+.mensagem-feedback span {
+    color: #6c7280;
+}
+
+
+.mensagem-feedback p {
+    margin-bottom: 0;
+
+    padding: 15px;
+
+    background-color: #f5f7fb;
+
+    border-radius: 8px;
+
+    line-height: 1.6;
+
+    word-break: break-word;
+}
+
+
+/* ==================================
+   STATUS
+================================== */
+
+.status {
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    background-color: #e9fff1;
+
+    color: #15803d;
+}
+
+
+/* ==================================
+   BOTÕES INFERIORES
+================================== */
+
+.acoes {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+
+.botao,
+.botao-secundario {
+    padding: 13px 22px;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+
+.botao {
+    color: white;
+
+    background: linear-gradient(
+        90deg,
+        #3765ff,
+        #922cff
+    );
+}
+
+
+.botao-secundario {
+    color: #171a24;
+
+    background-color: white;
+
+    border: 1px solid #d7dbe3;
+}
+
+
+.botao:hover {
+    opacity: 0.9;
+}
+
+
+.botao-secundario:hover {
+    color: #7c3aed;
+
+    border-color: #7c3aed;
+}
+
+
+/* ==================================
+   MODO ESCURO
+================================== */
+
+body.escuro {
+    background-color: #11131a;
+
+    color: #f5f5f5;
+}
+
+
+/* TOPO */
+
+body.escuro .topo {
+    background-color: #1d2029;
+
+    border-color: #343844;
+}
+
+
+/* ENGRENAGEM */
+
+body.escuro .botao-acessibilidade {
+    background-color: #292d38;
+
+    color: white;
+
+    border-color: #454957;
+}
+
+
+/* PAINEL */
+
+body.escuro .painel-acessibilidade {
+    background-color: #1d2029;
+
+    border-color: #454957;
+}
+
+
+body.escuro .painel-acessibilidade hr {
+    border-color: #454957;
+}
+
+
+/* BOTÕES CLARO / ESCURO */
+
+body.escuro .botao-tema {
+    background-color: #292d38;
+
+    color: white;
+
+    border-color: #454957;
+}
+
+
+body.escuro .botao-tema.ativo {
+    background-color: #353b59;
+
+    border-color: #7182ff;
+
+    color: white;
+}
+
+
+/* BOTÕES DE FONTE */
+
+body.escuro .controle-fonte button {
+    background-color: #292d38;
+
+    color: white;
+
+    border-color: #454957;
+}
+
+
+body.escuro .titulo-fonte {
+    color: #b9bec9;
+}
+
+
+/* CARD */
+
+body.escuro .card-feedback {
+    background-color: #1d2029;
+}
+
+
+body.escuro .confirmacao p,
+body.escuro .linha span,
+body.escuro .mensagem-feedback span {
+    color: #b9bec9;
+}
+
+
+body.escuro .linha,
+body.escuro .mensagem-feedback {
+    border-color: #383c47;
+}
+
+
+body.escuro .mensagem-feedback p {
+    background-color: #292d38;
+
+    color: white;
+}
+
+
+body.escuro .botao-secundario {
+    background-color: #292d38;
+
+    color: white;
+
+    border-color: #454957;
+}
+
+
+/* ==================================
+   CELULAR
+================================== */
+
+@media (max-width: 600px) {
+
+    .topo {
+        padding: 15px 20px;
+    }
+
+
+    .painel-acessibilidade {
+        right: 20px;
+
+        width: 260px;
+    }
+
+
+    .card-feedback {
+        padding: 22px;
+    }
+
+
+    .linha {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 5px;
+    }
+
+
+    .linha strong {
+        text-align: left;
+    }
+
+
+    .acoes {
+        flex-direction: column;
+    }
+
+
+    .botao,
+    .botao-secundario {
+        text-align: center;
+    }
+
+}
