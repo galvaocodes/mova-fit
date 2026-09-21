@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+ 
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Feedback | Mova Fit</title>
+
+    <!-- CSS do Dashboard -->
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <!-- CSS específico do Feedback -->
+    <link rel="stylesheet" href="css/feedback.css">
+
+    <!-- ÍCONES -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- MENU LATERAL -->
+        <aside class="sidebar">
+
+            <!-- LOGO -->
+            <div class="logo-area">
+
+                <img src="assets/imagens/logo-movafit.png" alt="Logo Mova Fit">
+
+                <div class="logo-texto">
+                    <span class="mova">MOVA</span>
+                    <span class="fit">FIT</span>
+                </div>
+
+            </div>
+
+
+            <!-- MENU -->
+            <nav class="menu">
+
+                <a href="dashboard.html" class="menu-item">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Início</span>
+                </a>
+
+                <a href="perfil.html" class="menu-item">
+                    <i class="fa-regular fa-user"></i>
+                    <span>Meu perfil</span>
+                </a>
+
+                <a href="plano.html" class="menu-item">
+                    <i class="fa-regular fa-credit-card"></i>
+                    <span>Meu plano</span>
+                </a>
+
+                <a href="atividades.html" class="menu-item">
+                    <i class="fa-solid fa-dumbbell"></i>
+                    <span>Atividades</span>
+                </a>
+
+                <a href="feedback.html" class="menu-item ativo">
+                    <i class="fa-regular fa-message"></i>
+                    <span>Feedback</span>
+                </a>
+
+                <a href="configuracoes.html" class="menu-item">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Configurações</span>
+                </a>
+
+            </nav>
+
+
+            <!-- SAIR -->
+            <div class="sidebar-footer">
+
+                <a href="login.html" class="menu-item sair">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Sair</span>
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="conteudo">
+
+            <!-- CABEÇALHO -->
+            <header class="topo">
+
+                <div class="boas-vindas">
+
+                    <h1>Seu feedback importa</h1>
+
+                    <p>
+                        Conte pra gente como está sendo sua experiência na Mova Fit.
+                    </p>
+
+                </div>
+
+
+                <!-- USUÁRIO -->
+                <div class="usuario-topo">
+
+                    <button
+                        class="botao-acessibilidade"
+                        aria-label="Acessibilidade">
+
+                        <i class="fa-solid fa-gear"></i>
+
+                    </button>
+
+
+                    <button
+                        class="botao-notificacao"
+                        aria-label="Notificações">
+
+                        <i class="fa-regular fa-bell"></i>
+
+                    </button>
+
+
+                    <div class="avatar">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+
+                    <span class="nome-usuario">
+                        Usuário
+                    </span>
+
+                </div>
+
+            </header>
+                        <!-- ÁREA DE FEEDBACK -->
+            <section class="feedback-area">
+
+                <!-- FORMULÁRIO -->
+                <div class="feedback-card">
+
+                    <div class="feedback-card-cabecalho">
+                        <h2>Enviar feedback</h2>
+                        <p>Sua opinião nos ajuda a melhorar cada movimento.</p>
+                    </div>
+
+                    <form id="form-feedback" novalidate>
+                        <div id="mensagem-erro" class="mensagem-erro" hidden>
+    <i class="fa-solid fa-circle-exclamation"></i>
+    <span>Preencha os campos obrigatórios antes de enviar.</span>
+</div>
+
+                        <!-- CATEGORIA -->
+                        <div class="campo">
+                            <label for="categoria">
+                           <label for="categoria">Sobre o que você quer falar? <span class="obrigatorio">*</span></label>
+                            </label>
+
+                            <select id="categoria" name="categoria" required>
+                                <option value="" selected disabled>
+                                    Selecione uma categoria
+                                </option>
+                                <option value="Academia">Academia</option>
+                                <option value="Atendimento">Atendimento</option>
+                                <option value="Equipamentos">Equipamentos</option>
+                                <option value="Aulas">Aulas</option>
+                                <option value="Aplicativo/Site">Aplicativo/Site</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+
+
+                        <!-- AVALIAÇÃO -->
+                        <div class="campo">
+                            <label>Como você avalia sua experiência? <span class="obrigatorio">*</span></label>
+
+                            <div class="estrelas" id="estrelas">
+
+                                <button type="button" class="estrela" data-valor="1"
+                                    aria-label="1 estrela">
+                                    <i class="fa-regular fa-star"></i>
+                                </button>
+
+                                <button type="button" class="estrela" data-valor="2"
+                                    aria-label="2 estrelas">
+                                    <i class="fa-regular fa-star"></i>
+                                </button>
+
+                                <button type="button" class="estrela" data-valor="3"
+                                    aria-label="3 estrelas">
+                                    <i class="fa-regular fa-star"></i>
+                                </button>
+
+                                <button type="button" class="estrela" data-valor="4"
+                                    aria-label="4 estrelas">
+                                    <i class="fa-regular fa-star"></i>
+                                </button>
+
+                                <button type="button" class="estrela" data-valor="5"
+                                    aria-label="5 estrelas">
+                                    <i class="fa-regular fa-star"></i>
+                                </button>
+
+                            </div>
+
+                            <input type="hidden" id="avaliacao" name="avaliacao">
+                        </div>
+
+                        <!-- TIPO DE FEEDBACK -->
+<div class="campo">
+    <label>Qual é o tipo do seu feedback? <span class="obrigatorio">*</span></label>
+
+    <div class="opcoes-radio">
+
+        <label>
+            <input type="radio" name="tipoFeedback" value="Sugestão" required>
+            Sugestão
+        </label>
+
+        <label>
+            <input type="radio" name="tipoFeedback" value="Elogio">
+            Elogio
+        </label>
+
+        <label>
+            <input type="radio" name="tipoFeedback" value="Reclamação">
+            Reclamação
+        </label>
+
+    </div>
+</div>
+                    
+<!-- NÍVEL DE SATISFAÇÃO -->
+<div class="campo">
+    <label for="satisfacao">
+        Qual seu nível de satisfação?
+    </label>
+
+    <div class="range-area">
+        <input
+            type="range"
+            id="satisfacao"
+            name="satisfacao"
+            min="0"
+            max="10"
+            value="5">
+
+        <span id="valor-satisfacao">5/10</span>
+    </div>
+</div>
+                        <!-- ASSUNTO -->
+                        <div class="campo">
+                            <label for="assunto">Assunto <span class="obrigatorio">*</span></label>
+
+                            <input
+                                type="text"
+                                id="assunto"
+                                name="assunto"
+                                placeholder="Digite o assunto do seu feedback"
+                                maxlength="80"
+                                required>
+                        </div>
+
+
+                        <!-- MENSAGEM -->
+                        <div class="campo">
+                            <div class="label-mensagem">
+                                <label for="mensagem">Mensagem</label>
+                                <span id="contador">0/500</span>
+                            </div>
+
+                            <textarea
+                                id="mensagem"
+                                name="mensagem"
+                                placeholder="Conte pra gente sua experiência, sugestão ou opinião..."
+                                maxlength="500"
+                                required></textarea>
+                        </div>
+
+
+                        <!-- RETORNO -->
+                        <label class="opcao-retorno">
+                            <input type="checkbox" id="retorno" name="retorno">
+
+                            <span>
+                                Quero receber um retorno sobre este feedback
+                            </span>
+                        </label>
+
+
+                        <!-- BOTÕES -->
+                        <div class="acoes-feedback">
+
+                            <button type="reset" class="botao-cancelar">
+                                Cancelar
+                            </button>
+
+                            <button type="submit" class="botao-enviar">
+                                Enviar feedback
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- CARD LATERAL -->
+                <aside class="feedback-info">
+
+                    <div class="feedback-info-icone">
+                        <i class="fa-regular fa-comments"></i>
+                    </div>
+
+                    <h2>Estamos ouvindo você</h2>
+
+                    <p>
+                        Cada feedback ajuda a construir uma Mova Fit melhor para todos.
+                    </p>
+
+                    <div class="feedback-topicos">
+
+                        <div class="feedback-topico">
+                            <i class="fa-regular fa-lightbulb"></i>
+                            <span>Sugestões</span>
+                        </div>
+
+                        <div class="feedback-topico">
+                            <i class="fa-regular fa-heart"></i>
+                            <span>Elogios</span>
+                        </div>
+
+                        <div class="feedback-topico">
+                            <i class="fa-regular fa-message"></i>
+                            <span>Experiências</span>
+                        </div>
+
+                    </div>
+
+                </aside>
+
+            </section>
+
+        </main>
+
+    </div>
+    </div>
+
+    <script src="js/feedback.js"></script>
+</body>
+
+</html>
