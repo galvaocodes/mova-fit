@@ -44,8 +44,8 @@ body.dark-theme {
     --accent-color: #00e676;
     --text-color: #ecf0f1;
     --light-text-color: #bdc3c7;
-    --background-color: #9F468F; /* Fundo escuro mais profundo e agradável */
-    --card-background: #80008080;
+    --background-color: #7A1FA2; /* Fundo escuro mais profundo e agradável */
+    --card-background: #000;
     --border-color: #3a4b5c;
     --input-background: #3a4b5c;
     --input-border: #3a4b5c;
