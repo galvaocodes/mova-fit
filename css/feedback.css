@@ -20,7 +20,11 @@ body {
     display: grid;
     grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr);
     gap: 28px;
-    margin-top: 40px;
+
+    max-width: 1500px;
+    margin: 40px auto 0;
+    padding: 0 32px;
+
     align-items: start;
 }
 
