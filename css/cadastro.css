@@ -961,3 +961,447 @@ form input:focus, form select:focus {
         max-width: 100%;
     }
 }
+/* ==========================================================================
+   SISTEMA DE NOTIFICAÇÕES (TOASTS) E BOTÕES - IDENTIDADE MOVA FIT
+   ========================================================================== */
+
+:root {
+    /* Cores exatas extraídas da identidade visual */
+    --mova-blue: #0051ff;
+    --mova-purple: #8b24ff;
+    --mova-gradient: linear-gradient(135deg, var(--mova-blue), var(--mova-purple));
+    --mova-dark: #16141c;
+    --mova-error: #ff4757;
+    --mova-text: #ffffff;
+}
+
+/* Container Flutuante para os Toasts */
+.toast-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: none; /* Evita que a área invisível bloqueie cliques do usuário */
+}
+
+/* Estilo Base do Toast (Erros e Avisos) */
+.toast {
+    background: rgba(22, 20, 28, 0.95);
+    backdrop-filter: blur(10px); /* Efeito de vidro / Glassmorphism */
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--mova-text);
+    padding: 16px 24px;
+    border-radius: 8px;
+    border-left: 4px solid var(--mova-error);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    max-width: 350px;
+    word-wrap: break-word;
+    pointer-events: auto;
+    /* Animação suave baseada em curvas de aceleração reais */
+    animation: toastSlideIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Toast de Sucesso (Gradiente da Marca Mova Fit) */
+.toast.success {
+    background: var(--mova-gradient);
+    border-left: none;
+    box-shadow: 0 10px 25px -5px rgba(139, 36, 255, 0.4);
+}
+
+/* Estilização Premium para os Botões de Ação */
+.btn-continue-cadastro, 
+.btn-finalize-purchase {
+    background: var(--mova-gradient);
+    color: var(--mova-text);
+    border: none;
+    border-radius: 8px;
+    padding: 16px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 81, 255, 0.2);
+    width: 100%;
+    margin-top: 15px;
+}
+
+/* Efeito de Hover (Quando passa o mouse) */
+.btn-continue-cadastro:hover, 
+.btn-finalize-purchase:hover {
+    transform: translateY(-2px); /* Levanta o botão levemente */
+    box-shadow: 0 8px 20px rgba(139, 36, 255, 0.4);
+    filter: brightness(1.1);
+}
+
+/* Efeito Active (Quando clica) */
+.btn-continue-cadastro:active, 
+.btn-finalize-purchase:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 81, 255, 0.2);
+}
+
+/* Animação de Entrada do Toast */
+@keyframes toastSlideIn {
+    from { 
+        transform: translateX(120%) scale(0.9); 
+        opacity: 0; 
+    }
+    to { 
+        transform: translateX(0) scale(1); 
+        opacity: 1; 
+    }
+}/* ==========================================================================
+   LAYOUT EM COLUNAS PARA O FORMULÁRIO (LADO A LADO)
+   ========================================================================== */
+
+#registration-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Cria duas colunas de tamanhos iguais */
+    column-gap: 20px; /* Dá um respiro de 20px entre a coluna da esquerda e a da direita */
+    align-items: start;
+}
+
+/* Os termos de uso e o botão devem ocupar a largura total, sem dividir espaço */
+#registration-form .checkbox-group,
+#registration-form .btn-continue-cadastro {
+    grid-column: 1 / -1;
+}
+
+/* (Opcional) Faz o Nome Completo e a Rua ocuparem a linha inteira para o texto não ficar espremido */
+#registration-form .form-group:has(#full-name),
+#registration-form .form-group:has(#rua) {
+    grid-column: 1 / -1;
+}
+
+/* Responsividade: Em tablets e celulares (menor que 768px), o formulário volta a ter 1 coluna */
+@media (max-width: 768px) {
+    #registration-form {
+        grid-template-columns: 1fr;
+    }
+    
+    #registration-form .form-group:has(#full-name),
+    #registration-form .form-group:has(#rua) {
+        grid-column: auto;
+    }
+}/* ==========================================================================
+   COMPACTAÇÃO DO FORMULÁRIO (REDUZIR ROLAGEM VERTICAL)
+   ========================================================================== */
+
+/* Reduz drasticamente o espaço vertical (buraco) entre as linhas */
+#registration-form {
+    row-gap: 10px !important; 
+    column-gap: 15px; 
+}
+
+/* Remove margens inferiores que empurram o conteúdo para baixo */
+#registration-form .form-group {
+    margin-bottom: 0 !important; 
+}
+
+/* Deixa as caixas de digitação mais "baixinhas" */
+#registration-form input {
+    padding: 8px 12px !important; /* Reduz a altura interna do input */
+    font-size: 14px !important; /* Texto um pouco menor para caber melhor */
+}
+
+/* Diminui o texto dos títulos de cada campo e aproxima da caixa */
+#registration-form label {
+    margin-bottom: 4px !important;
+    font-size: 13px !important;
+}
+
+/* Aproxima os termos de uso e o botão do restante do formulário */
+#registration-form .checkbox-group {
+    margin-top: 5px !important;
+    margin-bottom: 0 !important;
+}
+
+.btn-continue-cadastro {
+    padding: 12px 20px !important; /* Deixa o botão menos alto */
+    margin-top: 10px !important; 
+}
+
+/* Compacta também os títulos principais no topo da página */
+.cadastro-form-area .section-title {
+    margin-bottom: 5px !important;
+    font-size: 24px !important;
+}
+
+.cadastro-form-area .section-subtitle {
+    margin-bottom: 15px !important;
+    font-size: 14px !important;
+}/* ==========================================================================
+   DESIGN PREMIUM DOS CARTÕES DE PLANOS
+   ========================================================================== */
+
+/* Alinha os 3 cartões lado a lado e centraliza-os */
+.plan-cards {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os cartões desçam em ecrãs pequenos */
+    justify-content: center;
+    gap: 30px;
+    max-width: 1150px;
+    margin: 0 auto 40px auto;
+    align-items: center; /* Permite que o cartão central (Plus) seja maior */
+}
+
+/* Base de cada cartão */
+.plan-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px 30px;
+    width: 340px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+    min-height: 500px; /* Garante que todos têm a mesma altura mínima */
+}
+
+/* Efeito de flutuação ao passar o rato (Hover) */
+.plan-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(0, 81, 255, 0.15);
+}
+
+/* O Cartão Destaque (Plus) */
+.plan-card.plus {
+    background: var(--mova-gradient); /* Usa o gradiente azul/roxo da marca */
+    color: #ffffff;
+    transform: scale(1.08); /* Deixa este cartão 8% maior que os outros */
+    box-shadow: 0 15px 35px rgba(139, 36, 255, 0.3);
+    border: none;
+    z-index: 2;
+}
+
+/* Hover específico para o cartão Plus */
+.plan-card.plus:hover {
+    transform: scale(1.08) translateY(-12px);
+}
+
+/* Garante que todos os textos dentro do plano Plus fiquem brancos para dar contraste */
+.plan-card.plus h2,
+.plan-card.plus h3,
+.plan-card.plus .price,
+.plan-card.plus p {
+    color: #ffffff !important;
+}
+
+/* O Emblema (Badge) "MAIS ESCOLHIDO" no canto superior direito */
+.plan-card.plus .badge {
+    position: absolute;
+    top: 25px;
+    right: -40px;
+    background: #ffb703; /* Amarelo premium */
+    color: #000;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 8px 45px;
+    transform: rotate(45deg);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Tipografia dos Títulos e Subtítulos */
+.plan-card h2 {
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 8px;
+    color: var(--mova-dark);
+}
+
+.plan-card h3 {
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.7;
+    margin-bottom: 30px;
+    min-height: 42px; /* Mantém o alinhamento mesmo se o texto tiver 2 linhas */
+}
+
+/* Estilo grandioso para os preços */
+.plan-card .price {
+    font-size: 46px;
+    font-weight: 900;
+    margin: 10px 0 35px 0;
+    color: var(--mova-purple);
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.plan-card .price span {
+    font-size: 16px;
+    font-weight: 600;
+    opacity: 0.7;
+    margin-left: 4px;
+}
+
+/* Organiza a lista de benefícios e empurra o botão sempre para o final */
+.plan-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+    text-align: left;
+    flex-grow: 1; /* Esta propriedade é o segredo para os botões ficarem todos alinhados no fundo! */
+}
+
+.plan-card li {
+    margin-bottom: 18px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.plan-card li i {
+    color: var(--mova-blue);
+    font-size: 18px;
+}
+
+.plan-card.plus li i {
+    color: #ffffff; /* Ícone de "check" em branco no cartão Plus */
+}
+
+/* Botões base dos planos */
+.btn-choose-plan {
+    background: var(--mova-gradient);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: 100%;
+}
+
+/* Botão específico do plano Plus (Como o fundo já tem gradiente, o botão precisa de ser diferente) */
+.plan-card.plus .btn-choose-plan {
+    background: rgba(255, 255, 255, 0.15); /* Fundo tipo vidro fosco */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.plan-card.plus .btn-choose-plan:hover {
+    background: #ffffff;
+    color: var(--mova-purple); /* Ao passar o rato, o botão fica branco com texto roxo */
+    transform: translateY(-2px);
+}
+
+.plan-card:not(.plus) .btn-choose-plan:hover {
+    box-shadow: 0 8px 20px rgba(139, 36, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Responsividade: Volta a empilhar os cartões em telemóveis e tablets */
+@media (max-width: 1024px) {
+    .plan-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .plan-card {
+        width: 100%;
+        max-width: 400px;
+        min-height: auto;
+    }
+    
+    .plan-card.plus {
+        transform: scale(1); /* Remove o tamanho extra no telemóvel para não cortar as bordas */
+    }
+    
+    .plan-card.plus:hover {
+        transform: translateY(-8px);
+    }
+}/* ==========================================================================
+   CORREÇÕES: FITINHA AMARELA E MODO ESCURO
+   ========================================================================== */
+
+/*/* ==========================================================================
+   CORREÇÃO DEFINITIVA DA FITA "MAIS ESCOLHIDO"
+   ========================================================================== */
+
+/* Garante que o cartão funcione como uma máscara de corte nas bordas */
+/* ==========================================================================
+   CORREÇÃO DEFINITIVA DA FITA "MAIS ESCOLHIDO"
+   ========================================================================== */
+
+/* Mantemos a máscara de corte nas bordas do cartão */
+/* ==========================================================================
+   CORREÇÃO DEFINITIVA DA FITA "MAIS ESCOLHIDO"
+   ========================================================================== */
+
+/* ==========================================================================
+   CORREÇÃO FINAL DA FITA "MAIS ESCOLHIDO" 
+   ========================================================================== */
+
+/* A máscara de corte do cartão */
+.plan-card {
+    position: relative !important;
+    overflow: hidden !important; 
+}
+
+/* A fita com as medidas e alinhamentos exatos */
+.plan-card.plus .badge {
+    position: absolute !important;
+    top: 25px !important;          /* Distância do topo */
+    right: -35px !important;       /* Empurra apenas o suficiente para esconder a ponta */
+    width: 160px !important;       /* Largura equilibrada */
+    display: block !important;
+    text-align: center !important;
+    padding: 6px 0 !important;
+    background: #ffb703 !important;
+    color: #000 !important;
+    font-size: 10px !important;
+    font-weight: 900 !important;
+    transform: rotate(45deg) !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important; /* Proíbe o texto de quebrar para a linha de baixo */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+    z-index: 10 !important;
+}
+
+
+/* 2. Garante que os textos fiquem escuros no Modo Claro */
+.plan-card:not(.plus) h3, 
+.plan-card:not(.plus) li {
+    color: #333333; 
+}
+
+/* 3. Adaptação elegante dos cartões para o Modo Escuro */
+body.dark-theme .plan-card:not(.plus) {
+    background: #1c1a24; /* Fundo escuro para os cartões não ofuscarem a visão */
+    border: 1px solid #2d2a3b;
+}
+
+body.dark-theme .plan-card:not(.plus) h2,
+body.dark-theme .plan-card:not(.plus) h3,
+body.dark-theme .plan-card:not(.plus) li {
+    color: #ffffff; /* Faz o texto ficar branco e legível */
+}
+
+body.dark-theme .plan-card:not(.plus) h3 {
+    opacity: 0.7;
+}
+
+body.dark-theme .plan-card:not(.plus) .price {
+    color: #a475ff; /* Deixa o roxo do preço mais claro para contrastar bem no fundo escuro */
+}
