@@ -23,125 +23,208 @@
 
 <body>
 
-    <div class="dashboard">
+  <header class="cabecalho">
 
-        <!-- MENU LATERAL -->
-        <aside class="sidebar">
+        <!-- LOGO -->
+        <button class="logo-btn"
+                type="button"
+                data-section="inicio"
+                aria-label="Ir para o início">
 
-            <!-- LOGO -->
-            <div class="logo-area">
+            <img src="assets/imagens/logo-movafit.png"
+                 alt="MOVA FIT"
+                 class="logo-img">
 
-                <img src="assets/imagens/logo-movafit.png" alt="Logo Mova Fit">
+        </button>
 
-                <div class="logo-texto">
-                    <span class="mova">MOVA</span>
-                    <span class="fit">FIT</span>
-                </div>
+
+        <!-- =================================================
+             MENU DO DASHBOARD
+        ================================================== -->
+
+        <nav class="menu-dashboard"
+             aria-label="Menu da área do cliente">
+
+            <button class="menu-link ativo"
+                    type="button"
+                    data-section="inicio">
+
+                Início
+
+            </button>
+
+
+            <button class="menu-link"
+                    type="button"
+                    data-section="perfil">
+
+                Perfil
+
+            </button>
+
+
+            <button class="menu-link"
+                    type="button"
+                    data-section="informacoes">
+
+                Informações adicionais
+
+            </button>
+
+        </nav>
+
+
+        <!-- =================================================
+             LADO DIREITO DO CABEÇALHO
+        ================================================== -->
+
+        <div class="header-direita">
+
+
+            <!-- USUÁRIO LOGADO -->
+            <div class="usuario-logado">
+
+                <i class="fa-solid fa-circle-user"></i>
+
+                <span>
+                    Olá,
+                    <strong id="nomeUsuario">
+                        Usuário
+                    </strong>
+                </span>
 
             </div>
 
 
-            <!-- MENU -->
-            <nav class="menu">
+            <!-- LOGOUT -->
+            <button id="btnLogout"
+                    class="btn-sair"
+                    type="button"
+                    aria-label="Sair da conta">
 
-                <a href="dashboard.html" class="menu-item">
-                    <i class="fa-solid fa-house"></i>
-                    <span>Início</span>
-                </a>
+                <i class="fa-solid fa-right-from-bracket"></i>
 
-                <a href="perfil.html" class="menu-item">
-                    <i class="fa-regular fa-user"></i>
-                    <span>Meu perfil</span>
-                </a>
+                <span>Sair</span>
 
-                <a href="plano.html" class="menu-item">
-                    <i class="fa-regular fa-credit-card"></i>
-                    <span>Meu plano</span>
-                </a>
+            </button>
 
-                <a href="atividades.html" class="menu-item">
-                    <i class="fa-solid fa-dumbbell"></i>
-                    <span>Atividades</span>
-                </a>
 
-                <a href="feedback.html" class="menu-item ativo">
-                    <i class="fa-regular fa-message"></i>
-                    <span>Feedback</span>
-                </a>
+            <!-- =================================================
+                 ACESSIBILIDADE
+            ================================================== -->
 
-                <a href="configuracoes.html" class="menu-item">
+            <div class="acessibilidade-container">
+
+
+                <!-- ENGRENAGEM -->
+                <button id="btnAcessibilidade"
+                        class="btn-acessibilidade"
+                        type="button"
+                        aria-label="Abrir opções de acessibilidade"
+                        aria-expanded="false">
+
                     <i class="fa-solid fa-gear"></i>
-                    <span>Configurações</span>
-                </a>
 
-            </nav>
+                </button>
 
 
-            <!-- SAIR -->
-            <div class="sidebar-footer">
-
-                <a href="login.html" class="menu-item sair">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    <span>Sair</span>
-                </a>
-
-            </div>
-
-        </aside>
+                <!-- PAINEL DE ACESSIBILIDADE -->
+                <div id="painelAcessibilidade"
+                     class="painel-acessibilidade"
+                     aria-hidden="true">
 
 
-        <!-- CONTEÚDO PRINCIPAL -->
-        <main class="conteudo">
+                    <!-- TÍTULO -->
+                    <div class="painel-titulo">
 
-            <!-- CABEÇALHO -->
-            <header class="topo">
+                        <i class="fa-solid fa-universal-access"></i>
 
-                <div class="boas-vindas">
-
-                    <h1>Seu feedback importa</h1>
-
-                    <p>
-                        Conte pra gente como está sendo sua experiência na Mova Fit.
-                    </p>
-
-                </div>
-
-
-                <!-- USUÁRIO -->
-                <div class="usuario-topo">
-
-                    <button
-                        class="botao-acessibilidade"
-                        aria-label="Acessibilidade">
-
-                        <i class="fa-solid fa-gear"></i>
-
-                    </button>
-
-
-                    <button
-                        class="botao-notificacao"
-                        aria-label="Notificações">
-
-                        <i class="fa-regular fa-bell"></i>
-
-                    </button>
-
-
-                    <div class="avatar">
-
-                        <i class="fa-solid fa-user"></i>
+                        <h2>
+                            Acessibilidade
+                        </h2>
 
                     </div>
 
 
-                    <span class="nome-usuario">
-                        Usuário
-                    </span>
+                    <!-- MODO ESCURO -->
+                    <button id="btnModoEscuro"
+                            class="opcao-acessibilidade"
+                            type="button"
+                            aria-pressed="false">
+
+                        <i class="fa-solid fa-moon"></i>
+
+                        <span>
+                            Modo escuro
+                        </span>
+
+                    </button>
+
+
+                    <!-- ALTO CONTRASTE -->
+                    <button id="btnContraste"
+                            class="opcao-acessibilidade"
+                            type="button"
+                            aria-pressed="false">
+
+                        <i class="fa-solid fa-circle-half-stroke"></i>
+
+                        <span>
+                            Alto contraste
+                        </span>
+
+                    </button>
+
+
+                    <!-- TAMANHO DA FONTE -->
+                    <div class="controle-fonte">
+
+                        <span class="controle-fonte-titulo">
+                            Tamanho da fonte
+                        </span>
+
+
+                        <div class="controle-fonte-botoes">
+
+                            <!-- DIMINUIR -->
+                            <button id="diminuirFonte"
+                                    type="button"
+                                    aria-label="Diminuir tamanho da fonte">
+
+                                A−
+
+                            </button>
+
+
+                            <!-- INDICADOR -->
+                            <span id="indicadorFonte"
+                                  aria-live="polite">
+
+                                100%
+
+                            </span>
+
+
+                            <!-- AUMENTAR -->
+                            <button id="aumentarFonte"
+                                    type="button"
+                                    aria-label="Aumentar tamanho da fonte">
+
+                                A+
+
+                            </button>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
-            </header>
+            </div>
+
+        </div>
+
+    </header>
                         <!-- ÁREA DE FEEDBACK -->
             <section class="feedback-area">
 
@@ -355,7 +438,7 @@
 
     </div>
     </div>
-
+    <script src="js/dashboard.js"></script>
     <script src="js/feedback.js"></script>
 </body>
 
