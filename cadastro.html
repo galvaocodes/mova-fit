@@ -136,29 +136,54 @@
                 </fieldset>
 
                 <!-- CREDENCIAIS DE ACESSO -->
-                <fieldset class="form-grupo-fieldset">
-                    <legend><i class="fa-solid fa-lock"></i> Credenciais de Acesso</legend>
+                <!-- CREDENCIAIS DE ACESSO -->
+<fieldset class="form-grupo-fieldset">
+    <legend><i class="fa-solid fa-lock"></i> Credenciais de Acesso</legend>
 
-                    <div class="input-grupo">
-                        <label for="login">Login (Exatamente 6 caracteres alfabéticos)</label>
-                        <input type="text" id="login" name="login" placeholder="Ex: movafit" maxlength="6" required>
-                        <span class="erro-texto" id-erro="login"></span>
-                    </div>
+    <div class="input-grupo">
+       <label for="login">
+        Login 
+         <span class="tooltip-custom">
+             <i class="fa-solid fa-circle-info"></i>
+        <span class="tooltip-texto">Exatamente 6 caracteres alfabéticos</span>
+         </span>
+        </label>
+        <input type="text" id="login" name="login" placeholder="Ex: movafit" maxlength="6" required>
+        <span class="erro-texto" id-erro="login"></span>
+    </div>
 
-                    <div class="input-linha">
-                        <div class="input-grupo">
-                            <label for="senha">Senha (Exatamente 8 caracteres alfabéticos)</label>
-                            <input type="password" id="senha" name="senha" placeholder="Ex: abcdwxyz" maxlength="8" required>
-                            <span class="erro-texto" id-erro="senha"></span>
-                        </div>
+    <!-- O .input-linha já deixa lado a lado! -->
+    <div class="input-linha">
+        <div class="input-grupo">
+           <label for="senha">
+                Senha 
+                 <span class="tooltip-custom">
+                     <i class="fa-solid fa-circle-info"></i>
+                     <span class="tooltip-texto">Exatamente 8 caracteres alfabéticos</span>
+                 </span>
+            </label>
+            <!-- Container novo para a senha e o olhinho -->
+            <div class="input-container">
+                <input type="password" id="senha" name="senha" placeholder="Ex: abcdwxyz" maxlength="8" required>
+                <button type="button" class="btn-olho" onclick="toggleSenha('senha', this)">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+            </div>
+            <span class="erro-texto" id-erro="senha"></span>
+        </div>
 
-                        <div class="input-grupo">
-                            <label for="confirmaSenha">Confirme a Senha</label>
-                            <input type="password" id="confirmaSenha" name="confirmaSenha" placeholder="Repita a senha" maxlength="8" required>
-                            <span class="erro-texto" id-erro="confirmaSenha"></span>
-                        </div>
-                    </div>
-                </fieldset>
+        <div class="input-grupo">
+            <label for="confirmaSenha">Confirme a Senha</label>
+            <div class="input-container">
+                <input type="password" id="confirmaSenha" name="confirmaSenha" placeholder="Repita a senha" maxlength="8" required>
+                <button type="button" class="btn-olho" onclick="toggleSenha('confirmaSenha', this)">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+            </div>
+            <span class="erro-texto" id-erro="confirmaSenha"></span>
+        </div>
+    </div>
+</fieldset>
 
                 <button type="submit" class="btn-principal btn-submit">
                     Concluir Cadastro <i class="fa-solid fa-arrow-right"></i>

@@ -212,3 +212,21 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 2000);
     });
 });
+// ==========================================
+// FUNÇÃO PARA MOSTRAR/OCULTAR SENHA
+// ==========================================
+window.toggleSenha = function(idCampo, btn) {
+    const campo = document.getElementById(idCampo);
+    // Pega o ícone <i> que está dentro do botão
+    const icone = btn.querySelector('i');
+    
+    if (campo.type === 'password') {
+        campo.type = 'text'; // Mostra a senha
+        icone.classList.remove('fa-eye');
+        icone.classList.add('fa-eye-slash'); // Muda para o ícone de olho riscado
+    } else {
+        campo.type = 'password'; // Oculta a senha
+        icone.classList.remove('fa-eye-slash');
+        icone.classList.add('fa-eye'); // Volta para o ícone de olho normal
+    }
+};

@@ -206,3 +206,101 @@ body {
         padding: 25px 20px;
     }
 }
+/* ==========================================
+   TOOLTIP CUSTOMIZADO 
+========================================== */
+.tooltip-custom {
+    position: relative;
+    display: inline-block;
+    margin-left: 8px;
+    color: var(--azul);
+    cursor: pointer; /* Mudamos de 'help' para 'pointer' para tirar o ponto de interrogação */
+}
+
+/* A caixinha preta com o texto que fica escondida */
+.tooltip-custom .tooltip-texto {
+    visibility: hidden;
+    width: max-content;
+    background-color: var(--card); /* Usa a cor de fundo do seu card */
+    color: #f7f7fb;
+    text-align: center;
+    border: 1px solid var(--borda);
+    border-radius: 6px;
+    padding: 8px 12px;
+    
+    /* Posicionamento flutuante acima do ícone */
+    position: absolute;
+    z-index: 10;
+    bottom: 150%;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* Efeito de transição suave */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    
+    font-size: 0.75rem;
+    font-weight: normal;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Setinha apontando para baixo na caixinha */
+.tooltip-custom .tooltip-texto::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* Coloca no fundo da caixinha */
+    left: 50%;
+    margin-left: -6px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: var(--borda) transparent transparent transparent;
+}
+
+/* Faz a caixinha aparecer quando passa o mouse OU quando clica */
+.tooltip-custom:hover .tooltip-texto,
+.tooltip-custom:active .tooltip-texto {
+    visibility: visible;
+    opacity: 1;
+}
+/* ==========================================
+   CONTAINER DA SENHA E BOTÃO DO OLHO
+========================================== */
+
+/* Prende o botão dentro deste espaço */
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Dá espaço na direita para o texto não encostar no olho */
+.input-container input {
+    width: 100%;
+    padding-right: 45px !important;
+}
+
+/* Tira o fundo branco, a borda e joga pro canto direito */
+.btn-olho {
+    position: absolute;
+    right: 15px;
+    background: transparent !important; /* Força tirar o fundo branco */
+    border: none !important; /* Força tirar a borda quadrada */
+    color: #b6b6c2;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Muda a cor do olho ao passar o mouse */
+.btn-olho:hover {
+    color: var(--azul);
+}
+
+/* Remove o contorno feio quando clica */
+.btn-olho:focus {
+    outline: none;
+}
