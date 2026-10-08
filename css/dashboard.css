@@ -434,3 +434,110 @@ button:focus-visible, a:focus-visible { outline: 3px solid #30c9ff; outline-offs
     .titulo-pagina h1 { font-size: 2.4rem; }
     .card-dashboard { min-height: 250px; padding: 24px; }
 }
+/* =========================================================
+   ACESSIBILIDADE - DESAFIO PLUS (PONTO EXTRA)
+========================================================= */
+.acessibilidade-container {
+    position: relative; /* Agora ele respeita o Flexbox do seu cabeçalho */
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    z-index: 9999;
+}
+
+/* Usaremos esta classe APENAS nas páginas que não têm cabeçalho (Login, Cadastro e 404) */
+.acessibilidade-container.acess-fixed {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+}
+
+.btn-acess {
+    background: linear-gradient(135deg, #28bff3, #8d58ff);
+    color: #fff;
+    border: none;
+    width: 42px; /* Tamanho ajustado para alinhar perfeitamente com os botões */
+    height: 42px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(141, 88, 255, 0.3);
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-acess:hover {
+    transform: rotate(90deg) scale(1.05);
+}
+
+.menu-acess {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    background: #15151f;
+    border: 1px solid #30303d;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 160px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.menu-acess.ativo {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.menu-acess span {
+    color: #a1a1aa;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom: 1px solid #30303d;
+    padding-bottom: 8px;
+}
+
+.acoes-acess {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.acoes-acess button {
+    flex: 1;
+    background: #27272a;
+    color: #fff;
+    border: 1px solid #3f3f46;
+    border-radius: 6px;
+    padding: 8px 0;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.acoes-acess button:hover {
+    background: #8d58ff;
+    border-color: #8d58ff;
+}
+
+/* --- LÓGICA VISUAL DO PONTO EXTRA --- */
+html.fonte-aumentada { font-size: 112% !important; }
+html.fonte-reduzida { font-size: 88% !important; }
+
+html.alto-contraste {
+    filter: invert(1) hue-rotate(180deg) !important;
+    background-color: #111 !important; 
+}
+html.alto-contraste img, 
+html.alto-contraste video {
+    filter: invert(1) hue-rotate(180deg) !important;
+}
