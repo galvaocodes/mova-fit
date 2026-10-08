@@ -19,305 +19,50 @@ if (dadosSalvos) {
         feedback.categoria || "-";
 
 
-    /* AVALIAÇÃO */
-
-    const quantidadeEstrelas =
-        Number(feedback.avaliacao) || 0;
-
-
-    document.getElementById("avaliacao")
-        .textContent =
-        "★".repeat(quantidadeEstrelas) +
-        "☆".repeat(5 - quantidadeEstrelas);
-
-
-    /* TIPO */
-
-    document.getElementById("tipo")
-        .textContent =
-        feedback.tipo || "-";
-
-
-    /* SATISFAÇÃO */
-
-    document.getElementById("satisfacao")
-        .textContent =
-        feedback.satisfacao
-            ? feedback.satisfacao + "/10"
-            : "-";
-
-
-    /* ASSUNTO */
-
-    document.getElementById("assunto")
-        .textContent =
-        feedback.assunto || "-";
-
-
-    /* MENSAGEM */
-
-    document.getElementById("mensagem")
-        .textContent =
-        feedback.mensagem || "-";
-
-
-    /* RETORNO */
-
-    document.getElementById("retorno")
-        .textContent =
-        feedback.retorno || "-";
-
-
-    /* ENVIADO POR */
-
-    document.getElementById("enviadoPor")
-        .textContent =
-        feedback.enviadoPor || "Usuário";
-
-
-    /* DATA */
-
-    document.getElementById("data")
-        .textContent =
-        feedback.data ||
-        new Date().toLocaleDateString("pt-BR");
-
-
-    /* STATUS */
-
-    document.getElementById("status")
-        .textContent =
-        feedback.status || "Enviado";
-}
-
-
-
-/* ==========================================
-   2. PAINEL DE ACESSIBILIDADE
+    /* ==========================================
+   MOVA FIT - CONFIRMAÇÃO DE FEEDBACK
 ========================================== */
 
-const botaoAcessibilidade =
-    document.getElementById(
-        "botaoAcessibilidade"
-    );
+document.addEventListener("DOMContentLoaded", () => {
 
-
-const painelAcessibilidade =
-    document.getElementById(
-        "painelAcessibilidade"
-    );
-
-
-/* ABRIR / FECHAR PAINEL */
-
-botaoAcessibilidade.addEventListener(
-    "click",
-    function () {
-
-        painelAcessibilidade.classList.toggle(
-            "aberto"
-        );
-
+    // 1. Carregar nome do utilizador no cabeçalho
+    const usuarioLogadoJSON = localStorage.getItem("usuarioCadastrado");
+    let nomeUsuario = "Usuário";
+    
+    if (usuarioLogadoJSON) {
+        const usuario = JSON.parse(usuarioLogadoJSON);
+        nomeUsuario = String(usuario.nome || usuario.login || "Usuário").split(" ")[0];
+        const spanNome = document.getElementById("nomeUsuario");
+        if(spanNome) spanNome.textContent = nomeUsuario;
     }
-);
 
+    // 2. Resgatar os dados de feedback gravados no localStorage
+    const dadosSalvos = localStorage.getItem("feedbackMovaFit");
 
+    if (dadosSalvos) {
+        const feedback = JSON.parse(dadosSalvos);
 
-/* ==========================================
-   3. TEMA CLARO / ESCURO
-========================================== */
+        // Preencher Categoria e Tipo
+        document.getElementById("categoria").textContent = feedback.categoria || "-";
+        document.getElementById("tipo").textContent = feedback.tipo || "-";
 
-const botaoClaro =
-    document.getElementById("temaClaro");
+        // Estrelas (Converte o número numa String visual de estrelas)
+        const qtdEstrelas = Number(feedback.avaliacao) || 0;
+        document.getElementById("avaliacao").textContent = "★".repeat(qtdEstrelas) + "☆".repeat(5 - qtdEstrelas);
 
+        // Satisfação
+        document.getElementById("satisfacao").textContent = feedback.satisfacao ? feedback.satisfacao + "/10" : "-";
 
-const botaoEscuro =
-    document.getElementById("temaEscuro");
+        // Textos
+        document.getElementById("assunto").textContent = feedback.assunto || "-";
+        document.getElementById("mensagem").textContent = feedback.mensagem || "Sem mensagem.";
 
+        // Traduzir o Retorno Booleano (true/false) para Sim/Não
+        document.getElementById("retorno").textContent = feedback.retorno === true ? "Sim" : "Não";
 
-/* FUNÇÃO PARA USAR O TEMA CLARO */
-
-function usarTemaClaro() {
-
-    document.body.classList.remove(
-        "escuro"
-    );
-
-
-    botaoClaro.classList.add(
-        "ativo"
-    );
-
-
-    botaoEscuro.classList.remove(
-        "ativo"
-    );
-
-
-    localStorage.setItem(
-        "tema",
-        "claro"
-    );
-
-}
-
-
-/* FUNÇÃO PARA USAR O TEMA ESCURO */
-
-function usarTemaEscuro() {
-
-    document.body.classList.add(
-        "escuro"
-    );
-
-
-    botaoEscuro.classList.add(
-        "ativo"
-    );
-
-
-    botaoClaro.classList.remove(
-        "ativo"
-    );
-
-
-    localStorage.setItem(
-        "tema",
-        "escuro"
-    );
-
-}
-
-
-/* CLIQUE NO CLARO */
-
-botaoClaro.addEventListener(
-    "click",
-    usarTemaClaro
-);
-
-
-/* CLIQUE NO ESCURO */
-
-botaoEscuro.addEventListener(
-    "click",
-    usarTemaEscuro
-);
-
-
-
-/* ==========================================
-   4. ESCALABILIDADE DA FONTE
-========================================== */
-
-const botaoDiminuir =
-    document.getElementById(
-        "diminuirFonte"
-    );
-
-
-const botaoAumentar =
-    document.getElementById(
-        "aumentarFonte"
-    );
-
-
-const porcentagemFonte =
-    document.getElementById(
-        "porcentagemFonte"
-    );
-
-
-/*
-    100 significa 100%.
-*/
-
-let tamanhoFonte =
-    Number(
-        localStorage.getItem(
-            "tamanhoFonte"
-        )
-    ) || 100;
-
-
-/* ALTERAR TAMANHO */
-
-function atualizarFonte() {
-
-    document.documentElement.style.fontSize =
-        tamanhoFonte + "%";
-
-
-    porcentagemFonte.textContent =
-        tamanhoFonte + "%";
-
-
-    localStorage.setItem(
-        "tamanhoFonte",
-        tamanhoFonte
-    );
-
-}
-
-
-/* DIMINUIR */
-
-botaoDiminuir.addEventListener(
-    "click",
-    function () {
-
-        if (tamanhoFonte > 80) {
-
-            tamanhoFonte -= 10;
-
-            atualizarFonte();
-
-        }
-
+        // Extras
+        document.getElementById("enviadoPor").textContent = nomeUsuario;
+        document.getElementById("data").textContent = feedback.data || new Date().toLocaleString("pt-BR");
     }
-);
 
-
-/* AUMENTAR */
-
-botaoAumentar.addEventListener(
-    "click",
-    function () {
-
-        if (tamanhoFonte < 140) {
-
-            tamanhoFonte += 10;
-
-            atualizarFonte();
-
-        }
-
-    }
-);
-
-
-
-/* ==========================================
-   5. CARREGAR PREFERÊNCIAS SALVAS
-========================================== */
-
-/* TEMA */
-
-const temaSalvo =
-    localStorage.getItem("tema");
-
-
-if (temaSalvo === "escuro") {
-
-    usarTemaEscuro();
-
-} else {
-
-    usarTemaClaro();
-
-}
-
-
-/* TAMANHO DA FONTE */
-
-atualizarFonte();
+});

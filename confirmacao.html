@@ -1,319 +1,119 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>MovaFit | Confirmação do Feedback</title>
-
-    <!-- CSS -->
+    
+    <!-- FONTE PREMIUM INTER -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- CSS (Aproveitando base do Dashboard + Específico de Confirmação) -->
+    <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/confirmacao.css">
 </head>
-
 <body>
 
-    <!-- ==================================
-         BARRA SUPERIOR
-    =================================== -->
+    <!-- CABEÇALHO LIMPO E ALINHADO -->
+    <header class="cabecalho">
+        <!-- LOGO NA ESQUERDA -->
+        <a href="dashboard.html" class="logo-btn" aria-label="Ir para o início">
+            <img src="assets/imagens/logo-movafit.png" alt="MOVA FIT" class="logo-img">
+        </a>
 
-    <header class="topo">
+        <div style="flex: 1;"></div>
 
-        <h2>Confirmação</h2>
-
-        <!-- BOTÃO DA ENGRENAGEM -->
-        <button
-            type="button"
-            id="botaoAcessibilidade"
-            class="botao-acessibilidade"
-            aria-label="Abrir configurações de acessibilidade"
-        >
-            ⚙
-        </button>
-
-
-        <!-- PAINEL DE ACESSIBILIDADE -->
-        <div
-            class="painel-acessibilidade"
-            id="painelAcessibilidade"
-        >
-
-            <h3>Modo de exibição</h3>
-
-
-            <!-- CLARO / ESCURO -->
-            <div class="opcoes-tema">
-
-                <button
-                    type="button"
-                    id="temaClaro"
-                    class="botao-tema ativo"
-                >
-                    ☀ Claro
-                </button>
-
-
-                <button
-                    type="button"
-                    id="temaEscuro"
-                    class="botao-tema"
-                >
-                    ◐ Escuro
-                </button>
-
+        <!-- LADO DIREITO (USUÁRIO E BOTÃO VOLTAR) -->
+        <div class="header-direita">
+            <div class="usuario-logado">
+                <i class="fa-solid fa-circle-user"></i>
+                <span>Olá, <strong id="nomeUsuario">Usuário</strong></span>
             </div>
 
-
-            <hr>
-
-
-            <!-- TAMANHO DO TEXTO -->
-
-            <p class="titulo-fonte">
-                Tamanho do texto
-            </p>
-
-
-            <div class="controle-fonte">
-
-                <!-- DIMINUIR -->
-                <button
-                    type="button"
-                    id="diminuirFonte"
-                    aria-label="Diminuir tamanho do texto"
-                >
-                    −
-                </button>
-
-
-                <!-- PORCENTAGEM -->
-                <strong id="porcentagemFonte">
-                    100%
-                </strong>
-
-
-                <!-- AUMENTAR -->
-                <button
-                    type="button"
-                    id="aumentarFonte"
-                    aria-label="Aumentar tamanho do texto"
-                >
-                    +
-                </button>
-
-            </div>
-
+            <a href="dashboard.html" class="btn-sair" style="text-decoration: none;" aria-label="Voltar para o Dashboard">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Sair</span>
+            </a>
         </div>
-
     </header>
 
+    <main class="dashboard">
+        <section class="conteudo">
 
-
-    <!-- ==================================
-         CONTEÚDO PRINCIPAL
-    =================================== -->
-
-    <main class="conteudo">
-
-
-        <!-- CONFIRMAÇÃO -->
-
-        <section class="confirmacao">
-
-            <div class="icone-confirmacao">
-                ✓
+            <!-- CABEÇALHO DA CONFIRMAÇÃO -->
+            <div class="confirmacao-header">
+                <div class="icone-sucesso">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h1>Feedback recebido!</h1>
+                <p>Obrigado por ajudar a elevar o padrão MOVA FIT. Abaixo estão os detalhes do seu envio.</p>
             </div>
 
-            <h1>
-                Feedback enviado com sucesso!
-            </h1>
-
-            <p>
-                Obrigado por compartilhar sua experiência.
-            </p>
-
-        </section>
-
-
-
-        <!-- ==================================
-             DETALHES DO FEEDBACK
-        =================================== -->
-
-        <section class="card-feedback">
-
-            <h2>
-                Detalhes do seu feedback
-            </h2>
-
-
-            <!-- CATEGORIA -->
-
-            <div class="linha">
-
-                <span>Categoria</span>
-
-                <strong id="categoria">
-                    -
-                </strong>
-
-            </div>
-
-
-            <!-- AVALIAÇÃO -->
-
-            <div class="linha">
-
-                <span>Avaliação</span>
-
-                <strong id="avaliacao">
-                    -
-                </strong>
-
-            </div>
-
-
-            <!-- TIPO -->
-
-            <div class="linha">
-
-                <span>Tipo de feedback</span>
-
-                <strong id="tipo">
-                    -
-                </strong>
-
-            </div>
-
-
-            <!-- SATISFAÇÃO -->
-
-            <div class="linha">
-
-                <span>Nível de satisfação</span>
-
-                <strong id="satisfacao">
-                    -
-                </strong>
-
-            </div>
-
-
-            <!-- ASSUNTO -->
-
-            <div class="linha">
-
-                <span>Assunto</span>
-
-                <strong id="assunto">
-                    -
-                </strong>
-
-            </div>
-
-
-            <!-- MENSAGEM -->
-
-            <div class="mensagem-feedback">
-
-                <span>Mensagem</span>
-
-                <p id="mensagem">
-                    -
-                </p>
-
-            </div>
-
-
-            <!-- RETORNO -->
-
-            <div class="linha">
-
-                <span>Retorno solicitado</span>
-
-                <strong id="retorno">
-                    -
-                </strong>
-
-            </div>
-
-
-            <!-- ENVIADO POR -->
-
-            <div class="linha">
-
-                <span>Enviado por</span>
-
-                <strong id="enviadoPor">
-                    Usuário
-                </strong>
-
-            </div>
-
-
-            <!-- DATA -->
-
-            <div class="linha">
-
-                <span>Data</span>
-
-                <strong id="data">
-                    -
-                </strong>
-
-            </div>
-
-
-            <!-- STATUS -->
-
-            <div class="linha">
-
-                <span>Status</span>
-
-                <strong
-                    id="status"
-                    class="status"
-                >
-                    Enviado
-                </strong>
-
-            </div>
-
-
-
-            <!-- ==================================
-                 BOTÕES
-            =================================== -->
-
-            <div class="acoes">
-
-                <a
-                    href="feedback.html"
-                    class="botao-secundario"
-                >
-                    Enviar outro feedback
-                </a>
-
-
-                <a
-                    href="dashboard.html"
-                    class="botao"
-                >
-                    Voltar ao Dashboard
-                </a>
-
+            <!-- CARD COM OS DADOS -->
+            <div class="card-detalhes">
+                <div class="card-detalhes-header">
+                    <h2>Detalhes do Envio</h2>
+                    <span id="status" class="badge-status">Enviado</span>
+                </div>
+
+                <div class="dados-grid">
+                    <div class="dado-item">
+                        <span class="dado-label">Enviado por</span>
+                        <strong id="enviadoPor" class="dado-valor">Usuário</strong>
+                    </div>
+                    
+                    <div class="dado-item">
+                        <span class="dado-label">Data e Hora</span>
+                        <strong id="data" class="dado-valor">-</strong>
+                    </div>
+
+                    <div class="dado-item">
+                        <span class="dado-label">Categoria</span>
+                        <strong id="categoria" class="dado-valor">-</strong>
+                    </div>
+
+                    <div class="dado-item">
+                        <span class="dado-label">Tipo</span>
+                        <strong id="tipo" class="dado-valor">-</strong>
+                    </div>
+
+                    <div class="dado-item">
+                        <span class="dado-label">Experiência (Estrelas)</span>
+                        <strong id="avaliacao" class="dado-valor estrelas-txt">-</strong>
+                    </div>
+
+                    <div class="dado-item">
+                        <span class="dado-label">Nível de Satisfação</span>
+                        <strong id="satisfacao" class="dado-valor">-</strong>
+                    </div>
+
+                    <div class="dado-item">
+                        <span class="dado-label">Retorno Solicitado</span>
+                        <strong id="retorno" class="dado-valor">-</strong>
+                    </div>
+
+                    <div class="dado-item full-width">
+                        <span class="dado-label">Assunto</span>
+                        <strong id="assunto" class="dado-valor">-</strong>
+                    </div>
+
+                    <div class="dado-item full-width">
+                        <span class="dado-label">Mensagem Original</span>
+                        <p id="mensagem" class="dado-mensagem">-</p>
+                    </div>
+                </div>
+
+                <!-- AÇÕES -->
+                <div class="acoes-finais">
+                    <a href="feedback.html" class="btn-secundario">Novo Feedback</a>
+                    <a href="dashboard.html" class="btn-principal">Voltar ao Dashboard</a>
+                </div>
             </div>
 
         </section>
-
     </main>
 
-
-    <!-- JAVASCRIPT -->
-
     <script src="js/confirmacao.js"></script>
-
 </body>
-
 </html>

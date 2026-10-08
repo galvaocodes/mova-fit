@@ -1,1017 +1,274 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Área do Cliente | MOVA FIT</title>
-
-    <!-- CSS DO DASHBOARD -->
+    
+    <!-- FONTE PREMIUM INTER -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/dashboard.css">
-
-    <!-- ÍCONES -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
+    <body>
 
-
-<body>
-
-    <!-- =====================================================
-         CABEÇALHO
-    ====================================================== -->
-
+    <!-- CABEÇALHO -->
     <header class="cabecalho">
-
         <!-- LOGO -->
-        <button class="logo-btn"
-                type="button"
-                data-section="inicio"
-                aria-label="Ir para o início">
-
-            <img src="assets/imagens/logo-movafit.png"
-                 alt="MOVA FIT"
-                 class="logo-img">
-
+        <button class="logo-btn" type="button" data-section="inicio" aria-label="Ir para o início">
+            <img src="assets/imagens/logo-movafit.png" alt="MOVA FIT" class="logo-img">
         </button>
 
-
-        <!-- =================================================
-             MENU DO DASHBOARD
-        ================================================== -->
-
-        <nav class="menu-dashboard"
-             aria-label="Menu da área do cliente">
-
-            <button class="menu-link ativo"
-                    type="button"
-                    data-section="inicio">
-
-                Início
-
-            </button>
-
-
-            <button class="menu-link"
-                    type="button"
-                    data-section="perfil">
-
-                Perfil
-
-            </button>
-
-
-            <button class="menu-link"
-                    type="button"
-                    data-section="informacoes">
-
-                Informações adicionais
-
-            </button>
-
+        <!-- MENU DO DASHBOARD -->
+        <nav class="menu-dashboard" aria-label="Menu da área do cliente">
+            <button class="menu-link ativo" type="button" data-section="inicio">Início</button>
+            <button class="menu-link" type="button" data-section="perfil">Perfil</button>
+            <button class="menu-link" type="button" data-section="informacoes">Informações adicionais</button>
         </nav>
 
-
-        <!-- =================================================
-             LADO DIREITO DO CABEÇALHO
-        ================================================== -->
-
+        <!-- LADO DIREITO DO CABEÇALHO -->
         <div class="header-direita">
-
-
             <!-- USUÁRIO LOGADO -->
             <div class="usuario-logado">
-
                 <i class="fa-solid fa-circle-user"></i>
-
-                <span>
-                    Olá,
-                    <strong id="nomeUsuario">
-                        Usuário
-                    </strong>
-                </span>
-
+                <span>Olá, <strong id="nomeUsuario">Usuário</strong></span>
             </div>
-
 
             <!-- LOGOUT -->
-            <button id="btnLogout"
-                    class="btn-sair"
-                    type="button"
-                    aria-label="Sair da conta">
-
+            <button id="btnLogout" class="btn-sair" type="button" aria-label="Sair da conta">
                 <i class="fa-solid fa-right-from-bracket"></i>
-
                 <span>Sair</span>
-
             </button>
-
-
-            <!-- =================================================
-                 ACESSIBILIDADE
-            ================================================== -->
-
-            <div class="acessibilidade-container">
-
-
-                <!-- ENGRENAGEM -->
-                <button id="btnAcessibilidade"
-                        class="btn-acessibilidade"
-                        type="button"
-                        aria-label="Abrir opções de acessibilidade"
-                        aria-expanded="false">
-
-                    <i class="fa-solid fa-gear"></i>
-
-                </button>
-
-
-                <!-- PAINEL DE ACESSIBILIDADE -->
-                <div id="painelAcessibilidade"
-                     class="painel-acessibilidade"
-                     aria-hidden="true">
-
-
-                    <!-- TÍTULO -->
-                    <div class="painel-titulo">
-
-                        <i class="fa-solid fa-universal-access"></i>
-
-                        <h2>
-                            Acessibilidade
-                        </h2>
-
-                    </div>
-
-
-                    <!-- MODO ESCURO -->
-                    <button id="btnModoEscuro"
-                            class="opcao-acessibilidade"
-                            type="button"
-                            aria-pressed="false">
-
-                        <i class="fa-solid fa-moon"></i>
-
-                        <span>
-                            Modo escuro
-                        </span>
-
-                    </button>
-
-
-                    <!-- ALTO CONTRASTE -->
-                    <button id="btnContraste"
-                            class="opcao-acessibilidade"
-                            type="button"
-                            aria-pressed="false">
-
-                        <i class="fa-solid fa-circle-half-stroke"></i>
-
-                        <span>
-                            Alto contraste
-                        </span>
-
-                    </button>
-
-
-                    <!-- TAMANHO DA FONTE -->
-                    <div class="controle-fonte">
-
-                        <span class="controle-fonte-titulo">
-                            Tamanho da fonte
-                        </span>
-
-
-                        <div class="controle-fonte-botoes">
-
-                            <!-- DIMINUIR -->
-                            <button id="diminuirFonte"
-                                    type="button"
-                                    aria-label="Diminuir tamanho da fonte">
-
-                                A−
-
-                            </button>
-
-
-                            <!-- INDICADOR -->
-                            <span id="indicadorFonte"
-                                  aria-live="polite">
-
-                                100%
-
-                            </span>
-
-
-                            <!-- AUMENTAR -->
-                            <button id="aumentarFonte"
-                                    type="button"
-                                    aria-label="Aumentar tamanho da fonte">
-
-                                A+
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
         </div>
-
     </header>
 
-
-    <!-- =====================================================
-         CONTEÚDO PRINCIPAL
-    ====================================================== -->
-
+    <!-- CONTEÚDO PRINCIPAL -->
     <main class="dashboard">
 
-
-        <!-- =================================================
-             TELA - INÍCIO
-        ================================================== -->
-
-        <section id="inicio"
-                 class="tela ativa">
-
-
-            <!-- =================================================
-                 HERO
-            ================================================== -->
-
+        <!-- TELA - INÍCIO -->
+        <section id="inicio" class="tela ativa">
+            
+            <!-- HERO -->
             <section class="hero-dashboard">
-
-
-                <!-- EFEITOS VISUAIS -->
                 <div class="hero-efeito hero-efeito-1"></div>
-
                 <div class="hero-efeito hero-efeito-2"></div>
 
-
-                <!-- CONTEÚDO -->
                 <div class="hero-conteudo">
+                    <span class="hero-tag">MOVIMENTO QUE TRANSFORMA</span>
+                    <h1>Olá, <span id="nomeBoasVindas">Usuário!</span></h1>
+                    <h2>SUA ÁREA. <span>SEU MOVIMENTO.</span></h2>
+                    <p>Gerencie suas informações e acesse os recursos da sua área MOVA FIT em um único lugar.</p>
 
-
-                    <span class="hero-tag">
-                        MOVIMENTO QUE TRANSFORMA
-                    </span>
-
-
-                    <h1>
-                        Olá,
-                        <span id="nomeBoasVindas">
-                            Usuário!
-                        </span>
-                    </h1>
-
-
-                    <h2>
-                        SUA ÁREA.
-                        <span>
-                            SEU MOVIMENTO.
-                        </span>
-                    </h2>
-
-
-                    <p>
-                        Gerencie suas informações e acesse
-                        os recursos da sua área MOVA FIT
-                        em um único lugar.
-                    </p>
-
-
-                    <!-- BOTÕES DO HERO -->
                     <div class="hero-botoes">
-
-
-                        <button class="btn-principal"
-                                type="button"
-                                data-section="perfil">
-
-                            Ver meu perfil
-
-                            <i class="fa-solid fa-arrow-right"></i>
-
+                        <button class="btn-principal" type="button" data-section="perfil">
+                            Ver meu perfil <i class="fa-solid fa-arrow-right"></i>
                         </button>
-
-
-                        <button class="btn-secundario"
-                                type="button"
-                                data-section="informacoes">
-
+                        <button class="btn-secundario" type="button" data-section="informacoes">
                             Minhas informações
-
                         </button>
-
                     </div>
-
                 </div>
 
-
-                <!-- INDICAÇÃO PARA DESCER -->
                 <div class="hero-scroll">
-
-                    <span>
-                        EXPLORE SUA ÁREA
-                    </span>
-
+                    <span>EXPLORE SUA ÁREA</span>
                     <i class="fa-solid fa-chevron-down"></i>
-
                 </div>
-
             </section>
 
-
-            <!-- =================================================
-                 ÁREA DO CLIENTE
-            ================================================== -->
-
+            <!-- ÁREA DO CLIENTE -->
             <section class="area-cliente">
-
-
-                <!-- TÍTULO / DESCRIÇÃO -->
                 <div class="titulo-secao">
-
-                    <span class="subtitulo-secao">
-                        ÁREA DO CLIENTE
-                    </span>
-
-
-                    <h2>
-                        Tudo que você precisa
-                        <strong>
-                            em um só lugar.
-                        </strong>
-                    </h2>
-
-
-                    <p>
-                        Consulte seus dados pessoais,
-                        visualize suas informações adicionais
-                        ou acesse o formulário de feedback
-                        da MOVA FIT.
-                    </p>
-
+                    <span class="subtitulo-secao">ÁREA DO CLIENTE</span>
+                    <h2>Tudo que você precisa <strong>em um só lugar.</strong></h2>
+                    <p>Consulte seus dados pessoais, visualize suas informações adicionais ou acesse o formulário de feedback da MOVA FIT.</p>
                 </div>
 
-
-                <!-- =================================================
-                     CARDS
-                ================================================== -->
-
+                <!-- CARDS -->
                 <div class="cards-dashboard">
-
-
-                    <!-- =============================================
-                         CARD - PERFIL
-                    ============================================== -->
-
-                    <button class="card-dashboard"
-                            type="button"
-                            data-section="perfil">
-
-
-                        <div class="card-icone">
-
-                            <i class="fa-solid fa-user"></i>
-
-                        </div>
-
-
+                    <!-- CARD - PERFIL -->
+                    <button class="card-dashboard" type="button" data-section="perfil">
+                        <div class="card-icone"><i class="fa-solid fa-user"></i></div>
                         <div class="card-conteudo">
-
-                            <h3>
-                                Meu Perfil
-                            </h3>
-
-
-                            <p>
-                                Consulte seus dados pessoais
-                                cadastrados na sua conta.
-                            </p>
-
+                            <h3>Meu Perfil</h3>
+                            <p>Consulte seus dados pessoais cadastrados na sua conta.</p>
                         </div>
-
-
-                        <div class="card-seta">
-
-                            <i class="fa-solid fa-arrow-right"></i>
-
-                        </div>
-
+                        <div class="card-seta"><i class="fa-solid fa-arrow-right"></i></div>
                     </button>
 
-
-                    <!-- =============================================
-                         CARD - INFORMAÇÕES ADICIONAIS
-                    ============================================== -->
-
-                    <button class="card-dashboard"
-                            type="button"
-                            data-section="informacoes">
-
-
-                        <div class="card-icone">
-
-                            <i class="fa-solid fa-file-lines"></i>
-
-                        </div>
-
-
+                    <!-- CARD - INFORMAÇÕES ADICIONAIS -->
+                    <button class="card-dashboard" type="button" data-section="informacoes">
+                        <div class="card-icone"><i class="fa-solid fa-file-lines"></i></div>
                         <div class="card-conteudo">
-
-                            <h3>
-                                Informações adicionais
-                            </h3>
-
-
-                            <p>
-                                Consulte as informações
-                                complementares da sua conta.
-                            </p>
-
+                            <h3>Informações adicionais</h3>
+                            <p>Consulte as informações complementares da sua conta.</p>
                         </div>
-
-
-                        <div class="card-seta">
-
-                            <i class="fa-solid fa-arrow-right"></i>
-
-                        </div>
-
+                        <div class="card-seta"><i class="fa-solid fa-arrow-right"></i></div>
                     </button>
 
-
-                    <!-- =============================================
-                         CARD - FEEDBACK
-
-                         ESTE CARD NÃO É UMA TELA DO DASHBOARD.
-
-                         ELE REDIRECIONA PARA feedback.html
-                    ============================================== -->
-
-                    <a href="feedback.html"
-                       class="card-dashboard card-feedback"
-                       id="cardFeedback">
-
-
-                        <div class="card-icone">
-
-                            <i class="fa-regular fa-comment-dots"></i>
-
-                        </div>
-
-
+                    <!-- CARD - FEEDBACK (Redireciona para feedback.html) -->
+                    <a href="feedback.html" class="card-dashboard card-feedback" id="cardFeedback">
+                        <div class="card-icone"><i class="fa-regular fa-comment-dots"></i></div>
                         <div class="card-conteudo">
-
-                            <h3>
-                                Deixe seu feedback
-                            </h3>
-
-
-                            <p>
-                                Acesse o formulário de
-                                feedback e interesse da MOVA FIT.
-                            </p>
-
-
+                            <h3>Deixe seu feedback</h3>
+                            <p>Acesse o formulário de feedback e interesse da MOVA FIT.</p>
                             <span class="feedback-aviso">
-
-                                Acessar formulário
-
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
+                                Acessar formulário <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </span>
-
                         </div>
-
-
-                        <div class="card-seta">
-
-                            <i class="fa-solid fa-arrow-right"></i>
-
-                        </div>
-
+                        <div class="card-seta"><i class="fa-solid fa-arrow-right"></i></div>
                     </a>
-
                 </div>
-
             </section>
-
         </section>
 
-
-        <!-- =================================================
-             TELA - PERFIL
-        ================================================== -->
-
-        <section id="perfil"
-                 class="tela">
-
+        <!-- TELA - PERFIL -->
+        <section id="perfil" class="tela">
             <div class="pagina-interna">
-
-
-                <!-- VOLTAR -->
-                <button class="btn-voltar"
-                        type="button"
-                        data-section="inicio">
-
-                    <i class="fa-solid fa-arrow-left"></i>
-
-                    Voltar ao início
-
+                <button class="btn-voltar" type="button" data-section="inicio">
+                    <i class="fa-solid fa-arrow-left"></i> Voltar ao início
                 </button>
 
-
-                <!-- TÍTULO -->
                 <div class="titulo-pagina">
-
-                    <span>
-                        ÁREA DO CLIENTE
-                    </span>
-
-
-                    <h1>
-                        Meu
-                        <strong>
-                            Perfil
-                        </strong>
-                    </h1>
-
-
-                    <p>
-                        Consulte os dados pessoais
-                        cadastrados em sua conta MOVA FIT.
-                    </p>
-
+                    <span>ÁREA DO CLIENTE</span>
+                    <h1>Meu <strong>Perfil</strong></h1>
+                    <p>Consulte os dados pessoais cadastrados em sua conta MOVA FIT.</p>
                 </div>
-
-
-                <!-- =================================================
-                     CARD DO PERFIL
-                ================================================== -->
 
                 <div class="perfil-card">
-
-
-                    <!-- LATERAL -->
                     <div class="perfil-lateral">
-
-
-                        <div class="avatar">
-
-                            <i class="fa-solid fa-user"></i>
-
-                        </div>
-
-
+                        <div class="avatar"><i class="fa-solid fa-user"></i></div>
                         <div class="perfil-identificacao">
-
-                            <h2 id="perfilNomeDestaque">
-                                Usuário
-                            </h2>
-
-
-                            <span>
-                                Cliente MOVA FIT
-                            </span>
-
+                            <h2 id="perfilNomeDestaque">Usuário</h2>
+                            <span>Cliente MOVA FIT</span>
                         </div>
-
                     </div>
-
-
-                    <!-- =================================================
-                         DADOS DO USUÁRIO
-                    ================================================== -->
 
                     <div class="perfil-dados">
-
-
-                        <!-- NOME -->
                         <div class="dado-perfil">
-
-                            <div class="dado-icone">
-
-                                <i class="fa-solid fa-user"></i>
-
-                            </div>
-
-
+                            <div class="dado-icone"><i class="fa-solid fa-user"></i></div>
                             <div>
-
-                                <span>
-                                    Nome completo
-                                </span>
-
-                                <strong id="perfilNome">
-                                    Não informado
-                                </strong>
-
+                                <span>Nome completo</span>
+                                <strong id="perfilNome">Não informado</strong>
                             </div>
-
                         </div>
-
-
-                        <!-- CPF -->
                         <div class="dado-perfil">
-
-                            <div class="dado-icone">
-
-                                <i class="fa-solid fa-id-card"></i>
-
-                            </div>
-
-
+                            <div class="dado-icone"><i class="fa-solid fa-id-card"></i></div>
                             <div>
-
-                                <span>
-                                    CPF
-                                </span>
-
-                                <strong id="perfilCpf">
-                                    Não informado
-                                </strong>
-
+                                <span>CPF</span>
+                                <strong id="perfilCpf">Não informado</strong>
                             </div>
-
                         </div>
-
-
-                        <!-- EMAIL -->
                         <div class="dado-perfil">
-
-                            <div class="dado-icone">
-
-                                <i class="fa-solid fa-envelope"></i>
-
-                            </div>
-
-
+                            <div class="dado-icone"><i class="fa-solid fa-envelope"></i></div>
                             <div>
-
-                                <span>
-                                    E-mail
-                                </span>
-
-                                <strong id="perfilEmail">
-                                    Não informado
-                                </strong>
-
+                                <span>E-mail</span>
+                                <strong id="perfilEmail">Não informado</strong>
                             </div>
-
                         </div>
-
-
-                        <!-- TELEFONE -->
                         <div class="dado-perfil">
-
-                            <div class="dado-icone">
-
-                                <i class="fa-solid fa-phone"></i>
-
-                            </div>
-
-
+                            <div class="dado-icone"><i class="fa-solid fa-phone"></i></div>
                             <div>
-
-                                <span>
-                                    Telefone
-                                </span>
-
-                                <strong id="perfilTelefone">
-                                    Não informado
-                                </strong>
-
+                                <span>Telefone</span>
+                                <strong id="perfilTelefone">Não informado</strong>
                             </div>
-
                         </div>
-
-
-                        <!-- DATA DE NASCIMENTO -->
                         <div class="dado-perfil">
-
-                            <div class="dado-icone">
-
-                                <i class="fa-solid fa-calendar-days"></i>
-
-                            </div>
-
-
+                            <div class="dado-icone"><i class="fa-solid fa-calendar-days"></i></div>
                             <div>
-
-                                <span>
-                                    Data de nascimento
-                                </span>
-
-                                <strong id="perfilNascimento">
-                                    Não informado
-                                </strong>
-
+                                <span>Data de nascimento</span>
+                                <strong id="perfilNascimento">Não informado</strong>
                             </div>
-
                         </div>
-
-
-                        <!-- ENDEREÇO -->
                         <div class="dado-perfil">
-
-                            <div class="dado-icone">
-
-                                <i class="fa-solid fa-location-dot"></i>
-
-                            </div>
-
-
+                            <div class="dado-icone"><i class="fa-solid fa-location-dot"></i></div>
                             <div>
-
-                                <span>
-                                    Endereço
-                                </span>
-
-                                <strong id="perfilEndereco">
-                                    Não informado
-                                </strong>
-
+                                <span>Endereço</span>
+                                <strong id="perfilEndereco">Não informado</strong>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </section>
 
-
-        <!-- =================================================
-             TELA - INFORMAÇÕES ADICIONAIS
-        ================================================== -->
-
-        <section id="informacoes"
-                 class="tela">
-
+        <!-- TELA - INFORMAÇÕES ADICIONAIS -->
+        <section id="informacoes" class="tela">
             <div class="pagina-interna">
-
-
-                <!-- VOLTAR -->
-                <button class="btn-voltar"
-                        type="button"
-                        data-section="inicio">
-
-                    <i class="fa-solid fa-arrow-left"></i>
-
-                    Voltar ao início
-
+                <button class="btn-voltar" type="button" data-section="inicio">
+                    <i class="fa-solid fa-arrow-left"></i> Voltar ao início
                 </button>
 
-
-                <!-- TÍTULO -->
                 <div class="titulo-pagina">
-
-                    <span>
-                        ÁREA DO CLIENTE
-                    </span>
-
-
-                    <h1>
-                        Informações
-                        <strong>
-                            adicionais
-                        </strong>
-                    </h1>
-
-
-                    <p>
-                        Consulte as informações
-                        complementares cadastradas
-                        em sua conta.
-                    </p>
-
+                    <span>ÁREA DO CLIENTE</span>
+                    <h1>Informações <strong>adicionais</strong></h1>
+                    <p>Consulte as informações complementares cadastradas em sua conta.</p>
                 </div>
-
-
-                <!-- =================================================
-                     INFORMAÇÕES
-                ================================================== -->
 
                 <div class="informacoes-card">
-
-
-                    <!-- NACIONALIDADE -->
                     <div class="informacao-item">
-
-                        <div class="informacao-icone">
-
-                            <i class="fa-solid fa-earth-americas"></i>
-
-                        </div>
-
-
+                        <div class="informacao-icone"><i class="fa-solid fa-earth-americas"></i></div>
                         <div>
-
-                            <span>
-                                Nacionalidade
-                            </span>
-
-                            <strong id="infoNacionalidade">
-                                Não informado
-                            </strong>
-
+                            <span>Nacionalidade</span>
+                            <strong id="infoNacionalidade">Não informado</strong>
                         </div>
-
                     </div>
-
-
-                    <!-- ESTADO CIVIL -->
                     <div class="informacao-item">
-
-                        <div class="informacao-icone">
-
-                            <i class="fa-solid fa-heart"></i>
-
-                        </div>
-
-
+                        <div class="informacao-icone"><i class="fa-solid fa-heart"></i></div>
                         <div>
-
-                            <span>
-                                Estado civil
-                            </span>
-
-                            <strong id="infoEstadoCivil">
-                                Não informado
-                            </strong>
-
+                            <span>Estado civil</span>
+                            <strong id="infoEstadoCivil">Não informado</strong>
                         </div>
-
                     </div>
-
-
-                    <!-- ESCOLARIDADE -->
                     <div class="informacao-item">
-
-                        <div class="informacao-icone">
-
-                            <i class="fa-solid fa-graduation-cap"></i>
-
-                        </div>
-
-
+                        <div class="informacao-icone"><i class="fa-solid fa-graduation-cap"></i></div>
                         <div>
-
-                            <span>
-                                Escolaridade
-                            </span>
-
-                            <strong id="infoEscolaridade">
-                                Não informado
-                            </strong>
-
+                            <span>Escolaridade</span>
+                            <strong id="infoEscolaridade">Não informado</strong>
                         </div>
-
                     </div>
-
-
-                    <!-- CIDADE -->
                     <div class="informacao-item">
-
-                        <div class="informacao-icone">
-
-                            <i class="fa-solid fa-city"></i>
-
-                        </div>
-
-
+                        <div class="informacao-icone"><i class="fa-solid fa-city"></i></div>
                         <div>
-
-                            <span>
-                                Cidade
-                            </span>
-
-                            <strong id="infoCidade">
-                                Não informado
-                            </strong>
-
+                            <span>Cidade</span>
+                            <strong id="infoCidade">Não informado</strong>
                         </div>
-
                     </div>
-
-
-                    <!-- ESTADO -->
                     <div class="informacao-item">
-
-                        <div class="informacao-icone">
-
-                            <i class="fa-solid fa-map"></i>
-
-                        </div>
-
-
+                        <div class="informacao-icone"><i class="fa-solid fa-map"></i></div>
                         <div>
-
-                            <span>
-                                Estado / UF
-                            </span>
-
-                            <strong id="infoUf">
-                                Não informado
-                            </strong>
-
+                            <span>Estado / UF</span>
+                            <strong id="infoUf">Não informado</strong>
                         </div>
-
                     </div>
-
-
-                    <!-- CEP -->
                     <div class="informacao-item">
-
-                        <div class="informacao-icone">
-
-                            <i class="fa-solid fa-location-crosshairs"></i>
-
-                        </div>
-
-
+                        <div class="informacao-icone"><i class="fa-solid fa-location-crosshairs"></i></div>
                         <div>
-
-                            <span>
-                                CEP
-                            </span>
-
-                            <strong id="infoCep">
-                                Não informado
-                            </strong>
-
+                            <span>CEP</span>
+                            <strong id="infoCep">Não informado</strong>
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </section>
-
     </main>
 
-
-    <!-- =====================================================
-         RODAPÉ
-    ====================================================== -->
-
+    <!-- RODAPÉ -->
     <footer class="rodape">
-
-
-        <button class="logo-btn logo-rodape"
-                type="button"
-                data-section="inicio"
-                aria-label="Voltar ao início">
-
-
-            <img src="assets/imagens/logo-movafit.png"
-                 alt="MOVA FIT">
-
+        <button class="logo-btn logo-rodape" type="button" data-section="inicio" aria-label="Voltar ao início">
+            <img src="assets/imagens/logo-movafit.png" alt="MOVA FIT">
         </button>
 
-
         <div class="rodape-texto">
-
-            <strong>
-                MOVIMENTO QUE TRANSFORMA
-            </strong>
-
-
-            <span>
-                © 2026 MOVA FIT.
-                Todos os direitos reservados.
-            </span>
-
+            <strong>MOVIMENTO QUE TRANSFORMA</strong>
+            <span>© 2026 MOVA FIT. Todos os direitos reservados.</span>
         </div>
-<!-- BOTÃO PARA PÁGINA DE ERRO -->
-<a href="404.html" class="btn-pagina-erro">
-    <i class="fa-solid fa-triangle-exclamation"></i>
-    Página de erro
-</a>
+
+        <a href="404.html" class="btn-pagina-erro">
+            <i class="fa-solid fa-triangle-exclamation"></i> Página de erro
+        </a>
     </footer>
 
-
-    <!-- =====================================================
-         JAVASCRIPT DO DASHBOARD
-    ====================================================== -->
-
     <script src="js/dashboard.js"></script>
-
 </body>
-
 </html>
