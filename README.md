@@ -1,9 +1,9 @@
 # 🏋️‍♀️ MOVA FIT
 
-Projeto web desenvolvido como trabalho da faculdade, focado em persistência de dados, consumo de APIs externas e usabilidade[cite: 3].
+Projeto web desenvolvido como trabalho da faculdade, focado em persistência de dados, consumo de APIs externas e usabilidade.
 
 ## 💻 Sobre o Projeto
-O MOVA FIT é uma aplicação web que conta com sistema de cadastro, login, dashboard do usuário, consumo da API ViaCEP para preenchimento automático de endereços e um menu de acessibilidade[cite: 3].
+O MOVA FIT é uma aplicação web que conta com sistema de cadastro, login, dashboard do usuário, consumo da API ViaCEP para preenchimento automático de endereços e um menu de acessibilidade.
 
 ## ✨ Funcionalidades
 - Cadastro de usuários com validação de campos.
