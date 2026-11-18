@@ -8,15 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Carregar nome do usuário no cabeçalho
-    const usuarioLogadoJSON = localStorage.getItem("usuarioCadastrado");
-    let nomeUsuario = "Usuário";
-
-    if (usuarioLogadoJSON) {
-        const usuario = JSON.parse(usuarioLogadoJSON);
-        nomeUsuario = String(usuario.nome || usuario.login || "Usuário").split(" ")[0];
-        const spanNome = document.getElementById("nomeUsuario");
-        if(spanNome) spanNome.textContent = nomeUsuario;
-    }
+    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+    const nomeUsuario = usuario.nome.split(" ")[0];
+    document.getElementById("nomeUsuario").textContent = nomeUsuario;
 
     const dadosSalvos = localStorage.getItem("feedbackMovaFit");
 

@@ -43,146 +43,53 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Sistema de leitura dos dados do usuário
-    function tentarLerJSON(chave) {
-        const valor = localStorage.getItem(chave);
-        if (!valor) return null;
-        try {
-            const convertido = JSON.parse(valor);
-            if (convertido !== null && typeof convertido === "object" && !Array.isArray(convertido)) {
-                return convertido;
-            }
-        } catch (erro) {}
-        return null;
+    // Coloca um texto no elemento (ou "Não informado" se estiver vazio)
+    function mostrar(id, valor, padrao = "Não informado") {
+        document.getElementById(id).textContent = valor || padrao;
     }
 
-    function localizarUsuario() {
-        const possiveisChaves = ["usuarioCadastrado", "usuarioLogado", "usuario", "dadosUsuario", "usuarioAtual", "clienteLogado", "cliente"];
-        for (let chave of possiveisChaves) {
-            const usuario = tentarLerJSON(chave);
-            if (usuario) return usuario;
-        }
-        return {};
-    }
-
-    function buscarCampo(objeto, propriedades, chavesLocalStorage) {
-        // Procura no objeto
-        for (let prop of propriedades) {
-            if (objeto && objeto[prop] !== undefined && objeto[prop] !== null && String(objeto[prop]).trim() !== "") {
-                return objeto[prop];
-            }
-        }
-        // Procura em chaves avulsas no localStorage
-        for (let chave of chavesLocalStorage) {
-            const valor = localStorage.getItem(chave);
-            if (valor !== null && String(valor).trim() !== "") {
-                return valor;
-            }
-        }
-        return "";
-    }
-
+    // Converte a data de 2002-03-15 para 15/03/2002
     function formatarData(data) {
-        if (!data) return "Não informado";
-        const texto = String(data).trim();
-        if (/^\d{2}\/\d{2}\/\d{4}$/.test(texto)) return texto;
-        if (/^\d{4}-\d{2}-\d{2}$/.test(texto)) {
-            const partes = texto.split("-");
-            return `${partes[2]}/${partes[1]}/${partes[0]}`;
-        }
-        return texto;
+        if (!data) return "";
+        const [ano, mes, dia] = data.split("-");
+        return `${dia}/${mes}/${ano}`;
     }
 
-    function formatarEndereco(endereco) {
-        if (!endereco) return "Não informado";
-        if (typeof endereco === "string") return endereco;
-
-        if (typeof endereco === "object") {
-            const partes = [];
-            if (endereco.rua) partes.push(endereco.rua);
-            else if (endereco.logradouro) partes.push(endereco.logradouro);
-            if (endereco.numero) partes.push(endereco.numero);
-            if (endereco.bairro) partes.push(endereco.bairro);
-            if (endereco.cidade) partes.push(endereco.cidade);
-            if (endereco.uf) partes.push(endereco.uf);
-
-            if (partes.length > 0) return partes.join(", ");
-        }
-        return "Não informado";
-    }
-
-    function pegarPrimeiroNome(nome) {
-        if (!nome) return "Usuário";
-        return String(nome).trim().split(/\s+/)[0];
-    }
-
-    function definirTexto(id, valor, padrao = "Não informado") {
-        const elemento = document.getElementById(id);
-        if (!elemento) return;
-        if (valor !== undefined && valor !== null && String(valor).trim() !== "") {
-            elemento.textContent = String(valor);
-        } else {
-            elemento.textContent = padrao;
-        }
-    }
-
-    // Preenchimento dos campos do dashboard
+    // Preenche o painel com os dados do usuário logado
     function carregarUsuario() {
-        const usuario = localizarUsuario();
+        const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+        const primeiroNome = usuario.nome.split(" ")[0];
 
-        const nome = buscarCampo(usuario, ["nome", "nomeCompleto", "name"], ["nome", "nomeUsuario", "usuarioNome", "nomeCompleto"]);
-        const cpf = buscarCampo(usuario, ["cpf", "CPF"], ["cpf", "usuarioCpf"]);
-        const email = buscarCampo(usuario, ["email", "eMail"], ["email", "usuarioEmail"]);
-        const telefone = buscarCampo(usuario, ["telefone", "celular", "phone"], ["telefone", "celular", "usuarioTelefone"]);
-        const nascimento = buscarCampo(usuario, ["dataNascimento", "nascimento", "data_nascimento"], ["dataNascimento", "nascimento", "usuarioNascimento"]);
+        let endereco = usuario.rua || "";
+        if (usuario.bairro) endereco += ", " + usuario.bairro;
+        if (usuario.cidade) endereco += ", " + usuario.cidade + " - " + usuario.uf;
 
-        const telefoneFixo = buscarCampo(usuario, ["telefoneFixo", "fixo"], []);
-        const bairro = buscarCampo(usuario, ["bairro"], []);
-        const nacionalidade = buscarCampo(usuario, ["nacionalidade"], []);
-        const estadoCivil = buscarCampo(usuario, ["estadoCivil"], []);
-
-        let endereco = "";
-        if (usuario && usuario.rua) {
-            endereco = usuario.rua;
-            if (usuario.bairro) endereco += ", " + usuario.bairro;
-            if (usuario.cidade && usuario.uf) endereco += ", " + usuario.cidade + " - " + usuario.uf;
-        }
-
-        const rua = buscarCampo(usuario, ["rua", "logradouro"], []);
-        const cidade = buscarCampo(usuario, ["cidade"], ["cidade", "usuarioCidade"]);
-        const uf = buscarCampo(usuario, ["uf", "estado", "UF"], ["uf", "estado", "usuarioUf"]);
-        const cep = buscarCampo(usuario, ["cep", "CEP"], ["cep", "usuarioCep"]);
-
-        // Header/Hero
-        const primeiroNome = pegarPrimeiroNome(nome);
-        definirTexto("nomeUsuario", primeiroNome, "Usuário");
-        definirTexto("nomeBoasVindas", primeiroNome + "!", "Usuário!");
+        mostrar("nomeUsuario", primeiroNome);
+        mostrar("nomeBoasVindas", primeiroNome + "!");
 
         // Perfil
-        definirTexto("perfilNomeDestaque", nome, "Usuário");
-        definirTexto("perfilNome", nome);
-        definirTexto("perfilCpf", cpf);
-        definirTexto("perfilEmail", email);
-        definirTexto("perfilTelefone", telefone);
-        definirTexto("perfilTelefoneFixo", telefoneFixo);
-        definirTexto("perfilNascimento", nascimento ? formatarData(nascimento) : "");
-        definirTexto("perfilNacionalidade", nacionalidade);
-        definirTexto("perfilEstadoCivil", estadoCivil);
-        definirTexto("perfilEndereco", endereco ? formatarEndereco(endereco) : "");
+        mostrar("perfilNomeDestaque", usuario.nome);
+        mostrar("perfilNome", usuario.nome);
+        mostrar("perfilCpf", usuario.cpf);
+        mostrar("perfilEmail", usuario.email);
+        mostrar("perfilTelefone", usuario.telefone);
+        mostrar("perfilTelefoneFixo", usuario.telefoneFixo);
+        mostrar("perfilNascimento", formatarData(usuario.dataNascimento));
+        mostrar("perfilNacionalidade", usuario.nacionalidade);
+        mostrar("perfilEstadoCivil", usuario.estadoCivil);
+        mostrar("perfilEndereco", endereco);
 
         // Meu endereço
-        definirTexto("infoRua", rua);
-        definirTexto("infoBairro", bairro);
-        definirTexto("infoCidade", cidade);
-        definirTexto("infoUf", uf);
-        definirTexto("infoCep", cep);
+        mostrar("infoRua", usuario.rua);
+        mostrar("infoBairro", usuario.bairro);
+        mostrar("infoCidade", usuario.cidade);
+        mostrar("infoUf", usuario.uf);
+        mostrar("infoCep", usuario.cep);
     }
 
-    // Ação de logout
+    // Sair da conta
     btnLogout.addEventListener("click", function () {
         localStorage.removeItem("usuarioLogado");
-        localStorage.removeItem("usuarioAtual");
-        localStorage.removeItem("clienteLogado");
         window.location.href = "index.html";
     });
 

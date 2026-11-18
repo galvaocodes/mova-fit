@@ -31,15 +31,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let planoNoPagamento = "";
 
     function lerUsuario() {
-        try { return JSON.parse(localStorage.getItem("usuarioLogado")) || {}; }
-        catch (erro) { return {}; }
+        return JSON.parse(localStorage.getItem("usuarioLogado"));
     }
 
     function salvarNoUsuario(campos) {
         const logado = Object.assign(lerUsuario(), campos);
         localStorage.setItem("usuarioLogado", JSON.stringify(logado));
 
-        const cadastrado = JSON.parse(localStorage.getItem("usuarioCadastrado") || "null");
+        const cadastrado = JSON.parse(localStorage.getItem("usuarioCadastrado"));
         if (cadastrado && cadastrado.login === logado.login) {
             localStorage.setItem("usuarioCadastrado", JSON.stringify(Object.assign(cadastrado, campos)));
         }

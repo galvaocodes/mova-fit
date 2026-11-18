@@ -11,11 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        const radioPlano = document.querySelector(`input[name="plano"][value="${planoDaUrl}"]`);
-        if (radioPlano) radioPlano.checked = true;
-
-        const linkLogin = document.getElementById("linkLogin");
-        if (linkLogin) linkLogin.href = "login.html?plano=" + planoDaUrl;
+        document.querySelector(`input[name="plano"][value="${planoDaUrl}"]`).checked = true;
+        document.getElementById("linkLogin").href = "login.html?plano=" + planoDaUrl;
     }
 
     // Máscara e validação de CPF
@@ -145,10 +142,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function mostrarErro(idCampo, mensagem) {
-        const campo = document.getElementById(idCampo);
-        const spanErro = document.querySelector(`[id-erro="${idCampo}"]`);
-        if (campo) campo.classList.add("invalido");
-        if (spanErro) spanErro.textContent = mensagem;
+        document.getElementById(idCampo).classList.add("invalido");
+        document.querySelector(`[id-erro="${idCampo}"]`).textContent = mensagem;
     }
 
     function limparErros() {
@@ -265,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Objeto JSON para salvar no localStorage
+        // Dados que vão para o localStorage
         const dadosUsuario = {
             nome: nome,
             cpf: cpf,

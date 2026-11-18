@@ -6,13 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Carregar nome do usuário no header
-    const usuarioLogadoJSON = localStorage.getItem("usuarioCadastrado");
-    if (usuarioLogadoJSON) {
-        const usuario = JSON.parse(usuarioLogadoJSON);
-        const primeiroNome = String(usuario.nome || usuario.login || "Usuário").split(" ")[0];
-        const spanNome = document.getElementById("nomeUsuario");
-        if(spanNome) spanNome.textContent = primeiroNome;
-    }
+    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+    const primeiroNome = usuario.nome.split(" ")[0];
+    document.getElementById("nomeUsuario").textContent = primeiroNome;
 
     // Sistema de estrelas
     const estrelas = document.querySelectorAll(".estrela");
@@ -42,21 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const mensagem = document.getElementById("mensagem");
     const contador = document.getElementById("contador");
 
-    if(mensagem && contador) {
-        mensagem.addEventListener("input", () => {
-            contador.textContent = `${mensagem.value.length}/500`;
-        });
-    }
+    mensagem.addEventListener("input", () => {
+        contador.textContent = `${mensagem.value.length}/500`;
+    });
 
     // Range de satisfação
     const satisfacao = document.getElementById("satisfacao");
     const valorSatisfacao = document.getElementById("valor-satisfacao");
 
-    if(satisfacao && valorSatisfacao) {
-        satisfacao.addEventListener("input", () => {
-            valorSatisfacao.textContent = `${satisfacao.value}/10`;
-        });
-    }
+    satisfacao.addEventListener("input", () => {
+        valorSatisfacao.textContent = `${satisfacao.value}/10`;
+    });
 
     const formularioFeedback = document.getElementById("form-feedback");
 

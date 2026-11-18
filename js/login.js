@@ -7,8 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const planoUrl = new URLSearchParams(window.location.search).get("plano");
     const planoEscolhido = (planoUrl === "basic" || planoUrl === "plus") ? planoUrl : "";
 
-    const linkCadastro = document.getElementById("linkCadastro");
-    if (linkCadastro && planoEscolhido) linkCadastro.href = "cadastro.html?plano=" + planoEscolhido;
+    if (planoEscolhido) {
+        document.getElementById("linkCadastro").href = "cadastro.html?plano=" + planoEscolhido;
+    }
 
     formLogin.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -27,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const usuario = JSON.parse(usuarioSalvoJSON);
 
         // Validação das credenciais
-        if (loginDigitado.toLowerCase() === String(usuario.login).toLowerCase() && senhaDigitada === usuario.senha) {
+        if (loginDigitado.toLowerCase() === usuario.login.toLowerCase() && senhaDigitada === usuario.senha) {
 
             localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
 

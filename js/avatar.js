@@ -2,27 +2,22 @@ const AVATARES_MOVA = Array.from({ length: 12 }, (_, i) =>
     `assets/avatares/avatar-${String(i + 1).padStart(2, "0")}.jpg`
 );
 
+// Lê o usuário logado
 function lerUsuarioAvatar() {
-    for (const chave of ["usuarioLogado", "usuarioCadastrado"]) {
-        try {
-            const dados = JSON.parse(localStorage.getItem(chave));
-            if (dados && typeof dados === "object") return dados;
-        } catch (erro) { /* ignora JSON inválido */ }
-    }
-    return null;
+    return JSON.parse(localStorage.getItem("usuarioLogado"));
 }
 
+// Salva o avatar no usuário logado e no cadastro
 function salvarAvatar(avatar) {
     const logado = lerUsuarioAvatar();
-    for (const chave of ["usuarioLogado", "usuarioCadastrado"]) {
-        let dados = null;
-        try { dados = JSON.parse(localStorage.getItem(chave)); } catch (erro) { dados = null; }
-        if (!dados) continue;
-        if (chave === "usuarioCadastrado" && logado && dados.login !== logado.login) continue;
+    const cadastrado = JSON.parse(localStorage.getItem("usuarioCadastrado"));
 
-        if (avatar) dados.avatar = avatar;
-        else delete dados.avatar;
-        localStorage.setItem(chave, JSON.stringify(dados));
+    logado.avatar = avatar;
+    localStorage.setItem("usuarioLogado", JSON.stringify(logado));
+
+    if (cadastrado && cadastrado.login === logado.login) {
+        cadastrado.avatar = avatar;
+        localStorage.setItem("usuarioCadastrado", JSON.stringify(cadastrado));
     }
 }
 
@@ -73,14 +68,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function escolher(avatar, textoSucesso) {
-        try {
-            salvarAvatar(avatar);
-            atualizarAvatares();
-            marcarSelecionado();
-            mostrarMensagem(textoSucesso, "sucesso");
-        } catch (erro) {
-            mostrarMensagem("Não foi possível salvar a foto. Tente de novo.", "erro");
-        }
+        salvarAvatar(avatar);
+        atualizarAvatares();
+        marcarSelecionado();
+        mostrarMensagem(textoSucesso, "sucesso");
     }
 
     // Monta a grade de avatares

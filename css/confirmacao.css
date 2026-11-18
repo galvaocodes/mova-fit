@@ -149,5 +149,8 @@
 @media (max-width: 600px) {
     .dados-grid { grid-template-columns: 1fr; }
     .acoes-finais { flex-direction: column-reverse; }
-    .btn-principal, .btn-secundario { width: 100%; text-align: center; }
+    .btn-principal, .btn-secundario {
+        width: 100%;
+        text-align: center;
+    }
 }
