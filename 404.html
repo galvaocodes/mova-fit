@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOVA FIT | Erro 404</title>
 
-    <!-- Fontes e Ícones Oficiais do Projeto -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
+
     <link rel="stylesheet" href="css/404.css">
+    <link rel="stylesheet" href="css/acessibilidade.css">
 </head>
 <body>
     <div class="acessibilidade-container acess-fixed">
@@ -21,33 +21,32 @@
             <div class="acoes-acess">
                 <button id="btnAumentar" title="Aumentar Fonte">A+</button>
                 <button id="btnDiminuir" title="Diminuir Fonte">A-</button>
-                <button id="btnContraste" title="Alto Contraste"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                <button id="btnContraste" title="Tema claro / escuro" aria-label="Alternar tema claro e escuro"><i class="fa-solid fa-circle-half-stroke"></i></button>
             </div>
         </div>
     </div>
 
     <main class="pagina-erro">
         <section class="conteudo-erro">
-            
-            <!-- Logo Oficial -->
+
             <img class="logo-movafit" src="assets/imagens/logo-movafit.png" alt="MOVA FIT">
-            
-            <!-- Número do erro como elemento de design gigante -->
-            <div class="numero-erro">404</div>
-            
-            <h1><span>Ops!</span> Página não encontrada</h1>
-            
-            <p class="mensagem-erro">
+
+            <div class="numero-erro" id="numeroErro">404</div>
+
+            <h1 id="tituloErro"><span>Ops!</span> Página não encontrada</h1>
+
+            <p class="mensagem-erro" id="textoErro">
                 A página que você está procurando não existe, foi removida ou o endereço foi digitado incorretamente.
             </p>
 
-            <a class="botao-inicio" href="dashboard.html">
-                <i class="fa-solid fa-arrow-left"></i> 
-                <span>Voltar ao Dashboard</span>
+            <a class="botao-inicio" id="botaoErro" href="index.html">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Voltar ao início</span>
             </a>
 
         </section>
     </main>
+    <script src="js/acessibilidade.js"></script>
 <script src="js/404.js"></script>
 </body>
 </html>
