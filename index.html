@@ -4,65 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOVA FIT | Alta Performance</title>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/acessibilidade.css">
 </head>
 <body>
-  
 
-    <!-- NAVEGAÇÃO -->
+    <!-- Navegação -->
+
     <header class="header" id="header">
         <div class="container navbar">
             <a href="#hero" class="logo">
                 <img src="assets/imagens/logo-movafit.png" alt="MOVA FIT" class="logo-img">
             </a>
 
-            <nav class="nav-menu">
-                <a href="#sobre" class="nav-link">Metodologia</a>
-                <a href="#unidades" class="nav-link">Unidades</a>
-                <a href="#planos" class="nav-link">Planos</a>
+            <!-- Menu com submenus por categoria -->
+
+            <nav class="nav-menu" id="navMenu" aria-label="Menu principal">
+                <div class="nav-item">
+                    <a href="#sobre" class="nav-link">Metodologia <i class="fa-solid fa-chevron-down nav-seta"></i></a>
+                    <div class="submenu">
+                        <a href="#metodo-equipamento">Equipamento Biomecânico</a>
+                        <a href="#metodo-treinos">Treinos Otimizados</a>
+                        <a href="#metodo-rede">Acesso à Rede</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="#unidades" class="nav-link">Unidades <i class="fa-solid fa-chevron-down nav-seta"></i></a>
+                    <div class="submenu">
+                        <a href="#unidade-centro">Centro</a>
+                        <a href="#unidade-zona-sul">Zona Sul</a>
+                        <a href="#unidade-barra">Barra</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="#planos" class="nav-link">Planos <i class="fa-solid fa-chevron-down nav-seta"></i></a>
+                    <div class="submenu">
+                        <a href="#plano-basic">Basic · R$ 79</a>
+                        <a href="#plano-plus">Plus · R$ 119</a>
+                    </div>
+                </div>
+                <a href="login.html" class="nav-link so-celular"><i class="fa-solid fa-circle-user"></i> Área do Aluno</a>
             </nav>
 
             <div class="nav-actions">
                 <a href="login.html" class="btn-ghost">Área do Aluno</a>
                 <a href="cadastro.html" class="btn-primary">Matricule-se</a>
                 <div class="acessibilidade-container">
-                <button id="btnAcess" class="btn-acess" aria-label="Acessibilidade">
-                    <i class="fa-solid fa-gear"></i>
+                    <button id="btnAcess" class="btn-acess" aria-label="Acessibilidade">
+                        <i class="fa-solid fa-gear"></i>
+                    </button>
+                    <div id="menuAcess" class="menu-acess">
+                        <span>Acessibilidade</span>
+                        <div class="acoes-acess">
+                            <button id="btnAumentar" title="Aumentar Fonte">A+</button>
+                            <button id="btnDiminuir" title="Diminuir Fonte">A-</button>
+                            <button id="btnContraste" title="Tema claro / escuro" aria-label="Alternar tema claro e escuro"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botão do menu no celular -->
+
+                <button id="btnMenu" class="btn-menu" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navMenu">
+                    <i class="fa-solid fa-bars"></i>
                 </button>
-            <div id="menuAcess" class="menu-acess">
-                 <span>Acessibilidade</span>
-            <div class="acoes-acess">
-                <button id="btnAumentar" title="Aumentar Fonte">A+</button>
-                <button id="btnDiminuir" title="Diminuir Fonte">A-</button>
-                <button id="btnContraste" title="Alto Contraste"><i class="fa-solid fa-circle-half-stroke"></i></button>
-            </div>
-        </div>
-    </div>
-   
-</div>
             </div>
         </div>
     </header>
 
     <main>
-        <!-- TELA INICIAL (HERO) -->
         <section class="hero" id="hero">
-            <video autoplay muted loop playsinline class="hero-video">
+            <video autoplay muted loop playsinline preload="auto" poster="assets/imagens/capa-video.jpg" class="hero-video" id="heroVideo">
                 <source src="assets/videos/video.mp4" type="video/mp4">
             </video>
             <div class="hero-overlay"></div>
 
             <div class="container hero-content">
                 <h1 class="hero-title">TREINE COM A<br>SUA MELHOR VERSÃO.</h1>
-                <p class="hero-subtitle">Estrutura de elite, maquinário avançado e foco absoluto em resultados. Não somos apenas um ginásio, somos um padrão.</p>
+                <p class="hero-subtitle">Estrutura de elite, maquinário avançado e foco absoluto em resultados. Não somos apenas uma academia, somos um padrão.</p>
                 <a href="#planos" class="btn-primary btn-large">Ver Planos e Preços</a>
             </div>
         </section>
 
-        <!-- SOBRE A METODOLOGIA -->
+        <!-- Sobre a metodologia -->
+
         <section class="section" id="sobre">
             <div class="container">
                 <div class="section-header">
@@ -71,17 +99,20 @@
                 </div>
 
                 <div class="grid-3">
-                    <div class="feature-card">
+                    <div class="feature-card" id="metodo-equipamento">
+                        <img class="card-foto" src="assets/imagens/padrao-equipamento.jpg" alt="Aparelho de musculação biomecânico em academia escura com luzes azuis e roxas" loading="lazy">
                         <i class="fa-solid fa-dumbbell feature-icon"></i>
                         <h3>Equipamento Biomecânico</h3>
                         <p>Aparelhos com precisão milimétrica que isolam o músculo correto, acelerando a hipertrofia e evitando lesões.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" id="metodo-treinos">
+                        <img class="card-foto" src="assets/imagens/padrao-treinos.jpg" alt="Aluno treinando com corda naval, concentrado" loading="lazy">
                         <i class="fa-solid fa-stopwatch feature-icon"></i>
                         <h3>Treinos Otimizados</h3>
                         <p>Ambiente desenhado para foco. Sem distrações, apenas você e o seu objetivo diário a ser cumprido.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" id="metodo-rede">
+                        <img class="card-foto" src="assets/imagens/padrao-rede.jpg" alt="Recepção iluminada de uma unidade MOVA FIT com alunos chegando" loading="lazy">
                         <i class="fa-solid fa-users feature-icon"></i>
                         <h3>Acesso à Rede</h3>
                         <p>A sua assinatura garante treino em qualquer unidade. Onde a sua rotina o levar, a Mova Fit estará lá.</p>
@@ -90,7 +121,8 @@
             </div>
         </section>
 
-        <!-- UNIDADES -->
+        <!-- Unidades -->
+
         <section class="section bg-surface" id="unidades">
             <div class="container">
                 <div class="section-header">
@@ -99,17 +131,20 @@
                 </div>
 
                 <div class="grid-3">
-                    <div class="location-card">
+                    <div class="location-card" id="unidade-centro">
+                        <img class="card-foto" src="assets/imagens/unidade-centro.jpg" alt="Unidade Centro: academia no alto de um prédio com vista da cidade" loading="lazy">
                         <span class="status-badge">Aberto</span>
                         <h3>Centro</h3>
                         <p>Rua das Flores, 120</p>
                     </div>
-                    <div class="location-card">
+                    <div class="location-card" id="unidade-zona-sul">
+                        <img class="card-foto" src="assets/imagens/unidade-zona-sul.jpg" alt="Unidade Zona Sul: academia clara com vista para a praia" loading="lazy">
                         <span class="status-badge">Aberto</span>
                         <h3>Zona Sul</h3>
                         <p>Av. Atlântica, 850</p>
                     </div>
-                    <div class="location-card">
+                    <div class="location-card" id="unidade-barra">
+                        <img class="card-foto" src="assets/imagens/unidade-barra.jpg" alt="Unidade Barra: academia ampla com pé-direito alto" loading="lazy">
                         <span class="status-badge">Aberto</span>
                         <h3>Barra</h3>
                         <p>Av. das Américas, 3500</p>
@@ -118,7 +153,8 @@
             </div>
         </section>
 
-        <!-- PLANOS -->
+        <!-- Planos -->
+
         <section class="section" id="planos">
             <div class="container">
                 <div class="section-header">
@@ -128,7 +164,8 @@
 
                 <div class="grid-2 plans-container">
                     <!-- Plano Basic -->
-                    <div class="plan-card">
+
+                    <div class="plan-card" id="plano-basic">
                         <h3 class="plan-name">Basic</h3>
                         <div class="plan-price">R$ 79<span>/mês</span></div>
                         <p class="plan-desc">O essencial para começar a sua rotina de treinos.</p>
@@ -137,11 +174,12 @@
                             <li><i class="fa-solid fa-check"></i> Treino em 1 unidade à escolha</li>
                             <li class="disabled"><i class="fa-solid fa-minus"></i> Aulas coletivas</li>
                         </ul>
-                        <a href="cadastro_2.html" class="btn-ghost w-100">Selecionar Basic</a>
+                        <a href="cadastro.html?plano=basic" class="btn-ghost w-100">Selecionar Basic</a>
                     </div>
 
                     <!-- Plano Plus -->
-                    <div class="plan-card highlighted">
+
+                    <div class="plan-card highlighted" id="plano-plus">
                         <span class="recommend-badge">Recomendado</span>
                         <h3 class="plan-name">Plus</h3>
                         <div class="plan-price">R$ 119<span>/mês</span></div>
@@ -151,14 +189,15 @@
                             <li><i class="fa-solid fa-check"></i> Acesso a todas as unidades</li>
                             <li><i class="fa-solid fa-check"></i> Todas as aulas coletivas inclusas</li>
                         </ul>
-                        <a href="cadastro_2.html" class="btn-primary w-100">Assinar Plus</a>
+                        <a href="cadastro.html?plano=plus" class="btn-primary w-100">Assinar Plus</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- RODAPÉ -->
+    <!-- Rodapé -->
+
     <footer class="footer">
         <div class="container footer-wrapper">
             <div class="footer-info">
@@ -176,6 +215,7 @@
         </div>
     </footer>
 
+    <script src="js/acessibilidade.js"></script>
     <script src="js/index.js"></script>
 </body>
 </html>
