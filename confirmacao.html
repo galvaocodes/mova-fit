@@ -4,30 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MovaFit | Confirmação do Feedback</title>
-    
-    <!-- FONTE PREMIUM INTER -->
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
-    <!-- CSS (Aproveitando base do Dashboard + Específico de Confirmação) -->
+
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/confirmacao.css">
+    <link rel="stylesheet" href="css/acessibilidade.css">
 </head>
 <body>
 
-    <!-- CABEÇALHO LIMPO E ALINHADO -->
     <header class="cabecalho">
-        <!-- LOGO NA ESQUERDA -->
+        <!-- Logo na esquerda -->
+
         <a href="dashboard.html" class="logo-btn" aria-label="Ir para o início">
             <img src="assets/imagens/logo-movafit.png" alt="MOVA FIT" class="logo-img">
         </a>
 
         <div style="flex: 1;"></div>
 
-        <!-- LADO DIREITO (USUÁRIO E BOTÃO VOLTAR) -->
         <div class="header-direita">
             <div class="usuario-logado">
-                <i class="fa-solid fa-circle-user"></i>
+                <span class="avatar-mini" id="avatarMini"><i class="fa-solid fa-circle-user"></i></span>
                 <span>Olá, <strong id="nomeUsuario">Usuário</strong></span>
                 <div class="acessibilidade-container">
                  <button id="btnAcess" class="btn-acess" aria-label="Acessibilidade">
@@ -38,7 +36,7 @@
             <div class="acoes-acess">
                 <button id="btnAumentar" title="Aumentar Fonte">A+</button>
                 <button id="btnDiminuir" title="Diminuir Fonte">A-</button>
-                <button id="btnContraste" title="Alto Contraste"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                <button id="btnContraste" title="Tema claro / escuro" aria-label="Alternar tema claro e escuro"><i class="fa-solid fa-circle-half-stroke"></i></button>
             </div>
         </div>
     </div>
@@ -46,7 +44,7 @@
 
             <a href="dashboard.html" class="btn-sair" style="text-decoration: none;" aria-label="Voltar para o Dashboard">
                 <i class="fa-solid fa-arrow-left"></i>
-                <span>Sair</span>
+                <span>Voltar</span>
             </a>
         </div>
     </header>
@@ -54,7 +52,8 @@
     <main class="dashboard">
         <section class="conteudo">
 
-            <!-- CABEÇALHO DA CONFIRMAÇÃO -->
+            <!-- Cabeçalho da confirmação -->
+
             <div class="confirmacao-header">
                 <div class="icone-sucesso">
                     <i class="fa-solid fa-check"></i>
@@ -63,7 +62,8 @@
                 <p>Obrigado por ajudar a elevar o padrão MOVA FIT. Abaixo estão os detalhes do seu envio.</p>
             </div>
 
-            <!-- CARD COM OS DADOS -->
+            <!-- Card com os dados -->
+
             <div class="card-detalhes">
                 <div class="card-detalhes-header">
                     <h2>Detalhes do Envio</h2>
@@ -75,7 +75,7 @@
                         <span class="dado-label">Enviado por</span>
                         <strong id="enviadoPor" class="dado-valor">Usuário</strong>
                     </div>
-                    
+
                     <div class="dado-item">
                         <span class="dado-label">Data e Hora</span>
                         <strong id="data" class="dado-valor">-</strong>
@@ -117,7 +117,8 @@
                     </div>
                 </div>
 
-                <!-- AÇÕES -->
+                <!-- Ações -->
+
                 <div class="acoes-finais">
                     <a href="feedback.html" class="btn-secundario">Novo Feedback</a>
                     <a href="dashboard.html" class="btn-principal">Voltar ao Dashboard</a>
@@ -127,6 +128,8 @@
         </section>
     </main>
 
+    <script src="js/acessibilidade.js"></script>
+    <script src="js/avatar.js"></script>
     <script src="js/confirmacao.js"></script>
 </body>
 </html>

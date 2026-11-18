@@ -1,10 +1,11 @@
-/* ========================================
-   FEEDBACK | MOVA FIT (LÓGICA)
-======================================== */
-
 document.addEventListener("DOMContentLoaded", () => {
-    
-    // 1. CARREGAR NOME DO USUÁRIO NO HEADER
+
+    if (!localStorage.getItem("usuarioLogado")) {
+        window.location.replace("404.html?erro=auth");
+        return;
+    }
+
+    // Carregar nome do usuário no header
     const usuarioLogadoJSON = localStorage.getItem("usuarioCadastrado");
     if (usuarioLogadoJSON) {
         const usuario = JSON.parse(usuarioLogadoJSON);
@@ -13,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if(spanNome) spanNome.textContent = primeiroNome;
     }
 
-    // 2. SISTEMA DE ESTRELAS
+    // Sistema de estrelas
     const estrelas = document.querySelectorAll(".estrela");
     const campoAvaliacao = document.getElementById("avaliacao");
 
@@ -37,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 3. CONTADOR DA MENSAGEM
+    // Contador da mensagem
     const mensagem = document.getElementById("mensagem");
     const contador = document.getElementById("contador");
 
@@ -47,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 4. RANGE DE SATISFAÇÃO
+    // Range de satisfação
     const satisfacao = document.getElementById("satisfacao");
     const valorSatisfacao = document.getElementById("valor-satisfacao");
 
@@ -57,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 5. ENVIO DO FORMULÁRIO (SALVA NO LOCALSTORAGE E REDIRECIONA)
     const formularioFeedback = document.getElementById("form-feedback");
 
     if(formularioFeedback) {
@@ -74,10 +74,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const mensagemErro = document.getElementById("mensagem-erro");
 
-            // Validação
             if (!categoria || !avaliacao || !tipoFeedback || !assunto.trim()) {
                 mensagemErro.hidden = false;
-                window.scrollTo({ top: 0, behavior: "smooth" }); // Sobe a tela para o cliente ver o erro
+                window.scrollTo({ top: 0, behavior: "smooth" });
                 return;
             }
 
@@ -94,76 +93,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 data: new Date().toLocaleString("pt-BR")
             };
 
-            // Guarda os dados que serão exibidos na tela de Confirmação (Exigência do PDF)
             localStorage.setItem("feedbackMovaFit", JSON.stringify(feedback));
 
-            // Redireciona
             window.location.href = "confirmacao.html";
         });
-    }
-});
-/* =========================================================
-   ACESSIBILIDADE - DESAFIO PLUS (PONTO EXTRA)
-========================================================= */
-document.addEventListener("DOMContentLoaded", () => {
-    const containerAcess = document.querySelector(".acessibilidade-container");
-    if (!containerAcess) return;
-
-    const btnAcess = document.getElementById("btnAcess");
-    const menuAcess = document.getElementById("menuAcess");
-    const btnAumentar = document.getElementById("btnAumentar");
-    const btnDiminuir = document.getElementById("btnDiminuir");
-    const btnContraste = document.getElementById("btnContraste");
-    const htmlObj = document.documentElement;
-
-    // 1. Abrir e fechar a engrenagem
-    btnAcess.addEventListener("click", () => {
-        menuAcess.classList.toggle("ativo");
-    });
-
-    // Fechar ao clicar fora da engrenagem
-    document.addEventListener("click", (e) => {
-        if (!containerAcess.contains(e.target)) {
-            menuAcess.classList.remove("ativo");
-        }
-    });
-
-    // 2. Funções de aplicação e salvamento
-    function aplicarContraste(ativo) {
-        if (ativo) htmlObj.classList.add("alto-contraste");
-        else htmlObj.classList.remove("alto-contraste");
-        localStorage.setItem("mova_contraste", ativo);
-    }
-
-    function aplicarFonte(tamanho) {
-        htmlObj.classList.remove("fonte-aumentada", "fonte-reduzida");
-        if (tamanho === "aumentada") htmlObj.classList.add("fonte-aumentada");
-        if (tamanho === "reduzida") htmlObj.classList.add("fonte-reduzida");
-        localStorage.setItem("mova_fonte", tamanho || "normal");
-    }
-
-    // 3. Ações dos botões
-    btnContraste.addEventListener("click", () => {
-        const estadoAtual = htmlObj.classList.contains("alto-contraste");
-        aplicarContraste(!estadoAtual);
-    });
-
-    btnAumentar.addEventListener("click", () => {
-        const atual = localStorage.getItem("mova_fonte");
-        aplicarFonte(atual !== "aumentada" ? "aumentada" : "normal");
-    });
-
-    btnDiminuir.addEventListener("click", () => {
-        const atual = localStorage.getItem("mova_fonte");
-        aplicarFonte(atual !== "reduzida" ? "reduzida" : "normal");
-    });
-
-    // 4. Inicializar estado salvo ao carregar a página
-    if (localStorage.getItem("mova_contraste") === "true") {
-        aplicarContraste(true);
-    }
-    const fonteSalva = localStorage.getItem("mova_fonte");
-    if (fonteSalva) {
-        aplicarFonte(fonteSalva);
     }
 });
