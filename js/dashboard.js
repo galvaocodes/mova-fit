@@ -1,24 +1,23 @@
-/* =========================================================
-   MOVA FIT - DASHBOARD
-   js/dashboard.js
-========================================================= */
+// Dashboard
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* =====================================================
-       1. ELEMENTOS PRINCIPAIS DA NAVEGAÇÃO
-    ====================================================== */
+    if (!localStorage.getItem("usuarioLogado")) {
+        window.location.replace("404.html?erro=auth");
+        return;
+    }
+
+    // Elementos principais da navegação
     const telas = document.querySelectorAll(".tela");
     const botoesNavegacao = document.querySelectorAll("[data-section]");
     const linksMenu = document.querySelectorAll(".menu-link");
     const btnLogout = document.getElementById("btnLogout");
 
-    /* =====================================================
-       2. NAVEGAÇÃO INTERNA DO DASHBOARD (TABS)
-    ====================================================== */
+    window.abrirSecao = (nome) => abrirSecao(nome);
+
     function abrirSecao(nomeSecao) {
         const secaoDestino = document.getElementById(nomeSecao);
-        
+
         if (!secaoDestino) return;
 
         // Esconde todas as seções e mostra a escolhida
@@ -44,9 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    /* =====================================================
-       3. SISTEMA DE LEITURA DOS DADOS DO USUÁRIO
-    ====================================================== */
+    // Sistema de leitura dos dados do usuário
     function tentarLerJSON(chave) {
         const valor = localStorage.getItem(chave);
         if (!valor) return null;
@@ -99,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function formatarEndereco(endereco) {
         if (!endereco) return "Não informado";
         if (typeof endereco === "string") return endereco;
-        
+
         if (typeof endereco === "object") {
             const partes = [];
             if (endereco.rua) partes.push(endereco.rua);
@@ -108,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (endereco.bairro) partes.push(endereco.bairro);
             if (endereco.cidade) partes.push(endereco.cidade);
             if (endereco.uf) partes.push(endereco.uf);
-            
+
             if (partes.length > 0) return partes.join(", ");
         }
         return "Não informado";
@@ -129,134 +126,68 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    /* =====================================================
-       4. PREENCHIMENTO DOS CAMPOS DO DASHBOARD
-    ====================================================== */
+    // Preenchimento dos campos do dashboard
     function carregarUsuario() {
         const usuario = localizarUsuario();
 
-        // Buscas de Dados
         const nome = buscarCampo(usuario, ["nome", "nomeCompleto", "name"], ["nome", "nomeUsuario", "usuarioNome", "nomeCompleto"]);
         const cpf = buscarCampo(usuario, ["cpf", "CPF"], ["cpf", "usuarioCpf"]);
         const email = buscarCampo(usuario, ["email", "eMail"], ["email", "usuarioEmail"]);
         const telefone = buscarCampo(usuario, ["telefone", "celular", "phone"], ["telefone", "celular", "usuarioTelefone"]);
         const nascimento = buscarCampo(usuario, ["dataNascimento", "nascimento", "data_nascimento"], ["dataNascimento", "nascimento", "usuarioNascimento"]);
-        
+
+        const telefoneFixo = buscarCampo(usuario, ["telefoneFixo", "fixo"], []);
+        const bairro = buscarCampo(usuario, ["bairro"], []);
+        const nacionalidade = buscarCampo(usuario, ["nacionalidade"], []);
+        const estadoCivil = buscarCampo(usuario, ["estadoCivil"], []);
+
         let endereco = "";
         if (usuario && usuario.rua) {
             endereco = usuario.rua;
+            if (usuario.bairro) endereco += ", " + usuario.bairro;
             if (usuario.cidade && usuario.uf) endereco += ", " + usuario.cidade + " - " + usuario.uf;
         }
 
-        const nacionalidade = buscarCampo(usuario, ["nacionalidade"], ["nacionalidade", "usuarioNacionalidade"]);
-        const estadoCivil = buscarCampo(usuario, ["estadoCivil", "estado_civil"], ["estadoCivil", "usuarioEstadoCivil"]);
-        const escolaridade = buscarCampo(usuario, ["escolaridade"], ["escolaridade", "usuarioEscolaridade"]);
+        const rua = buscarCampo(usuario, ["rua", "logradouro"], []);
         const cidade = buscarCampo(usuario, ["cidade"], ["cidade", "usuarioCidade"]);
         const uf = buscarCampo(usuario, ["uf", "estado", "UF"], ["uf", "estado", "usuarioUf"]);
         const cep = buscarCampo(usuario, ["cep", "CEP"], ["cep", "usuarioCep"]);
 
-        // Preenchimento Visual - Header/Hero
+        // Header/Hero
         const primeiroNome = pegarPrimeiroNome(nome);
         definirTexto("nomeUsuario", primeiroNome, "Usuário");
         definirTexto("nomeBoasVindas", primeiroNome + "!", "Usuário!");
 
-        // Preenchimento Visual - Perfil
+        // Perfil
         definirTexto("perfilNomeDestaque", nome, "Usuário");
         definirTexto("perfilNome", nome);
         definirTexto("perfilCpf", cpf);
         definirTexto("perfilEmail", email);
         definirTexto("perfilTelefone", telefone);
+        definirTexto("perfilTelefoneFixo", telefoneFixo);
         definirTexto("perfilNascimento", nascimento ? formatarData(nascimento) : "");
+        definirTexto("perfilNacionalidade", nacionalidade);
+        definirTexto("perfilEstadoCivil", estadoCivil);
         definirTexto("perfilEndereco", endereco ? formatarEndereco(endereco) : "");
 
-        // Preenchimento Visual - Informações Adicionais
-        definirTexto("infoNacionalidade", nacionalidade);
-        definirTexto("infoEstadoCivil", estadoCivil);
-        definirTexto("infoEscolaridade", escolaridade);
+        // Meu endereço
+        definirTexto("infoRua", rua);
+        definirTexto("infoBairro", bairro);
         definirTexto("infoCidade", cidade);
         definirTexto("infoUf", uf);
         definirTexto("infoCep", cep);
     }
 
-    /* =====================================================
-       5. AÇÃO DE LOGOUT
-    ====================================================== */
+    // Ação de logout
     btnLogout.addEventListener("click", function () {
         localStorage.removeItem("usuarioLogado");
         localStorage.removeItem("usuarioAtual");
         localStorage.removeItem("clienteLogado");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
     });
 
-    /* =====================================================
-       6. INICIALIZAÇÃO
-    ====================================================== */
+    // Inicialização
     carregarUsuario();
-    abrirSecao("inicio"); // Garante que a tela inicial carregue primeiro
+    abrirSecao("inicio");
 
-});
-/* =========================================================
-   ACESSIBILIDADE - DESAFIO PLUS (PONTO EXTRA)
-========================================================= */
-document.addEventListener("DOMContentLoaded", () => {
-    const containerAcess = document.querySelector(".acessibilidade-container");
-    if (!containerAcess) return;
-
-    const btnAcess = document.getElementById("btnAcess");
-    const menuAcess = document.getElementById("menuAcess");
-    const btnAumentar = document.getElementById("btnAumentar");
-    const btnDiminuir = document.getElementById("btnDiminuir");
-    const btnContraste = document.getElementById("btnContraste");
-    const htmlObj = document.documentElement;
-
-    // 1. Abrir e fechar a engrenagem
-    btnAcess.addEventListener("click", () => {
-        menuAcess.classList.toggle("ativo");
-    });
-
-    // Fechar ao clicar fora da engrenagem
-    document.addEventListener("click", (e) => {
-        if (!containerAcess.contains(e.target)) {
-            menuAcess.classList.remove("ativo");
-        }
-    });
-
-    // 2. Funções de aplicação e salvamento
-    function aplicarContraste(ativo) {
-        if (ativo) htmlObj.classList.add("alto-contraste");
-        else htmlObj.classList.remove("alto-contraste");
-        localStorage.setItem("mova_contraste", ativo);
-    }
-
-    function aplicarFonte(tamanho) {
-        htmlObj.classList.remove("fonte-aumentada", "fonte-reduzida");
-        if (tamanho === "aumentada") htmlObj.classList.add("fonte-aumentada");
-        if (tamanho === "reduzida") htmlObj.classList.add("fonte-reduzida");
-        localStorage.setItem("mova_fonte", tamanho || "normal");
-    }
-
-    // 3. Ações dos botões
-    btnContraste.addEventListener("click", () => {
-        const estadoAtual = htmlObj.classList.contains("alto-contraste");
-        aplicarContraste(!estadoAtual);
-    });
-
-    btnAumentar.addEventListener("click", () => {
-        const atual = localStorage.getItem("mova_fonte");
-        aplicarFonte(atual !== "aumentada" ? "aumentada" : "normal");
-    });
-
-    btnDiminuir.addEventListener("click", () => {
-        const atual = localStorage.getItem("mova_fonte");
-        aplicarFonte(atual !== "reduzida" ? "reduzida" : "normal");
-    });
-
-    // 4. Inicializar estado salvo ao carregar a página
-    if (localStorage.getItem("mova_contraste") === "true") {
-        aplicarContraste(true);
-    }
-    const fonteSalva = localStorage.getItem("mova_fonte");
-    if (fonteSalva) {
-        aplicarFonte(fonteSalva);
-    }
 });
