@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | MOVA FIT</title>
-    <!-- MESMO CSS DE AUTENTICAÇÃO -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/acessibilidade.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
@@ -20,14 +22,14 @@
             <div class="acoes-acess">
                 <button id="btnAumentar" title="Aumentar Fonte">A+</button>
                 <button id="btnDiminuir" title="Diminuir Fonte">A-</button>
-                <button id="btnContraste" title="Alto Contraste"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                <button id="btnContraste" title="Tema claro / escuro" aria-label="Alternar tema claro e escuro"><i class="fa-solid fa-circle-half-stroke"></i></button>
             </div>
         </div>
     </div>
 
     <main class="auth-container">
         <div class="auth-card">
-            
+
             <div class="auth-header">
                 <a href="index.html" class="logo-link" aria-label="Voltar para a página inicial">
                     <img src="assets/imagens/logo-movafit.png" alt="MOVA FIT" class="logo-img">
@@ -36,19 +38,20 @@
                 <p>Entre com suas credenciais cadastradas.</p>
             </div>
 
-            <!-- FEEDBACK VISUAL SEM ALERT -->
+            <!-- Feedback visual sem alert -->
+
             <div id="feedbackMensagem" class="feedback-mensagem" aria-live="polite"></div>
 
             <form id="formLogin" novalidate>
 
                 <div class="input-grupo">
                     <label for="loginUsuario">Login (6 letras)</label>
-                    <input type="text" id="loginUsuario" name="loginUsuario" placeholder="Digite seu login" maxlength="6" required>
+                    <input type="text" id="loginUsuario" name="loginUsuario" placeholder="Digite seu login" maxlength="6" autocapitalize="none" autocorrect="off" spellcheck="false" autocomplete="username" required>
                 </div>
 
                 <div class="input-grupo">
                     <label for="senhaUsuario">Senha (8 letras)</label>
-                    <input type="password" id="senhaUsuario" name="senhaUsuario" placeholder="Digite sua senha" maxlength="8" required>
+                    <input type="password" id="senhaUsuario" name="senhaUsuario" placeholder="Digite sua senha" maxlength="8" autocapitalize="none" autocomplete="current-password" required>
                 </div>
 
                 <button type="submit" class="btn-principal btn-submit" style="margin-top: 15px;">
@@ -58,13 +61,13 @@
             </form>
 
             <div class="auth-footer">
-                <p>Ainda não tem uma conta? <a href="cadastro.html">Cadastre-se aqui</a></p>
+                <p>Ainda não tem uma conta? <a href="cadastro.html" id="linkCadastro">Cadastre-se aqui</a></p>
             </div>
 
         </div>
     </main>
 
-    <!-- JAVASCRIPT DO LOGIN -->
+    <script src="js/acessibilidade.js"></script>
     <script src="js/login.js"></script>
 </body>
 
