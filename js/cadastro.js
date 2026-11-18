@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     travarEndereco();
 
-    // O endereço só vale se veio de um CEP encontrado no ViaCEP
+    // Endereço preenchido pelo CEP
     let ultimoCepBuscado = "";
     let cepConfirmado = false;
 
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
     inputCep.addEventListener("input", () => {
         const cepLimpo = inputCep.value.replace(/\D/g, "");
         if (cepLimpo !== ultimoCepBuscado) {
-            // Mudou o CEP: apaga o endereço antigo até a nova busca confirmar
+            // CEP alterado: limpa o endereço
             if (ultimoCepBuscado) limparEndereco();
             cepConfirmado = false;
             ultimoCepBuscado = "";
@@ -171,7 +171,6 @@ document.addEventListener("DOMContentLoaded", function () {
             valido = false;
         }
 
-        // Cpf
         const cpf = inputCpf.value;
         if (!validarCPF(cpf)) {
             mostrarErro("cpf", "CPF inválido ou dígitos verificadores incorretos.");

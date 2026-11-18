@@ -250,7 +250,7 @@ section[id], .feature-card[id], .location-card[id], .plan-card[id] { scroll-marg
 /* Media queries */
 @media (max-width: 900px) {
     .grid-3, .grid-2 { grid-template-columns: 1fr; }
-    /* Menu vira um painel que abre pelo botão ☰ */
+    /* Menu no celular */
     .btn-menu { display: inline-flex; }
     .nav-menu {
         display: none;

@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         mensagem.hidden = false;
     }
 
-    /* ---------- Tela "Meu plano" ---------- */
+    // Tela Meu plano
     function montarCartao(chave) {
         const p = PLANOS_MOVA[chave];
         const atual = planoAtual();
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.abrirSecao("plano");
     }
 
-    /* ---------- Tela "Pagamento" ---------- */
+    // Tela de pagamento
     const formPagamento = document.getElementById("formPagamento");
     const erroPagamento = document.getElementById("erroPagamento");
 
