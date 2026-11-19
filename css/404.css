@@ -106,12 +106,44 @@ body {
     box-shadow: 0 10px 25px rgba(141, 88, 255, 0.35);
 }
 
+.botoes-erro {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+}
+
+.botao-secundario {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 30px;
+    border: 1px solid var(--texto-secundario);
+    color: var(--texto-primario);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 30px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.botao-secundario:hover {
+    transform: translateY(-3px);
+    border-color: #8d58ff;
+}
+
+.botao-secundario[hidden] {
+    display: none;
+}
+
 /* Responsivo para celular */
 @media (max-width: 600px) {
     .mensagem-erro {
         font-size: 1rem;
     }
-    .botao-inicio {
+    .botao-inicio,
+    .botao-secundario {
         width: 100%;
     }
 }

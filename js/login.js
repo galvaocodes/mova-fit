@@ -17,18 +17,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const loginDigitado = document.getElementById("loginUsuario").value.trim();
         const senhaDigitada = document.getElementById("senhaUsuario").value;
 
-        const usuarioSalvoJSON = localStorage.getItem("usuarioCadastrado");
+        const usuario = JSON.parse(localStorage.getItem("usuarioCadastrado"));
 
-        if (!usuarioSalvoJSON) {
-            feedbackMensagem.className = "feedback-mensagem erro";
-            feedbackMensagem.textContent = "Nenhum cadastro encontrado neste aparelho. O cadastro fica salvo só no navegador onde foi feito: faça o cadastro aqui primeiro.";
+        // Sem cadastro com esse login: vai para a página de acesso restrito (401)
+        if (!usuario || loginDigitado.toLowerCase() !== usuario.login.toLowerCase()) {
+            window.location.href = "404.html?erro=auth";
             return;
         }
 
-        const usuario = JSON.parse(usuarioSalvoJSON);
-
-        // Validação das credenciais
-        if (loginDigitado.toLowerCase() === usuario.login.toLowerCase() && senhaDigitada === usuario.senha) {
+        // Login certo: confere a senha
+        if (senhaDigitada === usuario.senha) {
 
             localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
 
@@ -41,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         } else {
             feedbackMensagem.className = "feedback-mensagem erro";
-            feedbackMensagem.textContent = "Login ou senha incorretos. Verifique os dados informados.";
+            feedbackMensagem.textContent = "Senha incorreta. Verifique e tente de novo.";
         }
     });
 });

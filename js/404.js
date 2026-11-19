@@ -9,10 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("numeroErro").textContent = "401";
         document.getElementById("tituloErro").innerHTML = "<span>Acesso restrito!</span> Faça login para continuar";
         document.getElementById("textoErro").textContent =
-            "Esta área é exclusiva para alunos. Entre com seu login e senha para acessar o seu painel.";
+            "Esta área é exclusiva para alunos cadastrados. Se você já tem cadastro, entre com seu login e senha. Se ainda não tem, faça o seu cadastro primeiro.";
         botao.href = "login.html";
-        textoBotao.textContent = "Ir para o login";
+        textoBotao.textContent = "Já tenho cadastro";
         iconeBotao.className = "fa-solid fa-right-to-bracket";
+        document.getElementById("botaoCadastro").hidden = false;
     } else if (localStorage.getItem("usuarioLogado")) {
         botao.href = "dashboard.html";
         textoBotao.textContent = "Voltar ao Dashboard";
