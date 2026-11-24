@@ -1,11 +1,19 @@
-/* =========================================================
-   MOVA FIT - VALIDAÇÕES E CADASTRO
-   js/cadastro.js
-========================================================= */
+// Validações e cadastro
 
 document.addEventListener("DOMContentLoaded", function () {
     const formCadastro = document.getElementById("formCadastro");
     const feedbackMensagem = document.getElementById("feedbackMensagem");
+
+    const planoDaUrl = new URLSearchParams(window.location.search).get("plano");
+    if (planoDaUrl === "basic" || planoDaUrl === "plus") {
+        if (localStorage.getItem("usuarioLogado")) {
+            window.location.replace("dashboard.html?plano=" + planoDaUrl);
+            return;
+        }
+
+        document.querySelector(`input[name="plano"][value="${planoDaUrl}"]`).checked = true;
+        document.getElementById("linkLogin").href = "login.html?plano=" + planoDaUrl;
+    }
 
     // Máscara e validação de CPF
     const inputCpf = document.getElementById("cpf");
@@ -18,23 +26,31 @@ document.addEventListener("DOMContentLoaded", function () {
         e.target.value = v;
     });
 
-    // Máscara simplificada para o Telefone
+    function aplicarMascaraTelefone(input) {
+        input.addEventListener("input", function (e) {
+            let v = e.target.value.replace(/^\(\+?5?5?\)?/, "").replace(/\D/g, "");
+            if (v.length > 10) v = v.slice(0, 10);
+
+            let formatado = "(+55)";
+            if (v.length > 0) formatado += v.slice(0, 2);
+            if (v.length > 2) formatado += "-" + v.slice(2);
+
+            e.target.value = formatado;
+        });
+
+        input.addEventListener("focus", function () {
+            if (!this.value) this.value = "(+55)";
+        });
+
+        input.addEventListener("blur", function () {
+            if (this.value === "(+55)") this.value = "";
+        });
+    }
+
     const inputTelefone = document.getElementById("telefone");
-    inputTelefone.addEventListener("input", function (e) {
-        let v = e.target.value.replace(/\D/g, "");
-        if (v.startsWith("55")) v = v.slice(2);
-        if (v.length > 9) v = v.slice(0, 9);
-
-        let formatado = "(+55)";
-        if (v.length > 0) formatado += v.slice(0, 2);
-        if (v.length > 2) formatado += "-" + v.slice(2);
-        
-        e.target.value = formatado;
-    });
-
-    inputTelefone.addEventListener("focus", function() {
-        if (!this.value) this.value = "(+55)";
-    });
+    const inputTelefoneFixo = document.getElementById("telefoneFixo");
+    aplicarMascaraTelefone(inputTelefone);
+    aplicarMascaraTelefone(inputTelefoneFixo);
 
     // Integração ViaCEP
     const inputCep = document.getElementById("cep");
@@ -45,23 +61,71 @@ document.addEventListener("DOMContentLoaded", function () {
         e.target.value = v;
     });
 
-    inputCep.addEventListener("blur", function () {
-        const cepLimpo = inputCep.value.replace(/\D/g, "");
-        if (cepLimpo.length === 8) {
-            fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`)
-                .then(res => res.json())
-                .then(data => {
-                    if (!data.erro) {
-                        document.getElementById("rua").value = data.logradouro || "";
-                        document.getElementById("cidade").value = data.localidade || "";
-                        document.getElementById("uf").value = data.uf || "";
-                    }
-                })
-                .catch(() => {});
-        }
-    });
+    const camposEndereco = ["rua", "bairro", "cidade", "uf"].map(id => document.getElementById(id));
+    const spanErroCep = document.querySelector('[id-erro="cep"]');
 
-    // Validação do Algoritmo de CPF real
+    function travarEndereco() {
+        camposEndereco.forEach(campo => {
+            campo.readOnly = true;
+            campo.classList.add("travado");
+            campo.title = "Preenchido automaticamente pelo CEP";
+        });
+    }
+
+    function limparEndereco() {
+        camposEndereco.forEach(campo => { campo.value = ""; });
+    }
+
+    travarEndereco();
+
+    // Endereço preenchido pelo CEP
+    let ultimoCepBuscado = "";
+    let cepConfirmado = false;
+
+    function buscarCep() {
+        const cepLimpo = inputCep.value.replace(/\D/g, "");
+        if (cepLimpo.length !== 8 || cepLimpo === ultimoCepBuscado) return;
+        ultimoCepBuscado = cepLimpo;
+        cepConfirmado = false;
+        spanErroCep.textContent = "Buscando endereço...";
+
+        fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.erro) {
+                    limparEndereco();
+                    inputCep.classList.add("invalido");
+                    spanErroCep.textContent = "CEP não encontrado. Confira os números.";
+                    return;
+                }
+                document.getElementById("rua").value = data.logradouro || "";
+                document.getElementById("bairro").value = data.bairro || "";
+                document.getElementById("cidade").value = data.localidade || "";
+                document.getElementById("uf").value = data.uf || "";
+                inputCep.classList.remove("invalido");
+                spanErroCep.textContent = "";
+                cepConfirmado = true;
+            })
+            .catch(() => {
+                ultimoCepBuscado = "";
+                limparEndereco();
+                spanErroCep.textContent = "Não foi possível buscar o CEP. Verifique a internet e digite o CEP de novo.";
+            });
+    }
+
+    inputCep.addEventListener("input", () => {
+        const cepLimpo = inputCep.value.replace(/\D/g, "");
+        if (cepLimpo !== ultimoCepBuscado) {
+            // CEP alterado: limpa o endereço
+            if (ultimoCepBuscado) limparEndereco();
+            cepConfirmado = false;
+            ultimoCepBuscado = "";
+        }
+        if (cepLimpo.length === 8) buscarCep();
+    });
+    inputCep.addEventListener("blur", buscarCep);
+
+    // Validação do CPF
     function validarCPF(cpf) {
         cpf = cpf.replace(/[^\d]/g, "");
         if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
@@ -78,14 +142,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function mostrarErro(idCampo, mensagem) {
-        const campo = document.getElementById(idCampo);
-        const spanErro = document.querySelector(`[id-erro="${idCampo}"]`);
-        if (campo) campo.classList.add("invalido");
-        if (spanErro) spanErro.textContent = mensagem;
+        document.getElementById(idCampo).classList.add("invalido");
+        document.querySelector(`[id-erro="${idCampo}"]`).textContent = mensagem;
     }
 
     function limparErros() {
-        document.querySelectorAll("input, select").forEach(el => el.classList.remove("invalido"));
+        document.querySelectorAll("input, select, .opcoes-plano").forEach(el => el.classList.remove("invalido"));
         document.querySelectorAll(".erro-texto").forEach(el => el.textContent = "");
         feedbackMensagem.className = "feedback-mensagem";
         feedbackMensagem.textContent = "";
@@ -97,7 +159,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let valido = true;
 
-        // 1. Nome Completo: Entre 15 e 80 caracteres, apenas letras
         const nome = document.getElementById("nome").value.trim();
         const regexNome = /^[A-Za-zÀ-ÿ\s]{15,80}$/;
         if (!regexNome.test(nome)) {
@@ -105,20 +166,24 @@ document.addEventListener("DOMContentLoaded", function () {
             valido = false;
         }
 
-        // 2. CPF Real
         const cpf = inputCpf.value;
         if (!validarCPF(cpf)) {
             mostrarErro("cpf", "CPF inválido ou dígitos verificadores incorretos.");
             valido = false;
         }
 
-       // Validação flexível do Telefone
-    const telefone = inputTelefone.value.trim();
-    const regexTel = /^\(\+55\)\d{2}-\d{4,9}$/;
-    if (!regexTel.test(telefone)) {
-        mostrarErro("telefone", "Formato obrigatório: (+55)XX-XXXXXXXX");
-        valido = false;
-    }
+        const regexTel = /^\(\+55\)\d{2}-\d{8}$/;
+        const telefone = inputTelefone.value.trim();
+        if (!regexTel.test(telefone)) {
+            mostrarErro("telefone", "Formato obrigatório: (+55)XX-XXXXXXXX");
+            valido = false;
+        }
+        let telefoneFixo = inputTelefoneFixo.value.trim();
+        if (telefoneFixo === "(+55)") telefoneFixo = "";
+        if (telefoneFixo && !regexTel.test(telefoneFixo)) {
+            mostrarErro("telefoneFixo", "Formato obrigatório: (+55)XX-XXXXXXXX");
+            valido = false;
+        }
 
         // Outros campos obrigatórios básicos
         const dataNascimento = document.getElementById("dataNascimento").value;
@@ -137,33 +202,45 @@ document.addEventListener("DOMContentLoaded", function () {
         if (cep.length < 9) {
             mostrarErro("cep", "CEP incompleto.");
             valido = false;
-        }
-
-        const nacionalidade = document.getElementById("nacionalidade").value.trim();
-        if (!nacionalidade) {
-            mostrarErro("nacionalidade", "Campo obrigatório.");
+        } else if (!cepConfirmado) {
+            mostrarErro("cep", "Digite um CEP válido para preencher o endereço.");
             valido = false;
         }
 
+        const rua = document.getElementById("rua").value.trim();
+        const bairro = document.getElementById("bairro").value.trim();
+        const cidade = document.getElementById("cidade").value.trim();
+        const uf = document.getElementById("uf").value.trim().toUpperCase();
+
+        // Nacionalidade e estado civil
+        const nacionalidade = document.getElementById("nacionalidade").value.trim();
+        if (!/^[A-Za-zÀ-ÿ\s]{3,40}$/.test(nacionalidade)) {
+            mostrarErro("nacionalidade", "Informe a nacionalidade (só letras).");
+            valido = false;
+        }
         const estadoCivil = document.getElementById("estadoCivil").value;
         if (!estadoCivil) {
+            mostrarErro("estadoCivil", "Selecione o estado civil.");
             valido = false;
         }
 
-        const escolaridade = document.getElementById("escolaridade").value;
-        if (!escolaridade) {
+        const radioPlanoMarcado = document.querySelector('input[name="plano"]:checked');
+        const plano = radioPlanoMarcado ? radioPlanoMarcado.value : "";
+        if (!plano) {
+            document.querySelector(".opcoes-plano").classList.add("invalido");
+            document.querySelector('[id-erro="plano"]').textContent = "Escolha um plano.";
             valido = false;
         }
 
-        // 4. Login: Exatamente 6 caracteres alfabéticos
-        const login = document.getElementById("login").value.trim();
+        // Login: Exatamente 6 caracteres alfabéticos
+        const login = document.getElementById("login").value.trim().toLowerCase();
         const regexAlfabetico6 = /^[A-Za-z]{6}$/;
         if (!regexAlfabetico6.test(login)) {
             mostrarErro("login", "O login deve ter exatamente 6 letras (sem números ou símbolos).");
             valido = false;
         }
 
-        // 5. Senha: Exatamente 8 caracteres alfabéticos
+        // Senha: Exatamente 8 caracteres alfabéticos
         const senha = document.getElementById("senha").value;
         const confirmaSenha = document.getElementById("confirmaSenha").value;
         const regexAlfabetico8 = /^[A-Za-z]{8}$/;
@@ -179,24 +256,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!valido) {
             feedbackMensagem.className = "feedback-mensagem erro";
-            feedbackMensagem.textContent = "Por favor, corrija os erros destacadas no formulário.";
+            feedbackMensagem.textContent = "Por favor, corrija os erros destacados no formulário.";
             return;
         }
 
-        // Objeto JSON para salvar no localStorage
+        // Dados que vão para o localStorage
         const dadosUsuario = {
             nome: nome,
             cpf: cpf,
             dataNascimento: dataNascimento,
             email: email,
             telefone: telefone,
+            telefoneFixo: telefoneFixo,
             cep: cep,
-            rua: document.getElementById("rua").value,
-            cidade: document.getElementById("cidade").value,
-            uf: document.getElementById("uf").value,
+            rua: rua,
+            bairro: bairro,
+            cidade: cidade,
+            uf: uf,
             nacionalidade: nacionalidade,
             estadoCivil: estadoCivil,
-            escolaridade: escolaridade,
+            plano: plano,
             login: login,
             senha: senha
         };
@@ -208,90 +287,23 @@ document.addEventListener("DOMContentLoaded", function () {
         feedbackMensagem.textContent = "Cadastro realizado com sucesso! Redirecionando para o login...";
 
         setTimeout(() => {
-            window.location.href = "login.html";
+            window.location.href = "login.html?plano=" + plano;
         }, 2000);
     });
 });
-// ==========================================
-// FUNÇÃO PARA MOSTRAR/OCULTAR SENHA
-// ==========================================
+
 window.toggleSenha = function(idCampo, btn) {
     const campo = document.getElementById(idCampo);
-    // Pega o ícone <i> que está dentro do botão
+
     const icone = btn.querySelector('i');
-    
+
     if (campo.type === 'password') {
-        campo.type = 'text'; // Mostra a senha
+        campo.type = 'text';
         icone.classList.remove('fa-eye');
-        icone.classList.add('fa-eye-slash'); // Muda para o ícone de olho riscado
+        icone.classList.add('fa-eye-slash');
     } else {
-        campo.type = 'password'; // Oculta a senha
+        campo.type = 'password';
         icone.classList.remove('fa-eye-slash');
-        icone.classList.add('fa-eye'); // Volta para o ícone de olho normal
+        icone.classList.add('fa-eye');
     }
 };
-/* =========================================================
-   ACESSIBILIDADE - DESAFIO PLUS (PONTO EXTRA)
-========================================================= */
-document.addEventListener("DOMContentLoaded", () => {
-    const containerAcess = document.querySelector(".acessibilidade-container");
-    if (!containerAcess) return;
-
-    const btnAcess = document.getElementById("btnAcess");
-    const menuAcess = document.getElementById("menuAcess");
-    const btnAumentar = document.getElementById("btnAumentar");
-    const btnDiminuir = document.getElementById("btnDiminuir");
-    const btnContraste = document.getElementById("btnContraste");
-    const htmlObj = document.documentElement;
-
-    // 1. Abrir e fechar a engrenagem
-    btnAcess.addEventListener("click", () => {
-        menuAcess.classList.toggle("ativo");
-    });
-
-    // Fechar ao clicar fora da engrenagem
-    document.addEventListener("click", (e) => {
-        if (!containerAcess.contains(e.target)) {
-            menuAcess.classList.remove("ativo");
-        }
-    });
-
-    // 2. Funções de aplicação e salvamento
-    function aplicarContraste(ativo) {
-        if (ativo) htmlObj.classList.add("alto-contraste");
-        else htmlObj.classList.remove("alto-contraste");
-        localStorage.setItem("mova_contraste", ativo);
-    }
-
-    function aplicarFonte(tamanho) {
-        htmlObj.classList.remove("fonte-aumentada", "fonte-reduzida");
-        if (tamanho === "aumentada") htmlObj.classList.add("fonte-aumentada");
-        if (tamanho === "reduzida") htmlObj.classList.add("fonte-reduzida");
-        localStorage.setItem("mova_fonte", tamanho || "normal");
-    }
-
-    // 3. Ações dos botões
-    btnContraste.addEventListener("click", () => {
-        const estadoAtual = htmlObj.classList.contains("alto-contraste");
-        aplicarContraste(!estadoAtual);
-    });
-
-    btnAumentar.addEventListener("click", () => {
-        const atual = localStorage.getItem("mova_fonte");
-        aplicarFonte(atual !== "aumentada" ? "aumentada" : "normal");
-    });
-
-    btnDiminuir.addEventListener("click", () => {
-        const atual = localStorage.getItem("mova_fonte");
-        aplicarFonte(atual !== "reduzida" ? "reduzida" : "normal");
-    });
-
-    // 4. Inicializar estado salvo ao carregar a página
-    if (localStorage.getItem("mova_contraste") === "true") {
-        aplicarContraste(true);
-    }
-    const fonteSalva = localStorage.getItem("mova_fonte");
-    if (fonteSalva) {
-        aplicarFonte(fonteSalva);
-    }
-});

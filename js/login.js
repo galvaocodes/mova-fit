@@ -1,11 +1,15 @@
-/* =========================================================
-   MOVA FIT - VALIDAÇÃO E LOGIN
-   js/login.js
-========================================================= */
+// Validação e login
 
 document.addEventListener("DOMContentLoaded", function () {
     const formLogin = document.getElementById("formLogin");
     const feedbackMensagem = document.getElementById("feedbackMensagem");
+
+    const planoUrl = new URLSearchParams(window.location.search).get("plano");
+    const planoEscolhido = (planoUrl === "basic" || planoUrl === "plus") ? planoUrl : "";
+
+    if (planoEscolhido) {
+        document.getElementById("linkCadastro").href = "cadastro.html?plano=" + planoEscolhido;
+    }
 
     formLogin.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -13,98 +17,29 @@ document.addEventListener("DOMContentLoaded", function () {
         const loginDigitado = document.getElementById("loginUsuario").value.trim();
         const senhaDigitada = document.getElementById("senhaUsuario").value;
 
-        // Recupera os dados salvos no localStorage pelo cadastro
-        const usuarioSalvoJSON = localStorage.getItem("usuarioCadastrado");
+        const usuario = JSON.parse(localStorage.getItem("usuarioCadastrado"));
 
-        if (!usuarioSalvoJSON) {
-            feedbackMensagem.className = "feedback-mensagem erro";
-            feedbackMensagem.textContent = "Nenhum usuário cadastrado encontrado. Faça o cadastro primeiro.";
+        // Sem cadastro com esse login: vai para a página de acesso restrito (401)
+        if (!usuario || loginDigitado.toLowerCase() !== usuario.login.toLowerCase()) {
+            window.location.href = "404.html?erro=auth";
             return;
         }
 
-        const usuario = JSON.parse(usuarioSalvoJSON);
+        // Login certo: confere a senha
+        if (senhaDigitada === usuario.senha) {
 
-        // Validação das credenciais
-        if (loginDigitado === usuario.login && senhaDigitada === usuario.senha) {
-            
-            // Salva a sessão ativa para o dashboard reconhecer
             localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
 
             feedbackMensagem.className = "feedback-mensagem sucesso";
             feedbackMensagem.textContent = "Login realizado com sucesso! Redirecionando...";
 
             setTimeout(() => {
-                window.location.href = "dashboard.html";
+                window.location.href = planoEscolhido ? "dashboard.html?plano=" + planoEscolhido : "dashboard.html";
             }, 1200);
 
         } else {
             feedbackMensagem.className = "feedback-mensagem erro";
-            feedbackMensagem.textContent = "Login ou senha incorretos. Verifique os dados informados.";
+            feedbackMensagem.textContent = "Senha incorreta. Verifique e tente de novo.";
         }
     });
-});
-/* =========================================================
-   ACESSIBILIDADE - DESAFIO PLUS (PONTO EXTRA)
-========================================================= */
-document.addEventListener("DOMContentLoaded", () => {
-    const containerAcess = document.querySelector(".acessibilidade-container");
-    if (!containerAcess) return;
-
-    const btnAcess = document.getElementById("btnAcess");
-    const menuAcess = document.getElementById("menuAcess");
-    const btnAumentar = document.getElementById("btnAumentar");
-    const btnDiminuir = document.getElementById("btnDiminuir");
-    const btnContraste = document.getElementById("btnContraste");
-    const htmlObj = document.documentElement;
-
-    // 1. Abrir e fechar a engrenagem
-    btnAcess.addEventListener("click", () => {
-        menuAcess.classList.toggle("ativo");
-    });
-
-    // Fechar ao clicar fora da engrenagem
-    document.addEventListener("click", (e) => {
-        if (!containerAcess.contains(e.target)) {
-            menuAcess.classList.remove("ativo");
-        }
-    });
-
-    // 2. Funções de aplicação e salvamento
-    function aplicarContraste(ativo) {
-        if (ativo) htmlObj.classList.add("alto-contraste");
-        else htmlObj.classList.remove("alto-contraste");
-        localStorage.setItem("mova_contraste", ativo);
-    }
-
-    function aplicarFonte(tamanho) {
-        htmlObj.classList.remove("fonte-aumentada", "fonte-reduzida");
-        if (tamanho === "aumentada") htmlObj.classList.add("fonte-aumentada");
-        if (tamanho === "reduzida") htmlObj.classList.add("fonte-reduzida");
-        localStorage.setItem("mova_fonte", tamanho || "normal");
-    }
-
-    // 3. Ações dos botões
-    btnContraste.addEventListener("click", () => {
-        const estadoAtual = htmlObj.classList.contains("alto-contraste");
-        aplicarContraste(!estadoAtual);
-    });
-
-    btnAumentar.addEventListener("click", () => {
-        const atual = localStorage.getItem("mova_fonte");
-        aplicarFonte(atual !== "aumentada" ? "aumentada" : "normal");
-    });
-
-    btnDiminuir.addEventListener("click", () => {
-        const atual = localStorage.getItem("mova_fonte");
-        aplicarFonte(atual !== "reduzida" ? "reduzida" : "normal");
-    });
-
-    // 4. Inicializar estado salvo ao carregar a página
-    if (localStorage.getItem("mova_contraste") === "true") {
-        aplicarContraste(true);
-    }
-    const fonteSalva = localStorage.getItem("mova_fonte");
-    if (fonteSalva) {
-        aplicarFonte(fonteSalva);
-    }
 });

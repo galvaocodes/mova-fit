@@ -1,24 +1,23 @@
-/* =========================================================
-   MOVA FIT - DASHBOARD
-   js/dashboard.js
-========================================================= */
+// Dashboard
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* =====================================================
-       1. ELEMENTOS PRINCIPAIS DA NAVEGAÇÃO
-    ====================================================== */
+    if (!localStorage.getItem("usuarioLogado")) {
+        window.location.replace("404.html?erro=auth");
+        return;
+    }
+
+    // Elementos principais da navegação
     const telas = document.querySelectorAll(".tela");
     const botoesNavegacao = document.querySelectorAll("[data-section]");
     const linksMenu = document.querySelectorAll(".menu-link");
     const btnLogout = document.getElementById("btnLogout");
 
-    /* =====================================================
-       2. NAVEGAÇÃO INTERNA DO DASHBOARD (TABS)
-    ====================================================== */
+    window.abrirSecao = (nome) => abrirSecao(nome);
+
     function abrirSecao(nomeSecao) {
         const secaoDestino = document.getElementById(nomeSecao);
-        
+
         if (!secaoDestino) return;
 
         // Esconde todas as seções e mostra a escolhida
@@ -44,219 +43,58 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    /* =====================================================
-       3. SISTEMA DE LEITURA DOS DADOS DO USUÁRIO
-    ====================================================== */
-    function tentarLerJSON(chave) {
-        const valor = localStorage.getItem(chave);
-        if (!valor) return null;
-        try {
-            const convertido = JSON.parse(valor);
-            if (convertido !== null && typeof convertido === "object" && !Array.isArray(convertido)) {
-                return convertido;
-            }
-        } catch (erro) {}
-        return null;
+    // Coloca um texto no elemento (ou "Não informado" se estiver vazio)
+    function mostrar(id, valor, padrao = "Não informado") {
+        document.getElementById(id).textContent = valor || padrao;
     }
 
-    function localizarUsuario() {
-        const possiveisChaves = ["usuarioCadastrado", "usuarioLogado", "usuario", "dadosUsuario", "usuarioAtual", "clienteLogado", "cliente"];
-        for (let chave of possiveisChaves) {
-            const usuario = tentarLerJSON(chave);
-            if (usuario) return usuario;
-        }
-        return {};
-    }
-
-    function buscarCampo(objeto, propriedades, chavesLocalStorage) {
-        // Procura no objeto
-        for (let prop of propriedades) {
-            if (objeto && objeto[prop] !== undefined && objeto[prop] !== null && String(objeto[prop]).trim() !== "") {
-                return objeto[prop];
-            }
-        }
-        // Procura em chaves avulsas no localStorage
-        for (let chave of chavesLocalStorage) {
-            const valor = localStorage.getItem(chave);
-            if (valor !== null && String(valor).trim() !== "") {
-                return valor;
-            }
-        }
-        return "";
-    }
-
+    // Converte a data de 2002-03-15 para 15/03/2002
     function formatarData(data) {
-        if (!data) return "Não informado";
-        const texto = String(data).trim();
-        if (/^\d{2}\/\d{2}\/\d{4}$/.test(texto)) return texto;
-        if (/^\d{4}-\d{2}-\d{2}$/.test(texto)) {
-            const partes = texto.split("-");
-            return `${partes[2]}/${partes[1]}/${partes[0]}`;
-        }
-        return texto;
+        if (!data) return "";
+        const [ano, mes, dia] = data.split("-");
+        return `${dia}/${mes}/${ano}`;
     }
 
-    function formatarEndereco(endereco) {
-        if (!endereco) return "Não informado";
-        if (typeof endereco === "string") return endereco;
-        
-        if (typeof endereco === "object") {
-            const partes = [];
-            if (endereco.rua) partes.push(endereco.rua);
-            else if (endereco.logradouro) partes.push(endereco.logradouro);
-            if (endereco.numero) partes.push(endereco.numero);
-            if (endereco.bairro) partes.push(endereco.bairro);
-            if (endereco.cidade) partes.push(endereco.cidade);
-            if (endereco.uf) partes.push(endereco.uf);
-            
-            if (partes.length > 0) return partes.join(", ");
-        }
-        return "Não informado";
-    }
-
-    function pegarPrimeiroNome(nome) {
-        if (!nome) return "Usuário";
-        return String(nome).trim().split(/\s+/)[0];
-    }
-
-    function definirTexto(id, valor, padrao = "Não informado") {
-        const elemento = document.getElementById(id);
-        if (!elemento) return;
-        if (valor !== undefined && valor !== null && String(valor).trim() !== "") {
-            elemento.textContent = String(valor);
-        } else {
-            elemento.textContent = padrao;
-        }
-    }
-
-    /* =====================================================
-       4. PREENCHIMENTO DOS CAMPOS DO DASHBOARD
-    ====================================================== */
+    // Preenche o painel com os dados do usuário logado
     function carregarUsuario() {
-        const usuario = localizarUsuario();
+        const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+        const primeiroNome = usuario.nome.split(" ")[0];
 
-        // Buscas de Dados
-        const nome = buscarCampo(usuario, ["nome", "nomeCompleto", "name"], ["nome", "nomeUsuario", "usuarioNome", "nomeCompleto"]);
-        const cpf = buscarCampo(usuario, ["cpf", "CPF"], ["cpf", "usuarioCpf"]);
-        const email = buscarCampo(usuario, ["email", "eMail"], ["email", "usuarioEmail"]);
-        const telefone = buscarCampo(usuario, ["telefone", "celular", "phone"], ["telefone", "celular", "usuarioTelefone"]);
-        const nascimento = buscarCampo(usuario, ["dataNascimento", "nascimento", "data_nascimento"], ["dataNascimento", "nascimento", "usuarioNascimento"]);
-        
-        let endereco = "";
-        if (usuario && usuario.rua) {
-            endereco = usuario.rua;
-            if (usuario.cidade && usuario.uf) endereco += ", " + usuario.cidade + " - " + usuario.uf;
-        }
+        let endereco = usuario.rua || "";
+        if (usuario.bairro) endereco += ", " + usuario.bairro;
+        if (usuario.cidade) endereco += ", " + usuario.cidade + " - " + usuario.uf;
 
-        const nacionalidade = buscarCampo(usuario, ["nacionalidade"], ["nacionalidade", "usuarioNacionalidade"]);
-        const estadoCivil = buscarCampo(usuario, ["estadoCivil", "estado_civil"], ["estadoCivil", "usuarioEstadoCivil"]);
-        const escolaridade = buscarCampo(usuario, ["escolaridade"], ["escolaridade", "usuarioEscolaridade"]);
-        const cidade = buscarCampo(usuario, ["cidade"], ["cidade", "usuarioCidade"]);
-        const uf = buscarCampo(usuario, ["uf", "estado", "UF"], ["uf", "estado", "usuarioUf"]);
-        const cep = buscarCampo(usuario, ["cep", "CEP"], ["cep", "usuarioCep"]);
+        mostrar("nomeUsuario", primeiroNome);
+        mostrar("nomeBoasVindas", primeiroNome + "!");
 
-        // Preenchimento Visual - Header/Hero
-        const primeiroNome = pegarPrimeiroNome(nome);
-        definirTexto("nomeUsuario", primeiroNome, "Usuário");
-        definirTexto("nomeBoasVindas", primeiroNome + "!", "Usuário!");
+        // Perfil
+        mostrar("perfilNomeDestaque", usuario.nome);
+        mostrar("perfilNome", usuario.nome);
+        mostrar("perfilCpf", usuario.cpf);
+        mostrar("perfilEmail", usuario.email);
+        mostrar("perfilTelefone", usuario.telefone);
+        mostrar("perfilTelefoneFixo", usuario.telefoneFixo);
+        mostrar("perfilNascimento", formatarData(usuario.dataNascimento));
+        mostrar("perfilNacionalidade", usuario.nacionalidade);
+        mostrar("perfilEstadoCivil", usuario.estadoCivil);
+        mostrar("perfilEndereco", endereco);
 
-        // Preenchimento Visual - Perfil
-        definirTexto("perfilNomeDestaque", nome, "Usuário");
-        definirTexto("perfilNome", nome);
-        definirTexto("perfilCpf", cpf);
-        definirTexto("perfilEmail", email);
-        definirTexto("perfilTelefone", telefone);
-        definirTexto("perfilNascimento", nascimento ? formatarData(nascimento) : "");
-        definirTexto("perfilEndereco", endereco ? formatarEndereco(endereco) : "");
-
-        // Preenchimento Visual - Informações Adicionais
-        definirTexto("infoNacionalidade", nacionalidade);
-        definirTexto("infoEstadoCivil", estadoCivil);
-        definirTexto("infoEscolaridade", escolaridade);
-        definirTexto("infoCidade", cidade);
-        definirTexto("infoUf", uf);
-        definirTexto("infoCep", cep);
+        // Meu endereço
+        mostrar("infoRua", usuario.rua);
+        mostrar("infoBairro", usuario.bairro);
+        mostrar("infoCidade", usuario.cidade);
+        mostrar("infoUf", usuario.uf);
+        mostrar("infoCep", usuario.cep);
     }
 
-    /* =====================================================
-       5. AÇÃO DE LOGOUT
-    ====================================================== */
+    // Sair da conta
     btnLogout.addEventListener("click", function () {
         localStorage.removeItem("usuarioLogado");
-        localStorage.removeItem("usuarioAtual");
-        localStorage.removeItem("clienteLogado");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
     });
 
-    /* =====================================================
-       6. INICIALIZAÇÃO
-    ====================================================== */
+    // Inicialização
     carregarUsuario();
-    abrirSecao("inicio"); // Garante que a tela inicial carregue primeiro
+    abrirSecao("inicio");
 
-});
-/* =========================================================
-   ACESSIBILIDADE - DESAFIO PLUS (PONTO EXTRA)
-========================================================= */
-document.addEventListener("DOMContentLoaded", () => {
-    const containerAcess = document.querySelector(".acessibilidade-container");
-    if (!containerAcess) return;
-
-    const btnAcess = document.getElementById("btnAcess");
-    const menuAcess = document.getElementById("menuAcess");
-    const btnAumentar = document.getElementById("btnAumentar");
-    const btnDiminuir = document.getElementById("btnDiminuir");
-    const btnContraste = document.getElementById("btnContraste");
-    const htmlObj = document.documentElement;
-
-    // 1. Abrir e fechar a engrenagem
-    btnAcess.addEventListener("click", () => {
-        menuAcess.classList.toggle("ativo");
-    });
-
-    // Fechar ao clicar fora da engrenagem
-    document.addEventListener("click", (e) => {
-        if (!containerAcess.contains(e.target)) {
-            menuAcess.classList.remove("ativo");
-        }
-    });
-
-    // 2. Funções de aplicação e salvamento
-    function aplicarContraste(ativo) {
-        if (ativo) htmlObj.classList.add("alto-contraste");
-        else htmlObj.classList.remove("alto-contraste");
-        localStorage.setItem("mova_contraste", ativo);
-    }
-
-    function aplicarFonte(tamanho) {
-        htmlObj.classList.remove("fonte-aumentada", "fonte-reduzida");
-        if (tamanho === "aumentada") htmlObj.classList.add("fonte-aumentada");
-        if (tamanho === "reduzida") htmlObj.classList.add("fonte-reduzida");
-        localStorage.setItem("mova_fonte", tamanho || "normal");
-    }
-
-    // 3. Ações dos botões
-    btnContraste.addEventListener("click", () => {
-        const estadoAtual = htmlObj.classList.contains("alto-contraste");
-        aplicarContraste(!estadoAtual);
-    });
-
-    btnAumentar.addEventListener("click", () => {
-        const atual = localStorage.getItem("mova_fonte");
-        aplicarFonte(atual !== "aumentada" ? "aumentada" : "normal");
-    });
-
-    btnDiminuir.addEventListener("click", () => {
-        const atual = localStorage.getItem("mova_fonte");
-        aplicarFonte(atual !== "reduzida" ? "reduzida" : "normal");
-    });
-
-    // 4. Inicializar estado salvo ao carregar a página
-    if (localStorage.getItem("mova_contraste") === "true") {
-        aplicarContraste(true);
-    }
-    const fonteSalva = localStorage.getItem("mova_fonte");
-    if (fonteSalva) {
-        aplicarFonte(fonteSalva);
-    }
 });

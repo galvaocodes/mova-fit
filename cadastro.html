@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro | MOVA FIT</title>
-    <!-- CSS DO CADASTRO -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/cadastro.css">
-    <!-- ÍCONES -->
+    <link rel="stylesheet" href="css/acessibilidade.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
@@ -21,13 +23,13 @@
             <div class="acoes-acess">
                 <button id="btnAumentar" title="Aumentar Fonte">A+</button>
                 <button id="btnDiminuir" title="Diminuir Fonte">A-</button>
-                <button id="btnContraste" title="Alto Contraste"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                <button id="btnContraste" title="Tema claro / escuro" aria-label="Alternar tema claro e escuro"><i class="fa-solid fa-circle-half-stroke"></i></button>
             </div>
         </div>
     </div>
     <main class="auth-container">
         <div class="auth-card">
-            
+
             <div class="auth-header">
                 <a href="index.html" class="logo-link" aria-label="Voltar para a página inicial">
                     <img src="assets/imagens/logo-movafit.png" alt="MOVA FIT" class="logo-img">
@@ -36,12 +38,12 @@
                 <p>Preencha os campos abaixo para fazer parte da MOVA FIT.</p>
             </div>
 
-            <!-- MENSAGEM DE FEEDBACK VISUAL (SEM ALERT) -->
             <div id="feedbackMensagem" class="feedback-mensagem" aria-live="polite"></div>
 
             <form id="formCadastro" novalidate>
 
-                <!-- DADOS PESSOAIS -->
+                <!-- Dados pessoais -->
+
                 <fieldset class="form-grupo-fieldset">
                     <legend><i class="fa-solid fa-user"></i> Dados Pessoais</legend>
 
@@ -65,22 +67,47 @@
                         </div>
                     </div>
 
+                    <div class="input-grupo">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                        <span class="erro-texto" id-erro="email"></span>
+                    </div>
+
                     <div class="input-linha">
                         <div class="input-grupo">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" placeholder="seu@email.com" required>
-                            <span class="erro-texto" id-erro="email"></span>
+                            <label for="telefone">Celular</label>
+                            <input type="tel" id="telefone" name="telefone" placeholder="(+55)XX-XXXXXXXX" maxlength="16" required>
+                            <span class="erro-texto" id-erro="telefone"></span>
                         </div>
 
                         <div class="input-grupo">
-                            <label for="telefone">Celular (+55)XX-XXXXXXXX</label>
-                            <input type="text" id="telefone" name="telefone" placeholder="(+55)21-99999999" required>
-                            <span class="erro-texto" id-erro="telefone"></span>
+                            <label for="telefoneFixo">Telefone Fixo <span class="opcional">(opcional)</span></label>
+                            <input type="tel" id="telefoneFixo" name="telefoneFixo" placeholder="(+55)XX-XXXXXXXX" maxlength="16">
+                            <span class="erro-texto" id-erro="telefoneFixo"></span>
+                        </div>
+                    </div>
+
+                    <div class="input-linha">
+                        <div class="input-grupo">
+                            <label for="nacionalidade">Nacionalidade</label>
+                            <input type="text" id="nacionalidade" name="nacionalidade" placeholder="Ex: Brasileira" required>
+                            <span class="erro-texto" id-erro="nacionalidade"></span>
+                        </div>
+
+                        <div class="input-grupo">
+                            <label for="estadoCivil">Estado Civil</label>
+                            <select id="estadoCivil" name="estadoCivil" required>
+                                <option value="">Selecione...</option>
+                                <option value="Solteiro(a)">Solteiro(a)</option>
+                                <option value="Casado(a)">Casado(a)</option>
+                                <option value="Divorciado(a)">Divorciado(a)</option>
+                                <option value="Viúvo(a)">Viúvo(a)</option>
+                            </select>
+                            <span class="erro-texto" id-erro="estadoCivil"></span>
                         </div>
                     </div>
                 </fieldset>
 
-                <!-- ENDEREÇO (VIACEP) -->
                 <fieldset class="form-grupo-fieldset">
                     <legend><i class="fa-solid fa-location-dot"></i> Endereço</legend>
 
@@ -93,7 +120,7 @@
 
                         <div class="input-grupo">
                             <label for="cidade">Cidade</label>
-                            <input type="text" id="cidade" name="cidade" placeholder="Preenchimento automático" required>
+                            <input type="text" id="cidade" name="cidade" placeholder="Preenchido pelo CEP" required>
                             <span class="erro-texto" id-erro="cidade"></span>
                         </div>
                     </div>
@@ -101,80 +128,75 @@
                     <div class="input-linha">
                         <div class="input-grupo">
                             <label for="rua">Rua / Logradouro</label>
-                            <input type="text" id="rua" name="rua" placeholder="Preenchimento automático" required>
+                            <input type="text" id="rua" name="rua" placeholder="Preenchido pelo CEP" required>
                             <span class="erro-texto" id-erro="rua"></span>
                         </div>
 
                         <div class="input-grupo">
                             <label for="uf">Estado (UF)</label>
-                            <input type="text" id="uf" name="uf" placeholder="UF" maxlength="2" required>
+                            <input type="text" id="uf" name="uf" placeholder="Pelo CEP" maxlength="2" required>
                             <span class="erro-texto" id-erro="uf"></span>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <!-- INFORMAÇÕES ADICIONAIS -->
-                <fieldset class="form-grupo-fieldset">
-                    <legend><i class="fa-solid fa-file-lines"></i> Informações Adicionais</legend>
-
-                    <div class="input-linha">
-                        <div class="input-grupo">
-                            <label for="nacionalidade">Nacionalidade</label>
-                            <input type="text" id="nacionalidade" name="nacionalidade" placeholder="Ex: Brasileira" required>
-                        </div>
-
-                        <div class="input-grupo">
-                            <label for="estadoCivil">Estado Civil</label>
-                            <select id="estadoCivil" name="estadoCivil" required>
-                                <option value="">Selecione...</option>
-                                <option value="Solteiro(a)">Solteiro(a)</option>
-                                <option value="Casado(a)">Casado(a)</option>
-                                <option value="Divorciado(a)">Divorciado(a)</option>
-                                <option value="Viúvo(a)">Viúvo(a)</option>
-                            </select>
                         </div>
                     </div>
 
                     <div class="input-grupo">
-                        <label for="escolaridade">Escolaridade</label>
-                        <select id="escolaridade" name="escolaridade" required>
-                            <option value="">Selecione...</option>
-                            <option value="Ensino Médio Completo">Ensino Médio Completo</option>
-                            <option value="Ensino Superior Cursando">Ensino Superior Cursando</option>
-                            <option value="Ensino Superior Completo">Ensino Superior Completo</option>
-                            <option value="Pós-graduação">Pós-graduação</option>
-                        </select>
+                        <label for="bairro">Bairro</label>
+                        <input type="text" id="bairro" name="bairro" placeholder="Preenchido pelo CEP" required>
+                        <span class="erro-texto" id-erro="bairro"></span>
                     </div>
                 </fieldset>
 
-                <!-- CREDENCIAIS DE ACESSO -->
-                <!-- CREDENCIAIS DE ACESSO -->
+                <fieldset class="form-grupo-fieldset">
+                    <legend><i class="fa-solid fa-dumbbell"></i> Seu Plano</legend>
+
+                    <div class="opcoes-plano" role="radiogroup" aria-label="Escolha seu plano">
+                        <label class="opcao-plano">
+                            <input type="radio" name="plano" value="basic">
+                            <span class="opcao-plano-conteudo">
+                                <strong>Basic</strong>
+                                <span class="opcao-plano-preco">R$ 79<small>/mês</small></span>
+                                <span class="opcao-plano-desc">Musculação em 1 unidade</span>
+                            </span>
+                        </label>
+                        <label class="opcao-plano">
+                            <input type="radio" name="plano" value="plus">
+                            <span class="opcao-plano-conteudo">
+                                <strong>Plus <em class="selo-recomendado">Recomendado</em></strong>
+                                <span class="opcao-plano-preco">R$ 119<small>/mês</small></span>
+                                <span class="opcao-plano-desc">Todas as unidades e aulas coletivas</span>
+                            </span>
+                        </label>
+                    </div>
+                    <span class="erro-texto" id-erro="plano"></span>
+                </fieldset>
+
+                <!-- Credenciais de acesso -->
+
 <fieldset class="form-grupo-fieldset">
     <legend><i class="fa-solid fa-lock"></i> Credenciais de Acesso</legend>
 
     <div class="input-grupo">
        <label for="login">
-        Login 
+        Login
          <span class="tooltip-custom">
              <i class="fa-solid fa-circle-info"></i>
         <span class="tooltip-texto">Exatamente 6 caracteres alfabéticos</span>
          </span>
         </label>
-        <input type="text" id="login" name="login" placeholder="Ex: movafit" maxlength="6" required>
+        <input type="text" id="login" name="login" placeholder="Ex: movfit" maxlength="6" autocapitalize="none" autocorrect="off" spellcheck="false" autocomplete="username" required>
         <span class="erro-texto" id-erro="login"></span>
     </div>
 
-    <!-- O .input-linha já deixa lado a lado! -->
     <div class="input-linha">
         <div class="input-grupo">
            <label for="senha">
-                Senha 
+                Senha
                  <span class="tooltip-custom">
                      <i class="fa-solid fa-circle-info"></i>
                      <span class="tooltip-texto">Exatamente 8 caracteres alfabéticos</span>
                  </span>
             </label>
-            <!-- Container novo para a senha e o olhinho -->
+
             <div class="input-container">
                 <input type="password" id="senha" name="senha" placeholder="Ex: abcdwxyz" maxlength="8" required>
                 <button type="button" class="btn-olho" onclick="toggleSenha('senha', this)">
@@ -204,13 +226,13 @@
             </form>
 
             <div class="auth-footer">
-                <p>Já possui uma conta? <a href="login.html">Faça login aqui</a></p>
+                <p>Já possui uma conta? <a href="login.html" id="linkLogin">Faça login aqui</a></p>
             </div>
 
         </div>
     </main>
 
-    <!-- JAVASCRIPT DO CADASTRO -->
+    <script src="js/acessibilidade.js"></script>
     <script src="js/cadastro.js"></script>
 </body>
 

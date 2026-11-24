@@ -5,33 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback | MOVA FIT</title>
 
-    <!-- Fonte Premium -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
-    <!-- Puxa as variáveis e o cabeçalho do Dashboard, e o visual do Feedback -->
+
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/feedback.css">
+    <link rel="stylesheet" href="css/acessibilidade.css">
 </head>
 <body>
 
-    <!-- CABEÇALHO LIMPO (Sem Engrenagem) -->
-    <!-- CABEÇALHO CORRIGIDO E ALINHADO -->
     <header class="cabecalho">
-        
-        <!-- LOGO NA ESQUERDA -->
+
+        <!-- Logo na esquerda -->
+
         <a href="dashboard.html" class="logo-btn" aria-label="Ir para o início">
             <img src="assets/imagens/logo-movafit.png" alt="MOVA FIT" class="logo-img">
         </a>
 
-        <!-- ESPAÇO VAZIO PARA EMPURRAR O RESTO PARA A DIREITA -->
         <div style="flex: 1;"></div>
 
-        <!-- LADO DIREITO (USUÁRIO E BOTÃO VOLTAR) -->
         <div class="header-direita">
-            
+
             <div class="usuario-logado">
-                <i class="fa-solid fa-circle-user"></i>
+                <span class="avatar-mini" id="avatarMini"><i class="fa-solid fa-circle-user"></i></span>
                 <span>Olá, <strong id="nomeUsuario">Usuário</strong></span>
                 <div class="acessibilidade-container">
                 <button id="btnAcess" class="btn-acess" aria-label="Acessibilidade">
@@ -42,7 +38,7 @@
            <div class="acoes-acess">
                 <button id="btnAumentar" title="Aumentar Fonte">A+</button>
                 <button id="btnDiminuir" title="Diminuir Fonte">A-</button>
-                <button id="btnContraste" title="Alto Contraste"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                <button id="btnContraste" title="Tema claro / escuro" aria-label="Alternar tema claro e escuro"><i class="fa-solid fa-circle-half-stroke"></i></button>
             </div>
         </div>
     </div>
@@ -52,30 +48,31 @@
                 <i class="fa-solid fa-arrow-left"></i>
                 <span>Voltar</span>
             </a>
-            
+
         </div>
-        
+
     </header>
 
     <main class="dashboard">
         <section class="feedback-area container">
-            
-            <!-- FORMULÁRIO -->
+
+            <!-- Formulário -->
+
             <div class="feedback-card">
                 <div class="feedback-card-cabecalho">
                     <h2>Enviar feedback</h2>
                     <p>Sua opinião nos ajuda a melhorar cada movimento.</p>
                 </div>
 
-                <!-- ALERTA DE ERRO VISUAL (Cumpre a exigência do PDF de não usar alert) -->
                 <div id="mensagem-erro" class="mensagem-erro" hidden>
                     <i class="fa-solid fa-circle-exclamation"></i>
                     <span>Preencha os campos obrigatórios antes de enviar.</span>
                 </div>
 
                 <form id="form-feedback" novalidate>
-                    
-                    <!-- 1. SELECT -->
+
+                    <!-- Select -->
+
                     <div class="campo-feedback">
                         <label for="categoria">Sobre o que você quer falar? <span class="obrigatorio">*</span></label>
                         <select id="categoria" name="categoria" required>
@@ -89,7 +86,6 @@
                         </select>
                     </div>
 
-                    <!-- 2. AVALIAÇÃO (ESTRELAS) -->
                     <div class="campo-feedback">
                         <label>Como você avalia sua experiência? <span class="obrigatorio">*</span></label>
                         <div class="estrelas" id="estrelas">
@@ -102,7 +98,8 @@
                         <input type="hidden" id="avaliacao" name="avaliacao">
                     </div>
 
-                    <!-- 3. RADIO BUTTONS -->
+                    <!-- Radio buttons -->
+
                     <div class="campo-feedback">
                         <label>Qual é o tipo do seu feedback? <span class="obrigatorio">*</span></label>
                         <div class="opcoes-radio">
@@ -111,8 +108,9 @@
                             <label><input type="radio" name="tipoFeedback" value="Reclamação"> Reclamação</label>
                         </div>
                     </div>
-                    
-                    <!-- 4. RANGE DE SATISFAÇÃO -->
+
+                    <!-- Range de satisfação -->
+
                     <div class="campo-feedback">
                         <label for="satisfacao">Qual seu nível de satisfação?</label>
                         <div class="range-area">
@@ -121,13 +119,15 @@
                         </div>
                     </div>
 
-                    <!-- 5. TEXTO CURTO -->
+                    <!-- Texto curto -->
+
                     <div class="campo-feedback">
                         <label for="assunto">Assunto <span class="obrigatorio">*</span></label>
                         <input type="text" id="assunto" name="assunto" placeholder="Digite o assunto" maxlength="80" required>
                     </div>
 
-                    <!-- 6. TEXTAREA -->
+                    <!-- Textarea -->
+
                     <div class="campo-feedback">
                         <div class="label-mensagem">
                             <label for="mensagem">Mensagem</label>
@@ -136,13 +136,15 @@
                         <textarea id="mensagem" name="mensagem" placeholder="Conte pra gente sua experiência..." maxlength="500" required></textarea>
                     </div>
 
-                    <!-- 7. CHECKBOX -->
+                    <!-- Checkbox -->
+
                     <label class="retorno-feedback">
                         <input type="checkbox" id="retorno" name="retorno">
                         <span>Quero receber um retorno sobre este feedback</span>
                     </label>
 
-                    <!-- BOTÕES -->
+                    <!-- Botões -->
+
                     <div class="acoes-feedback">
                         <a href="dashboard.html" class="btn-ghost">Cancelar</a>
                         <button type="submit" class="btn-primary">Enviar feedback</button>
@@ -150,7 +152,8 @@
                 </form>
             </div>
 
-            <!-- CARD LATERAL -->
+            <!-- Card lateral -->
+
             <aside class="feedback-info">
                 <div class="feedback-info-icone"><i class="fa-regular fa-comments"></i></div>
                 <h2>Estamos ouvindo você</h2>
@@ -165,6 +168,8 @@
         </section>
     </main>
 
+    <script src="js/acessibilidade.js"></script>
+    <script src="js/avatar.js"></script>
     <script src="js/feedback.js"></script>
 </body>
 </html>

@@ -1,25 +1,21 @@
-/* =========================================================
-   1. VARIÁVEIS DE COR E ESTILO (IDENTIDADE MOVA FIT)
-========================================================= */
+/* Variáveis de cor e estilo (identidade MOVA FIT) */
 :root {
     --bg-main: #09090b;       
     --bg-surface: #18181b;    
+
     
-    /* CORES OFICIAIS MOVA FIT */
     --azul-mova: #28bff3;
     --roxo-mova: #8d58ff;
     --gradiente-mova: linear-gradient(135deg, #28bff3, #8d58ff);
-    
+
     --text-primary: #fafafa;  
     --text-secondary: #a1a1aa;
     --border-color: #27272a;  
-    
+
     --font-main: 'Inter', sans-serif;
 }
 
-/* =========================================================
-   2. RESET
-========================================================= */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -36,17 +32,27 @@ body {
     -webkit-font-smoothing: antialiased; 
 }
 
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
 .section { padding: 120px 0; }
 .bg-surface { background-color: var(--bg-surface); }
 .w-100 { width: 100%; }
 
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
 
-/* =========================================================
-   3. BOTÕES
-========================================================= */
+/* Botões */
 .btn-primary {
     display: inline-block;
     background: var(--gradiente-mova);
@@ -83,11 +89,12 @@ body {
     color: var(--azul-mova);
 }
 
-.btn-large { font-size: 1.125rem; padding: 18px 36px; }
+.btn-large {
+    font-size: 1.125rem;
+    padding: 18px 36px;
+}
 
-/* =========================================================
-   4. CABEÇALHO (HEADER)
-========================================================= */
+/* Cabeçalho (header) */
 .header {
     position: fixed;
     top: 0;
@@ -105,19 +112,100 @@ body {
     padding: 16px 0;
 }
 
-.navbar { display: flex; justify-content: space-between; align-items: center; }
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-/* A LOGO ESTÁ AQUI */
-.logo-img { height: 32px; }
+.logo-img {
+    height: 38px;
+    filter: drop-shadow(0 0 10px rgba(40, 191, 243, 0.45));
+}
 
-.nav-menu { display: flex; gap: 32px; }
-.nav-link { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+.nav-menu {
+    display: flex;
+    gap: 32px;
+}
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 0;
+}
 .nav-link:hover { color: var(--text-primary); }
-.nav-actions { display: flex; gap: 16px; align-items: center; }
 
-/* =========================================================
-   5. TELA INICIAL (HERO)
-========================================================= */
+.nav-item { position: relative; }
+.nav-seta {
+    font-size: 0.6rem;
+    transition: transform 0.2s;
+}
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: -16px;
+    min-width: 220px;
+    padding: 8px;
+    background: rgba(18, 18, 22, 0.97);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+}
+.submenu a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    padding: 10px 12px;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+}
+.submenu a:hover, .submenu a:focus-visible {
+    background: rgba(141, 88, 255, 0.15);
+    color: var(--text-primary);
+}
+.nav-item:hover .submenu, .nav-item:focus-within .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.nav-item:hover .nav-seta, .nav-item:focus-within .nav-seta { transform: rotate(180deg); }
+
+/* Botão do menu no celular */
+.btn-menu {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: rgba(9, 9, 11, 0.6);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.so-celular { display: none; }
+
+section[id], .feature-card[id], .location-card[id], .plan-card[id] { scroll-margin-top: 100px; }
+.nav-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+/* Tela inicial (hero) */
 .hero {
     height: 100vh;
     display: flex;
@@ -126,32 +214,76 @@ body {
     border-bottom: 1px solid var(--border-color);
 }
 
-.hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
-.hero-overlay { position: absolute; inset: 0; background-color: rgba(9, 9, 11, 0.7); z-index: 2; }
-.hero-content { position: relative; z-index: 10; max-width: 800px; }
+.hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(9, 9, 11, 0.7);
+    z-index: 2;
+}
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+}
 
-.hero-title { font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; line-height: 1; letter-spacing: -2px; margin-bottom: 24px; }
-.hero-subtitle { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 40px; max-width: 600px; }
+.hero-title {
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+}
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    max-width: 600px;
+}
 
-/* =========================================================
-   6. TÍTULOS DE SEÇÃO
-========================================================= */
+/* Títulos de seção */
 .section-header { margin-bottom: 64px; }
-.section-header h2 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
-.section-header p { font-size: 1.125rem; color: var(--text-secondary); }
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+}
+.section-header p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+}
 
-/* =========================================================
-   7. CARTÕES DE RECURSOS (METODOLOGIA)
-========================================================= */
-.feature-card { padding: 32px 0; border-top: 1px solid var(--border-color); transition: border-color 0.3s; }
+/* Cartões de recursos (metodologia) */
+.feature-card {
+    padding: 32px 0;
+    border-top: 1px solid var(--border-color);
+    transition: border-color 0.3s;
+}
 .feature-card:hover { border-color: var(--roxo-mova); }
-.feature-icon { font-size: 2rem; color: var(--azul-mova); margin-bottom: 24px; }
-.feature-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; }
-.feature-card p { color: var(--text-secondary); font-size: 0.95rem; }
+.feature-icon {
+    font-size: 2rem;
+    color: var(--azul-mova);
+    margin-bottom: 24px;
+}
+.feature-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+.feature-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
 
-/* =========================================================
-   8. CARTÕES DE UNIDADES
-========================================================= */
+/* Cartões de unidades */
 .location-card {
     background-color: var(--bg-main);
     border: 1px solid var(--border-color);
@@ -159,7 +291,10 @@ body {
     border-radius: 12px;
     transition: transform 0.2s, border-color 0.2s;
 }
-.location-card:hover { transform: translateY(-4px); border-color: var(--azul-mova); }
+.location-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--azul-mova);
+}
 .status-badge {
     display: inline-block;
     background: rgba(40, 191, 243, 0.15);
@@ -171,13 +306,18 @@ body {
     text-transform: uppercase;
     margin-bottom: 16px;
 }
-.location-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
+.location-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
 .location-card p { color: var(--text-secondary); }
 
-/* =========================================================
-   9. CARTÕES DE PLANOS (PRICING)
-========================================================= */
-.plans-container { max-width: 900px; margin: 0 auto; }
+/* Cartões de planos (pricing) */
+.plans-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
 .plan-card {
     background-color: var(--bg-surface);
     border: 1px solid var(--border-color);
@@ -188,149 +328,247 @@ body {
     flex-direction: column;
 }
 
-.plan-card.highlighted { border-color: var(--roxo-mova); box-shadow: 0 10px 40px rgba(141, 88, 255, 0.1); }
-.recommend-badge {
-    position: absolute; top: -12px; left: 40px;
-    background: var(--gradiente-mova); color: #fff;
-    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-    padding: 6px 16px; border-radius: 20px;
+.plan-card.highlighted {
+    border-color: var(--roxo-mova);
+    box-shadow: 0 10px 40px rgba(141, 88, 255, 0.1);
 }
-.plan-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; }
-.plan-price { font-size: 3.5rem; font-weight: 900; letter-spacing: -2px; margin-bottom: 16px; color: var(--azul-mova); }
-.plan-price span { font-size: 1rem; font-weight: 400; color: var(--text-secondary); letter-spacing: 0; }
-.plan-desc { color: var(--text-secondary); margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--border-color); }
+.recommend-badge {
+    position: absolute;
+    top: -12px;
+    left: 40px;
+    background: var(--gradiente-mova);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+}
+.plan-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+.plan-price {
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+    color: var(--azul-mova);
+}
+.plan-price span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    letter-spacing: 0;
+}
+.plan-desc {
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border-color);
+}
 
-.plan-features { list-style: none; margin-bottom: 40px; flex-grow: 1; }
-.plan-features li { margin-bottom: 16px; font-size: 0.95rem; display: flex; align-items: center; gap: 12px; }
-.plan-features li i { color: var(--azul-mova); font-size: 0.875rem; }
+.plan-features {
+    list-style: none;
+    margin-bottom: 40px;
+    flex-grow: 1;
+}
+.plan-features li {
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.plan-features li i {
+    color: var(--azul-mova);
+    font-size: 0.875rem;
+}
 .plan-features li.disabled { color: var(--text-secondary); }
 .plan-features li.disabled i { color: var(--border-color); }
 
-/* =========================================================
-   10. RODAPÉ (FOOTER)
-========================================================= */
-.footer { border-top: 1px solid var(--border-color); padding: 64px 0 32px; }
-.footer-wrapper { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 64px; }
-.footer-logo { height: 28px; margin-bottom: 12px; }
-.footer-info p { color: var(--text-secondary); font-size: 0.875rem; }
-.footer-links { display: flex; gap: 24px; }
-.footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
-.footer-links a:hover { color: var(--azul-mova); }
-.footer-copyright { color: var(--text-secondary); font-size: 0.75rem; text-align: center; }
-
-/* =========================================================
-   11. MEDIA QUERIES
-========================================================= */
-@media (max-width: 900px) {
-    .grid-3, .grid-2 { grid-template-columns: 1fr; }
-    .nav-menu { display: none; }
-    .hero-title { font-size: 3rem; }
-    .footer-wrapper { flex-direction: column; gap: 32px; }
+/* Rodapé (footer) */
+.footer {
+    border-top: 1px solid var(--border-color);
+    padding: 64px 0 32px;
 }
-/* =========================================================
-   ACESSIBILIDADE - DESAFIO PLUS (PONTO EXTRA)
-========================================================= */
-.acessibilidade-container {
-    position: relative; /* Agora ele respeita o Flexbox do seu cabeçalho */
-    display: inline-block;
-    font-family: 'Inter', sans-serif;
-    z-index: 9999;
-}
-
-/* Usaremos esta classe APENAS nas páginas que não têm cabeçalho (Login, Cadastro e 404) */
-.acessibilidade-container.acess-fixed {
-    position: fixed;
-    top: 24px;
-    right: 24px;
-}
-
-.btn-acess {
-    background: linear-gradient(135deg, #28bff3, #8d58ff);
-    color: #fff;
-    border: none;
-    width: 42px; /* Tamanho ajustado para alinhar perfeitamente com os botões */
-    height: 42px;
-    border-radius: 50%;
-    font-size: 1.1rem;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(141, 88, 255, 0.3);
-    transition: transform 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.btn-acess:hover {
-    transform: rotate(90deg) scale(1.05);
-}
-
-.menu-acess {
-    position: absolute;
-    top: calc(100% + 12px);
-    right: 0;
-    background: #15151f;
-    border: 1px solid #30303d;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    display: none;
-    flex-direction: column;
-    gap: 12px;
-    min-width: 160px;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.2s, transform 0.2s;
-}
-
-.menu-acess.ativo {
-    display: flex;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.menu-acess span {
-    color: #a1a1aa;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-align: center;
-    border-bottom: 1px solid #30303d;
-    padding-bottom: 8px;
-}
-
-.acoes-acess {
+.footer-wrapper {
     display: flex;
     justify-content: space-between;
-    gap: 8px;
+    align-items: flex-start;
+    margin-bottom: 64px;
+}
+.footer-logo {
+    height: 28px;
+    margin-bottom: 12px;
+}
+.footer-info p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+.footer-links {
+    display: flex;
+    gap: 24px;
+}
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--azul-mova); }
+.footer-copyright {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    text-align: center;
 }
 
-.acoes-acess button {
-    flex: 1;
-    background: #27272a;
-    color: #fff;
-    border: 1px solid #3f3f46;
-    border-radius: 6px;
-    padding: 8px 0;
-    font-size: 0.9rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
+/* Media queries */
+@media (max-width: 900px) {
+    .grid-3, .grid-2 { grid-template-columns: 1fr; }
+    /* Menu no celular */
+    .btn-menu { display: inline-flex; }
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 16px;
+        right: 16px;
+        flex-direction: column;
+        gap: 4px;
+        padding: 12px;
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+        background: rgba(18, 18, 22, 0.98);
+        border: 1px solid var(--border-color);
+        border-radius: 14px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+    .nav-menu.aberto { display: flex; }
+    .nav-link {
+        color: var(--text-primary);
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 10px 12px;
+    }
+    .nav-seta { display: none; }
+    .submenu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0 0 8px 12px;
+        min-width: 0;
+    }
+    .navbar { position: relative; }
+    .hero-title { font-size: 3rem; }
+    .footer-wrapper {
+        flex-direction: column;
+        gap: 32px;
+    }
 }
 
-.acoes-acess button:hover {
-    background: #8d58ff;
-    border-color: #8d58ff;
+@media (max-width: 600px) {
+    .container { padding: 0 16px; }
+
+    .hero-overlay { background: linear-gradient(180deg, rgba(9, 9, 11, 0.35) 0%, rgba(9, 9, 11, 0.55) 55%, rgba(9, 9, 11, 0.8) 100%); }
+    .nav-actions { gap: 8px; }
+    .nav-actions .btn-ghost { display: none; }
+    .nav-menu .so-celular {
+        display: inline-flex;
+        border-top: 1px solid var(--border-color);
+        margin-top: 4px;
+        padding-top: 14px;
+    }
+    .nav-actions .btn-primary {
+        padding: 9px 14px;
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+    .nav-actions .btn-acess {
+        width: 36px;
+        height: 36px;
+        font-size: 0.95rem;
+    }
+    .logo-img { height: 30px; }
+    .hero-title {
+        font-size: 2.4rem;
+        letter-spacing: -1px;
+    }
+    .hero-subtitle { font-size: 1.05rem; }
+    .section { padding: 72px 0; }
+    .section-header { margin-bottom: 40px; }
+    .section-header h2 { font-size: 2rem; }
+    .plan-card { padding: 40px 24px; }
+    .recommend-badge { left: 24px; }
+    .footer-links {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+}
+@media (max-width: 360px) {
+    .nav-actions .btn-primary {
+        padding: 8px 10px;
+        font-size: 0.75rem;
+    }
 }
 
-/* --- LÓGICA VISUAL DO PONTO EXTRA --- */
-html.fonte-aumentada { font-size: 112% !important; }
-html.fonte-reduzida { font-size: 88% !important; }
-
-html.alto-contraste {
-    filter: invert(1) hue-rotate(180deg) !important;
-    background-color: #111 !important; 
+/* Tema claro */
+html.tema-claro {
+    --bg-main: #f6f6f9;
+    --bg-surface: #ffffff;
+    --text-primary: #1c1c25;
+    --text-secondary: #5c5c68;
+    --border-color: #e3e3ea;
 }
-html.alto-contraste img, 
-html.alto-contraste video {
-    filter: invert(1) hue-rotate(180deg) !important;
+html.tema-claro .hero { color: #fafafa; }
+html.tema-claro .hero-subtitle { color: #d4d4d8; }
+html.tema-claro .header.scrolled { background-color: rgba(255, 255, 255, 0.94); }
+html.tema-claro .submenu {
+    background: #ffffff;
+    box-shadow: 0 16px 40px rgba(30, 25, 70, 0.15);
+}
+html.tema-claro .submenu a:hover, html.tema-claro .submenu a:focus-visible { color: #1c1c25; }
+html.tema-claro .btn-menu { background: rgba(255, 255, 255, 0.85); }
+html.tema-claro .location-card { background: #ffffff; }
+html.tema-claro .plan-card.highlighted { box-shadow: 0 10px 40px rgba(141, 88, 255, 0.18); }
+
+@media (min-width: 901px) {
+    html.tema-claro .header:not(.scrolled) .nav-link,
+    html.tema-claro .header:not(.scrolled) .btn-ghost {
+        color: #fafafa;
+        border-color: rgba(255, 255, 255, 0.35);
+    }
+}
+@media (max-width: 900px) {
+    html.tema-claro .nav-menu {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 20px 50px rgba(30, 25, 70, 0.18);
+    }
+    html.tema-claro .header:not(.scrolled) .nav-actions .btn-ghost {
+        color: #fafafa;
+        border-color: rgba(255, 255, 255, 0.35);
+    }
+}
+/* Fotos dos cartões */
+.card-foto {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: 24px;
+    background: var(--bg-surface);
+}
+.feature-card .card-foto { transition: transform 0.4s ease; }
+.feature-card:hover .card-foto { transform: scale(1.02); }
+.location-card { overflow: hidden; }
+.location-card .card-foto {
+    width: calc(100% + 64px);
+    margin: -32px -32px 24px;
+    border-radius: 0;
 }

@@ -1,7 +1,4 @@
-/* =========================================================
-   MOVA FIT - PÁGINA DE CADASTRO E LOGIN
-   css/cadastro.css
-========================================================= */
+/* Página de cadastro e login */
 
 * {
     margin: 0;
@@ -10,7 +7,7 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
     background: radial-gradient(circle at 88% 18%, rgba(179, 60, 255, 0.15), transparent 32%),
                 radial-gradient(circle at 70% 80%, rgba(32, 189, 245, 0.12), transparent 32%),
                 #07070c;
@@ -64,7 +61,7 @@ body {
     font-size: 0.95rem;
 }
 
-/* FIELDSETS E GRUPOS */
+/* Fieldsets e grupos */
 .form-grupo-fieldset {
     border: 1px solid var(--borda);
     border-radius: 14px;
@@ -126,6 +123,11 @@ body {
     border-color: #ff4d4d;
 }
 
+.opcional {
+    color: #8a8a9a;
+    font-weight: 500;
+}
+
 .erro-texto {
     color: #ff6b6b;
     font-size: 0.75rem;
@@ -133,7 +135,7 @@ body {
     min-height: 14px;
 }
 
-/* FEEDBACK VISUAL SEM ALERT */
+/* Mensagem de erro ou sucesso */
 .feedback-mensagem {
     padding: 12px 16px;
     border-radius: 10px;
@@ -158,7 +160,7 @@ body {
     display: block;
 }
 
-/* BOTÃO PRINCIPAL */
+/* Botão principal */
 .btn-submit {
     width: 100%;
     min-height: 52px;
@@ -206,49 +208,45 @@ body {
         padding: 25px 20px;
     }
 }
-/* ==========================================
-   TOOLTIP CUSTOMIZADO 
-========================================== */
+/* Tooltip customizado */
 .tooltip-custom {
     position: relative;
     display: inline-block;
     margin-left: 8px;
     color: var(--azul);
-    cursor: pointer; /* Mudamos de 'help' para 'pointer' para tirar o ponto de interrogação */
+    cursor: pointer;
 }
 
-/* A caixinha preta com o texto que fica escondida */
 .tooltip-custom .tooltip-texto {
     visibility: hidden;
     width: max-content;
-    background-color: var(--card); /* Usa a cor de fundo do seu card */
+    background-color: var(--card);
     color: #f7f7fb;
     text-align: center;
     border: 1px solid var(--borda);
     border-radius: 6px;
     padding: 8px 12px;
+
     
-    /* Posicionamento flutuante acima do ícone */
     position: absolute;
     z-index: 10;
     bottom: 150%;
     left: 50%;
     transform: translateX(-50%);
+
     
-    /* Efeito de transição suave */
     opacity: 0;
     transition: opacity 0.3s ease;
-    
+
     font-size: 0.75rem;
     font-weight: normal;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
-/* Setinha apontando para baixo na caixinha */
 .tooltip-custom .tooltip-texto::after {
     content: "";
     position: absolute;
-    top: 100%; /* Coloca no fundo da caixinha */
+    top: 100%;
     left: 50%;
     margin-left: -6px;
     border-width: 6px;
@@ -256,17 +254,13 @@ body {
     border-color: var(--borda) transparent transparent transparent;
 }
 
-/* Faz a caixinha aparecer quando passa o mouse OU quando clica */
 .tooltip-custom:hover .tooltip-texto,
 .tooltip-custom:active .tooltip-texto {
     visibility: visible;
     opacity: 1;
 }
-/* ==========================================
-   CONTAINER DA SENHA E BOTÃO DO OLHO
-========================================== */
+/* Container da senha e botão do olho */
 
-/* Prende o botão dentro deste espaço */
 .input-container {
     position: relative;
     display: flex;
@@ -274,18 +268,16 @@ body {
     width: 100%;
 }
 
-/* Dá espaço na direita para o texto não encostar no olho */
 .input-container input {
     width: 100%;
     padding-right: 45px !important;
 }
 
-/* Tira o fundo branco, a borda e joga pro canto direito */
 .btn-olho {
     position: absolute;
     right: 15px;
-    background: transparent !important; /* Força tirar o fundo branco */
-    border: none !important; /* Força tirar a borda quadrada */
+    background: transparent !important;
+    border: none !important;
     color: #b6b6c2;
     cursor: pointer;
     font-size: 1.1rem;
@@ -295,119 +287,125 @@ body {
     justify-content: center;
 }
 
-/* Muda a cor do olho ao passar o mouse */
 .btn-olho:hover {
     color: var(--azul);
 }
 
-/* Remove o contorno feio quando clica */
 .btn-olho:focus {
     outline: none;
 }
-/* =========================================================
-   ACESSIBILIDADE - DESAFIO PLUS (PONTO EXTRA)
-========================================================= */
-.acessibilidade-container {
-    position: relative; /* Agora ele respeita o Flexbox do seu cabeçalho */
-    display: inline-block;
-    font-family: 'Inter', sans-serif;
-    z-index: 9999;
-}
 
-/* Usaremos esta classe APENAS nas páginas que não têm cabeçalho (Login, Cadastro e 404) */
-.acessibilidade-container.acess-fixed {
-    position: fixed;
-    top: 24px;
-    right: 24px;
+/* Tema claro */
+html.tema-claro {
+    --card: #ffffff;
+    --borda: #e3e3ea;
 }
-
-.btn-acess {
-    background: linear-gradient(135deg, #28bff3, #8d58ff);
-    color: #fff;
-    border: none;
-    width: 42px; /* Tamanho ajustado para alinhar perfeitamente com os botões */
-    height: 42px;
-    border-radius: 50%;
-    font-size: 1.1rem;
+html.tema-claro body {
+    background: radial-gradient(circle at 88% 18%, rgba(179, 60, 255, 0.10), transparent 32%),
+                radial-gradient(circle at 70% 80%, rgba(32, 189, 245, 0.10), transparent 32%),
+                #f6f6f9;
+    color: #1c1c25;
+}
+html.tema-claro .auth-card { box-shadow: 0 20px 50px rgba(30, 25, 70, 0.10); }
+html.tema-claro .auth-header h1 { color: #1c1c25; }
+html.tema-claro .auth-header p,
+html.tema-claro .auth-footer { color: #5c5c68; }
+html.tema-claro .input-grupo label { color: #3a3a48; }
+html.tema-claro .input-grupo input,
+html.tema-claro .input-grupo select {
+    background: #f8f9fc;
+    border-color: #d7deea;
+    color: #1c1c25;
+}
+html.tema-claro .form-grupo-fieldset { background: #fcfcfe; }
+html.tema-claro .tooltip-custom .tooltip-texto { color: #1c1c25; }
+html.tema-claro .btn-olho { color: #6e6e79; }
+html.tema-claro .opcional { color: #6e6e79; }
+/* Escolha do plano no cadastro */
+.opcoes-plano {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+.opcao-plano {
+    position: relative;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(141, 88, 255, 0.3);
-    transition: transform 0.3s ease;
+}
+.opcao-plano input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.opcao-plano-conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: 100%;
+    padding: 16px;
+    border: 2px solid var(--borda);
+    border-radius: 14px;
+    background: #0b0b12;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.opcao-plano-conteudo strong {
+    font-size: 1rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-}
-
-.btn-acess:hover {
-    transform: rotate(90deg) scale(1.05);
-}
-
-.menu-acess {
-    position: absolute;
-    top: calc(100% + 12px);
-    right: 0;
-    background: #15151f;
-    border: 1px solid #30303d;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    display: none;
-    flex-direction: column;
-    gap: 12px;
-    min-width: 160px;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.2s, transform 0.2s;
-}
-
-.menu-acess.ativo {
-    display: flex;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.menu-acess span {
-    color: #a1a1aa;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-align: center;
-    border-bottom: 1px solid #30303d;
-    padding-bottom: 8px;
-}
-
-.acoes-acess {
-    display: flex;
-    justify-content: space-between;
     gap: 8px;
+    flex-wrap: wrap;
+}
+.selo-recomendado {
+    font-style: normal;
+    font-size: 0.62rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    background: var(--gradiente);
+    color: #ffffff;
+}
+.opcao-plano-preco {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--azul);
+}
+.opcao-plano-preco small {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #b6b6c2;
+}
+.opcao-plano-desc {
+    font-size: 0.78rem;
+    color: #b6b6c2;
+}
+.opcao-plano:hover .opcao-plano-conteudo { border-color: rgba(141, 88, 255, 0.6); }
+.opcao-plano input:checked + .opcao-plano-conteudo {
+    border-color: var(--roxo);
+    background: rgba(141, 88, 255, 0.12);
+    box-shadow: 0 0 0 3px rgba(141, 88, 255, 0.2);
+}
+.opcao-plano input:focus-visible + .opcao-plano-conteudo {
+    outline: 3px solid var(--azul);
+    outline-offset: 2px;
+}
+.opcoes-plano.invalido .opcao-plano-conteudo { border-color: #ff4d4d; }
+
+html.tema-claro .opcao-plano-conteudo { background: #f8f9fc; }
+html.tema-claro .opcao-plano-preco small,
+html.tema-claro .opcao-plano-desc { color: #6e6e79; }
+
+@media (max-width: 420px) {
+    .opcoes-plano { grid-template-columns: 1fr; }
 }
 
-.acoes-acess button {
-    flex: 1;
-    background: #27272a;
-    color: #fff;
-    border: 1px solid #3f3f46;
-    border-radius: 6px;
-    padding: 8px 0;
-    font-size: 0.9rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
+.input-grupo input.travado {
+    cursor: not-allowed;
+    opacity: 0.85;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238a8a9a'%3E%3Cpath d='M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 8V7a3 3 0 0 1 6 0v3z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 14px;
+    padding-right: 34px;
 }
-
-.acoes-acess button:hover {
-    background: #8d58ff;
-    border-color: #8d58ff;
-}
-
-/* --- LÓGICA VISUAL DO PONTO EXTRA --- */
-html.fonte-aumentada { font-size: 112% !important; }
-html.fonte-reduzida { font-size: 88% !important; }
-
-html.alto-contraste {
-    filter: invert(1) hue-rotate(180deg) !important;
-    background-color: #111 !important; 
-}
-html.alto-contraste img, 
-html.alto-contraste video {
-    filter: invert(1) hue-rotate(180deg) !important;
-}
+.input-grupo input.travado:focus { border-color: var(--borda); }

@@ -1,65 +1,21 @@
-/* =========================================================
-   ACESSIBILIDADE - DESAFIO PLUS (PONTO EXTRA)
-========================================================= */
 document.addEventListener("DOMContentLoaded", () => {
-    const containerAcess = document.querySelector(".acessibilidade-container");
-    if (!containerAcess) return;
+    const params = new URLSearchParams(window.location.search);
+    const botao = document.getElementById("botaoErro");
+    const textoBotao = botao.querySelector("span");
+    const iconeBotao = botao.querySelector("i");
 
-    const btnAcess = document.getElementById("btnAcess");
-    const menuAcess = document.getElementById("menuAcess");
-    const btnAumentar = document.getElementById("btnAumentar");
-    const btnDiminuir = document.getElementById("btnDiminuir");
-    const btnContraste = document.getElementById("btnContraste");
-    const htmlObj = document.documentElement;
-
-    // 1. Abrir e fechar a engrenagem
-    btnAcess.addEventListener("click", () => {
-        menuAcess.classList.toggle("ativo");
-    });
-
-    // Fechar ao clicar fora da engrenagem
-    document.addEventListener("click", (e) => {
-        if (!containerAcess.contains(e.target)) {
-            menuAcess.classList.remove("ativo");
-        }
-    });
-
-    // 2. Funções de aplicação e salvamento
-    function aplicarContraste(ativo) {
-        if (ativo) htmlObj.classList.add("alto-contraste");
-        else htmlObj.classList.remove("alto-contraste");
-        localStorage.setItem("mova_contraste", ativo);
-    }
-
-    function aplicarFonte(tamanho) {
-        htmlObj.classList.remove("fonte-aumentada", "fonte-reduzida");
-        if (tamanho === "aumentada") htmlObj.classList.add("fonte-aumentada");
-        if (tamanho === "reduzida") htmlObj.classList.add("fonte-reduzida");
-        localStorage.setItem("mova_fonte", tamanho || "normal");
-    }
-
-    // 3. Ações dos botões
-    btnContraste.addEventListener("click", () => {
-        const estadoAtual = htmlObj.classList.contains("alto-contraste");
-        aplicarContraste(!estadoAtual);
-    });
-
-    btnAumentar.addEventListener("click", () => {
-        const atual = localStorage.getItem("mova_fonte");
-        aplicarFonte(atual !== "aumentada" ? "aumentada" : "normal");
-    });
-
-    btnDiminuir.addEventListener("click", () => {
-        const atual = localStorage.getItem("mova_fonte");
-        aplicarFonte(atual !== "reduzida" ? "reduzida" : "normal");
-    });
-
-    // 4. Inicializar estado salvo ao carregar a página
-    if (localStorage.getItem("mova_contraste") === "true") {
-        aplicarContraste(true);
-    }
-    const fonteSalva = localStorage.getItem("mova_fonte");
-    if (fonteSalva) {
-        aplicarFonte(fonteSalva);
+    if (params.get("erro") === "auth") {
+        document.title = "MOVA FIT | Acesso restrito";
+        document.getElementById("numeroErro").textContent = "401";
+        document.getElementById("tituloErro").innerHTML = "<span>Acesso restrito!</span> Faça login para continuar";
+        document.getElementById("textoErro").textContent =
+            "Esta área é exclusiva para alunos cadastrados. Se você já tem cadastro, entre com seu login e senha. Se ainda não tem, faça o seu cadastro primeiro.";
+        botao.href = "login.html";
+        textoBotao.textContent = "Já tenho cadastro";
+        iconeBotao.className = "fa-solid fa-right-to-bracket";
+        document.getElementById("botaoCadastro").hidden = false;
+    } else if (localStorage.getItem("usuarioLogado")) {
+        botao.href = "dashboard.html";
+        textoBotao.textContent = "Voltar ao Dashboard";
     }
 });
